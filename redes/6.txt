@@ -1,0 +1,110 @@
+camada de aplicação: onde a aplicação está, camada mais próxima do usuário
+aplicações de rede da camada de aplicação: email, web, jogos etc..
+
+-os softwares são programados nessa camada pois as outras camadas já exite implementação própria
+-arquiteturas de aplicação: cliente-servidor(http), peer to peer(p2p), híbrida entre p2p e cliente-servidor
+
+-servidor: hospedeiro sempre ligado, endereço IP permanente
+-cliente: comunicam-se com o servidor, não se comunicam diretamente entre si, podem ter endereços IP dinâmicos
+
+-p2p: nenhum servidor sempre ligado, sistemas finais arbitrários se comunicam diretamente, dificil de administrar, altamente escalável
+-existe uma base de dados pra guardar os vários servidores
+
+híbrido de cliente-servidor e p2p
+-ex: skype é uma aplicação p2p e VOIP
+-mensagem instantânea: bate-papo entre dois usuários é p2p
+
+-endereço de enlace: endereço MAC
+-endereço de rede: endereço IP
+-endereço da camada de transporte: endereço IP + numero da porta
+
+protocolos de dominio publico: definidos em RFCs, provê interoperabilidade, HTTP, SMTP, BitTorrent
+protocolos proprietários: skype, ppstream
+
+TCP:
+-orientado a conexão: preparação exigida entre processos cliente e servidor (pre-conversa entre cliente e servidor)
+-transporte confiavel entre processo emissor e receptor
+-controle de fluxo: emissor nao sobrecarrega receptor
+-controle de congestionamento: regula emissor quando a rede está sobrecarregada
+-não oferece: temporização, segurança, garantias minimas de vazão
+
+UDP:
+-transferencia de dados não confiável entre processo emissor e receptor
+-não oferece: preparação da conexão, confiabilidade, controle de fluxo, temporização, segurança, garantias minimas de vazão, controle de congestionamento
+-é mais rápido que o TCP
+
+email, telnet (acesso remoto), web, transf. arquivos usam TCP
+telefonia usa UDP
+
+
+1. Relacione cinco aplicações da internet não proprietárias e os protocolos da camada de aplicação que elas usam.
+Correio eletrônico - SMTP
+web - HTTP
+transf. arquivos - FTP
+acesso remoto - TELNET
+telefonia da Internet - SIP, RTP
+
+2. Qual a diferença entre arquitetura de rede e arquitetura de aplicação?
+arquitetura de rede engloba todas as camadas de protocolos e serviços utilizados para prover a comunicação remota entre 2 ou mais aplicações
+arquitetura de aplicação é projetada pelo desenvolvedor e determina como a aplicação é organizada nos varios sistemas finais e as regras de comunicação entre esse sistema
+
+3. Para uma sessão de comunicação entre um par de processos, qual o processo é o cliente e qual é o servidor?
+o cliente é o que recebe/consome os dados e o servidor o que envia
+
+4. Que informação é utilizada por um processo que está rodando em um hospedeiro para identificar um processo que está rodando em outro hospedeiro?
+o endereço da camada de transporte que é o IP e a porta
+
+5. Suponha que você queira fazer uma transação de um cliente remoto para um servidor da maneira mais rápida possível. Você usaria o UDP ou o TCP? Por quê?
+UDP pois ele é mais rápido que TCP
+
+6. Em uma aplicação de compartilhamento de arquivos P2P, você concorda com a afirmação: “ não existe nenhuma noção de lados cliente e servidor de uma sessão de comunicação”? Por quê?
+não porque no compartilhamento de arquivos p2p, um processo pode ser ambos, cliente e servidor
+um processo pode carregar e descarregar arquivos, mesmo assim no contexto de qualquer sessão entre 
+um par de processos ainda podemos rotular um processo de cliente e o outro de servidor, quem inicia
+a comunicação é o cliente e quem espera ser contatado para iniciar a sessão é o servidor
+
+------------------------------------------
+
+WEB e HTTP
+-usa TCP
+-cliente inicia conexão TCP(cria socket) com servidor, porta 80
+-servidor aceita conexão TCP do cliente (envia um pacote vazio)
+-mensagens HTTP (do protocolo da camada de aplicação) trocadas entre navegador (cliente HTTP) e servidor Web (servidor HTTP)
+-sem estado: servidor não guarda informações sobre requisições passadas do cliente
+
+HTTP persistente: mantem conexão aberta com o cliente
+HTTP não persistente: servidor não mantém conexão com o cliente (se abrir uma página e tiver 10 imagens pra baixar precisa abrir 10 conexões diferentes com o servidor)
+
+RTT (tempo de ping): tempo para um pequeno pacote trafegar do cliente ao servidor e retornar. (round-trip time)
+
+tempo de resposta:
+-um RTT para iniciar a conexão TCP
+-um RTT para a requisição HTTP e
+-primeiros bytes da resposta HTTP retornarem
+-tempo de transmissão de arquivo: total = 2RTT + tempo de transmissão
+
+
+1-O que aconteceria se apenas o ROTEADOR 1 conhecesse as rotas para o roteador2 e você executasse
+o ping do host1 para o host4. você obteria sucesso?
+
+o pacote ia chegar mas não ia voltar
+
+
+2-por ser muito simples este cenário, ao invés do roteamento sugerido,
+seria possível obter o mesmo resultado usando apenas gateways defaults? como?
+
+sim, mas precisaria tirar um dos roteadores, pois como tem 2 roteadores
+é preciso criar uma rota entre os roteadores
+
+
+3-mostre a sumarização efetuada na rota do item 15. quais são as rotas que
+ela sumarizou? calcule a sumarização necessária se os destinos fossem 
+192.168.34.32 e 192.168.82.1 respectivamente
+
+
+
+***roteador não precisa de rota configurada para as conexões dele, apenas para rotas que envolvem outros roteadores
+
+
+
+

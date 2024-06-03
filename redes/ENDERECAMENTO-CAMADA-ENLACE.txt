@@ -1,0 +1,12 @@
+-endereço da camada de enlace: também conhecido como endereço de LAN, endereço físico ou endereço MAC
+-este endereço possui 6 bytes(48 bits) que são expressos em hexadecimal, que dá 2 na 48 endereços possíveis
+-este endereço é definido pela fabricante da interface de rede.
+-quem gerencia os endereços possíveis é a IEEE e quando uma fabricante deseja fabricar interfaces de rede ela compra uma parcela do espaço de 
+endereços, a IEEE aloca os primeiros 24bits do endereço e os outros 24 bits são dados para a empresa criar combinações exclusivas com eles
+-roteadores e hosts possuem endereços na camadade de rede que é o IP, e também possuem um endereço na camada de enlace que é o MAC
+-o endereço MAC é associado a uma interface de rede, então um mesmo host/roteador pode possuir vários endereços da camada de enlace
+-comutador da camada de enlace(switch): sua função é receber pacotes da camada de enlace e repassá-los para os enlaces de saída baseado no endereço da camada de enlace(MAC)
+-endereço MAC ao contrário do IP não muda, o IP muda quando um dispositivo troca de rede já o MAC é sempre o mesmo independente de trocar de rede
+-quando um remetente quer enviar um pacote para um destino, o endereço MAC do destinatário é inserido no cabeçalho do pacote, para o 
+remetente descobrir o MAC do destinatário ele envia um pacote ARP pra todos os outros hosts da rede perguntando quem possui o ip do destinatário, cada host verifica se seu IP corresponde ao IP de destino do pacote enviado, então o host que atende a essa condição responde com o seu endereço MAC, quando o pacote chegar no destinatário o comutador da camada de enlace(switch) analisa o cabeçalho do pacote e repassa o pacote pra porta correta através do endereço MAC
+-protocolo ARP traduz endereços da camada de rede para a camada de enlace

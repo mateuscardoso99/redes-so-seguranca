@@ -1,0 +1,119 @@
+broadcasting (difusao): quando um pacote com o código especial de difusão é transmitido, ele é recebido e processado por todas as maquinas da rede
+multicasting (multidifusao): transmissao de pacotes para um subconjunto de maquinas
+uncasting: transmissao ponto a ponto
+
+transmissao: cabos e fios de cobre, sinais eletricos propagados em fios metálicos
+-cabo coaxial permite a passagem de uma faixa de frequencia maior que cabos de cobre
+-fibra ótica: transmissão de sinais luminosos através do ambiente, é um fio de vidro de 2 camadas com indices de refração diferentes
+é imune a umidade, alta velocidade
+-fibra ótica multimodo: mais grossa, baixas taxas de transferencia, distancia menores(2km)
+-fibra ótica monomodo: menos grossa, altas taxas de transferencia, distancias maiores
+-ondas eletromagnéticas: irradiação do sinal pelas antenas, faixa de frequencia(900mhz ou 2400mhz)
+-satélite: usado para alcançar locais remotas aos quais a rede terrestre não consegue chegar, faixa de frequencia(4 a 20GHz), 
+vantagem: transmissao broadcasting, desvantagem: retardo do sinal devido ao grande percurso
+
+ISP de zona 1: (provedor de internet de nivel mundial), quem se conectar neles tem acesso a internet (no brasil não tem, ficam nos EUA)
+isp de zona 2: (alcance regional ou nacional) conectam-se a um ou mais isp de zona 1, possivelmente a outros ISPs de zona-2
+isp de zona 3: ultima rede de acesso próxima aos sistemas finais
+
+ATRASO E PERDA: pacotes se enfileiram em buffers de roteador
+-taxa de chegada de pacotes ao enlace(roteador) ultrapassa capacidade de saída do enlace(roteador)
+-perda: pacote chega e não tem espaço no buffer do roteador entao ele é descartado
+
+motivos de atraso: 
+1-processamento dentro do roteador(pra onde enviar o pacote)
+2-enfileiramento: chega mais pacotes do que a capacidade do roteador tempo esperando por transmissão no enlace de saída (depende do tamanho do buffer e do congestionamento)
+3-atraso de transmissão: dependa da largura de banda do enlace(R), tamanho do pacote(L), tempo pra enviar os bits. tempo pra enviar = L/R
+4-atraso de propagação: tempo entre a transmissão de um bit até ele chegar no enlace de destino
+
+ex: caravana de carros(bits)
+-carros se propagam a 100km/h
+-cabines de pedagio(roteador) levam 12s pra atender cada carro(tempo de transmissao)
+-tempo pra empurrar caravana inteira pela cabine = 12x10=120s
+
+intensidade de tráfego: tamanho do pacote(L) * taxa média de chegada de pacote / largura de banda do enlace (R)
+
+TTL: se um pacote percorrer 30 enlaces (30 pulos) e não chegar no destino o pacote é descartado, a cada enlace que o
+pacote passa o TTL é diminuido em -1, isso é usado pra impedir que um pacote fique em loop infinito dentro de uma ou mais redes
+
+VAZÃO: largura de banda, taxa(bits/unidade de tempo) em que os bits são transferidos entre emissor e receptor
+
+
+------------------------------
+
+
+1. Diferencie broadcast de multicast.
+broadcasting (difusao): quando um pacote com o código especial de difusão é transmitido, ele é recebido e processado por todas as maquinas da rede
+multicasting (multidifusao): transmissao de pacotes para um subconjunto de maquinas
+
+2. Permitir broadcast de forma irrestrita pode gerar algum problema?
+problemas de desempenho e congestionamento
+
+3. Quais ISPs estão no núcleo da Internet? Quais as suas características.
+isp de zona 1, são full mesh
+
+4. Quando queremos nos conectar à Internet, normalmente nos conectamos em qual ISP?
+zona 3 ou isp local
+
+5. Quais as vantagens e desvantagens da transmissão de dados por fibra ótica?
+vantagens: velocidade, imune a interferencias
+desvantagens: custo
+
+6. Quais as vantagens e desvantagens da transmissão por satélite?
+vantagens: maior abrangência
+desvantagens: custo e atraso
+
+-----------------------------------
+
+
+1. Relacione os componentes de atraso que formam o atraso fim a fim. Quais deles são constantes e quais são variáveis?
+-processamento dentro do roteador(pra onde enviar o pacote): contante a menos que troque o roteador
+-enfileiramento: variavel
+-atraso de transmissão: constante
+-atraso de propagação: constante
+
+2. Quanto tempo um pacote que leva para se propagar através de um enlace de 2.500km com uma velocidade de propagação de 2,5 * 10 na 8 m/s?
+2500 km = 2500000 metros
+2,5 * 10 na 8 = 250000000 m/s
+2500000 / 250000000 = 0.01 s
+
+
+3. Suponha que o Hospedeiro A queira enviar um arquivo grande para o Hospedeiro B. 
+O percurso entre eles possui 3 enlaces, de taxas R1=500Kbps, R2=2Mbps e R3=1Mbps.
+a) Considerando que não haja nenhum outro tráfego na rede, qual é a vazão para a transferência de arquivo?
+500Kbps pois é a menor largura de banda
+
+b) Suponha que o arquivo tenha 4 milhões de bytes. Dividindo o tamanho do arquivo pela vazão, quanto tempo levará a transferência para o Hospedeiro B?
+4 milhões de bytes = 4MB
+500Kbps = 62.5 Bytes p/s
+
+4MB / 62.5 = 64000 milisegundos ou 64 segundos
+
+outra forma:
+500Kbps = 0,5 Mbps
+4MB = 32Mb
+32/0,5 = 64 segundos
+
+outraforma:
+4.000.000 * 8 = 32.000.000
+32.000.000 / 500.000 = 64
+
+c) Repita os itens “a” e “b”, agora com R2 reduzido a 100Kbps.
+100Kbps = 0,1 Mbps
+4MB = 32Mb
+32/0,1 = 320 segundos
+
+----------------------------
+
+NETKIT:
+1-porque o arquivo host3.pcap parece similar ao host2.pcap?
+porque estão conectados a um hub que envia os pacotes para todos os host da rede
+
+2-o uso do hub faz com que todos os pacotes sejam enviados para todos os hosts, o que pode causar problemas de segurança e desempenho
+
+3-porque voce acredita que os IPs diferentes impediram a comunicação?
+porque estavam em redes diferentes 
+a mascara é 255.255.255.0 que significa que os endereços 192.168.1.1 e 192.168.2.51 são de redes diferentes
+pois uma rede tem o endereço 192.168.1.0 e a outra 192.168.2.0
+
+

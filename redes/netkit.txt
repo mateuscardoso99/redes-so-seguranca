@@ -1,0 +1,9 @@
+1-porque o arquivo host3.pcap parece similar ao host2.pcap?
+porque estão conectados a um hub que envia os pacotes para todos os host da rede
+
+2-o uso do hub faz com que todos os pacotes sejam enviados para todos os hosts, o que pode causar problemas de segurança e desempenho
+
+3-porque voce acredita que os IPs diferentes impediram a comunicação?
+porque estavam em redes diferentes 
+a mascara é 255.255.255.0 que significa que os endereços 192.168.1.1 e 192.168.2.51 são de redes diferentes
+pois uma rede tem o endereço 192.168.1.0 e a outra 192.168.2.0

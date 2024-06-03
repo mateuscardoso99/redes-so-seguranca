@@ -1,0 +1,29 @@
+1. Considere uma conexão TCP entre o hospedeiro A e o hospedeiro B. Suponha que os segmentos TCP que trafegam do hospedeiro A para o 
+hospedeiro B tenham número de porta fonte X e destino Y. Quais os números de porta para os segmentos que trafegam do hospedeiro B para o A?
+
+inverte
+porta fonte = Y
+porta destino = X
+
+2. Descreva por que um desenvolvedor de aplicação pode escolher UDP ao invés de TCP?
+por questões de velocidade de entrega do pacote ao destino, pois UDP não oferece varios serviços o que deixa mais rápido
+e também se aplicação permite é tolerante a não entrega de pacotes
+
+3. É possível que uma aplicação desfrute de transferência confiável de dados mesmo utilizando UDP? Se sim, como isto aconteceria?
+sim mas precisa implementar manualmente na camada de aplicação
+
+4. Suponha que um processo no computador C possua um socket UDP com número de porta 6789 e que o computador A e o computador B, individualmente, 
+enviem um segmento UDP ao computador C com número de porta de destino 6789. 
+Esses dois segmentos serão encaminhados para o mesmo socket no computador C? 
+Se sim como este computador saberá que estes dois segmentos vieram de computadores diferentes?
+
+serão enviados para o mesmo socket, ele saberá pelo IP do computador que enviou (remetente)
+
+5. Suponha que um servidor Web seja executado no computador C na porta 80. 
+Este servidor utiliza conexões contínuas e, no momento, está recebendo solicitações de dois computadores, A e B. 
+Todas as solicitações estão sendo recebidas através do mesmo socket no computador C?
+Se eles estão passando por diferentes sockets, dois desses sockets possuem porta 80? Discuta e explique.
+
+contínuas = TCP
+por ser TCP estão sendo recebidas em sockets diferentes, os sockets podem rodar na mesma porta no servidor pois a aplicação roda na porta 80
+o que diferencia eles é o IP de origem do remetente

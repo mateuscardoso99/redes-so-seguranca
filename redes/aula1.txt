@@ -1,0 +1,48 @@
+* Rede de computadores é um conjunto de
+computadores autônomos interconectados
+por um única tecnologia (Tanembaum, 2003). 
+
+* Uma rede de computadores é caracterizada
+como um conjunto de sistemas de
+processamento de informação interligados
+através de um sistema de comunicação que
+permite a troca de informações entre eles
+(Carissimi,2009).
+
+protocolo de interedes: permite interligar redes diferentes (rede com equipamentos CISCO com redes IBM)
+enlace de comunicação(links): parte física: fibra, cobre, rádio, satelite
+roteadores: encaminham pacotes(pedaços de dados)
+host (hospedeiro): sistemas finais
+taxa de transmissão = largura de banda
+
+* Sistema distribuído: consiste em um conjunto de
+computadores independentes que parecem ser,
+para os usuários, um único sistema coerente
+(Tanenbaum, 2003).
+
+Nó: cada dispositivo ou equipamento que se interliga na rede. Exemplo: computador, impressora, telefone, roteador, switch, etc. 
+Meio físico: é o sistema de comunicação que une os nós de uma rede. Exemplo: fibra óptica, cabo coaxial, etc. 
+Protocolo: conjunto estabelecido de procedimentos, regras ou especificações formais que definem a comunicação entre os nós de uma rede.
+Sistemas Finais: encontram-se na periferia da internet, são os sistemas que se conectam a rede provendo/usando serviços. 
+	Incluem: – Computadores de mesa, servidores, tablets, smartphones, etc. 
+		 – Também chamados de sistemas hospedeiros pois hospedam programas de aplicações como: servidor de email, cliente de email, etc.
+
+
+1. Cite sete recursos que podem ser compartilhados em uma rede.
+Compartilhamento de arquivos, Compartilhamento de programas, Compartilhamento de periféricos, Compartilhamento de impressoras, Compartilhamento de acesso à Internet
+
+2. Qual a diferença entre um hospedeiro e um sistema final? Cite tipos de sistemas finais. Um servidor web é um sistema final?
+Não há diferença entre hospedeiros e sistemas finais, na realidade, eles são dispositivos que estão nas “bordas” da internet
+Sistemas Finais encontram-se na periferia da internet, são os sistemas que se conectam a rede provendo/usando serviços
+um servidor web pode ser um sistema final
+
+3. Cite vantagens e desvantagens do uso de redes.
+desvantagens: Maior possibilidade de controlo e invasão de privacidade. Segurança de dados / equipamento. Ataques de Vírus. Invasão de Hackers Internos e externos.
+vantagens: compartilhamento de recursos entre computadores
+
+4. O que é a WWW. Qual sua relação com a internet? 
+A WWW é um sistema distribuído que funciona na internet
+
+5. O que é a internet? Comente sobre a sua origem e evolução.
+A Internet não é uma única rede, mas uma rede de redes
+origem está relacionada com a arpanet, uma rede criada para fins militares

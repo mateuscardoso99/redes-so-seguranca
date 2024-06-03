@@ -1,0 +1,103 @@
+modelo de camadas: rede é dividida em camadas onde uma camada acessa serviços da camada imediatamente abaixo e provê serviços pra camada imediatamente acima
+-algo feito em uma camada na origem vai interferir apenas na mesma camada do destinatário do pacote
+-o pacote passa por todas as camadas antes de ser enviado pela rede, cada camada adiciona cabeçalhos especificos dela, que serão lidos pelo destinatario
+-serviço é fornecido pela camada inferior a uma camada superior através da troca de primitivas de serviço
+
+MODELO OSI:
+-aplicação: funções específicas de utilização em sistemas
+-apresentação: transparencia dos dados através do uso de sintaxes abstratas (compressão de textos, conversões, criptografia)
+-sessão: cria sessão entre hosts (controla quem deve transmitir a cada momento, recebimento de token: impedir que 2 partes tentem executar a mesma operação critica ao mesmo tempo, sincronização: permite que transmissões sejam continuadas a partir do ponto em que estavam ao ocorrer uma falha)
+-transporte: faz a multiplexação e demultiplexação, transparencia dos dados isolando das camadas superiores os detalhes da rede e sub-rede, a camada acima desta manda os dados e essa camada separa em pacotes, controle de fluxo
+-rede: comunicação entre nós distintos assim como na camada de enlace e tambem comunicação e endereçamento entre diferentes redes através do IP
+-enlace: confere e corrige erros da camada fisica, comunicação entre um ponto e outro apenas, faz o endereçamento para o host destino dentro da rede através do endereço MAC
+-fisica: meio fisico (cobre, fibra otica), transmite os bits pelo meio fisico (converte os bits em ondas de radio, sinais eletricos ect..), mantem a conexão fisica entre partes comunicantes
+
+PCI: no modelo osi são os headers da camada decima
+SDU: dados da camada decima
+PDU: PCI e SDU juntos
+
+multiplexação: varias requisições saem pelo mesmo enlace
+demultiplexação: no destinatário todas essas requisições precisam ser destinadas ao destino certo
+
+modelo OSI não vingou esse motivos:
+-tecnologia da época era ruim
+-politica ruim
+-implementação ruim
+-momento ruim (foi definido muito cedo)
+-não era eficiente comparado aos protocolos das fabricantes
+-muito complexo implementar 
+
+
+TCP/IP:
+*com a criação das primeiras redes de rádio e satélite surgem problemas com os protocolos diferentes
+-daí surge o TCP/IP com o objetivo de conectar várias redes de maneira uniforme
+
+modelo TCP/IP: 5 camadas: física, enlace, rede, transporte e aplicação (ENLACE E FÍSICA SÃO A MESMA COISA NESSE MODELO)
+-não tem camada de apresentação e sessão, não tem criptografia por exemplo que está na camada de apresentação do modelo OSI, para ter precisa implementar manualmente
+
+-aplicação: funções específicas de utilização em sistemas, possui os protocolos de aplicação(Telnet, SSH, HTTP, SMTP, DNS etc..)
+-transporte: permitir que as entidades pares dos hosts de origem e destino, semelhante a camada de transporte do OSI
+-rede: semelhante a camada de rede do OSI
+-enlace: confere e corrige erros da camada fisica, comunicação entre um ponto e outro apenas, faz o endereçamento para o host destino dentro da rede através do endereço MAC
+-fisica: meio fisico (cobre, fibra otica), transmite os bits pelo meio fisico (converte os bits em ondas de radio, sinais eletricos ect..), mantem a conexão fisica entre partes comunicantes
+
+-------------------------------------------------------------------------------------
+
+1-Qual o principal objetivo da arquitetura OSI?
+para padronizar a comunicação entre redes, pois cada fabricante criava o seu próprio protocolo o que dificultava a comunicação
+
+2-defina um serviço
+recursos oferecidos por uma camada para a camada superior
+conjunto de funcionalidades prestadas e oferecidas a um usuário por um fornecedor.
+
+3-como uma camada implementa suas funções e serviços e como ela se relaciona com outras camadas?
+por meio de interfaces, onde uma camada possibilita acesso a seus serviços para outra camada
+por meio de interfaces de comunicação
+-uma camada se relaciona com uma camada imediatamente acima e abaixo
+
+
+4-defina PCI e SDU
+PCI: no modelo osi são os headers da camada decima
+SDU: dados da camada decima sem os cabeçalhos(mensagem)
+
+5-o pacote é maior nas camadas inferiores ou superiores? explique
+é maior nas camadas inferiores, pois é o momento onde é transportado para o destino com todos os headers
+das camadas superiores adicionados no pacote
+
+6-o que são as multiplexações de conexões? dê um exemplo de multiplexação.
+processo de transmitir simultaneamente dois ou mais sinais individuais ao longo de um único canal (cabo ou wireless) de comunicação
+ex: abrir varias abas do navegador para acessar varios sites
+multiplexação ascendente: abrir varias abas do navegador para acessar varios sites tudo sai pelo mesmo enlace
+multiplexação descendente: envio de um arquivo por varias portas de rede diviferentes
+
+
+1. Quantas e quais são as camadas do modelo de referência OSI e TCP/IP?
+OSI:
+-aplicacao
+-apresentacao
+-sessao
+-transporte
+-rede
+-enlace
+-fisica
+
+TCP/IP:
+-aplicacao
+-transporte
+-rede
+-enlace
+-fisica
+
+2. Que camada do modelo OSI suporta diretamente o usuário final?
+camada de aplicação
+
+3. A camada OSI de comunicação de dados, que atende funções de criptografia, compreensão de textos e conversão de padrões de terminais é?
+camade de apresentação
+
+4. Qual a camada do modelo OSI responsável por controle de congestionamento e encaminhamento de pacotes?
+camada de transporte
+
+5. É possível implementar criptografia no protocolo TCP/IP? De que forma?
+sim deve ser na camada de aplicação, e deve ser manual
+
+

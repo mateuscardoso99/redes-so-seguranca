@@ -1,0 +1,93 @@
+1. No BitTorrent, suponha que Alice forneça blocos para Bob durante um intervalo de 30s. 
+Bob retornará, necessariamente, o favor e fornecerá blocos para Alice no mesmo intervalo? Por quê?
+
+Não. Porque dependerá da taxa de Bob, se a taxa de tranmissão será alta suficiente para 
+troca entre si, caso seja suficiente, eles colocarão um ao outro nas suas listas e continuarão 
+a troca até que um dos pares encontre um parceiro melhor
+
+
+
+2. Considere um novo par, Alice, que entra no Torrent sem possuir nenhum bloco. 
+Sem qualquer bloco, ela não pode se tornar uma das quatro melhores exportadoras de 
+dados para qualquer um dos outros pares, visto que ela não possui nada para enviar. 
+Então como Alice obterá seu primeiro bloco?
+
+receberá por misericórdia
+Assim que se tornar um novo par, o rastreador selecionaŕa aleatoriamente 
+Alice por um subconjunto de pares para dados concretos. Com a lista de pares, 
+Alice tenta estabelecer conexçoes TCP simultâneas com todos os pares da lista. 
+O pares com que Alice conseguirá estabelecer conexões são chamados de "pares vizinhos"
+
+
+
+3. Defina uma rede de sobreposição.
+A rede de sobreposição em um sistema de compartilhamento de arquivos P2P consiste de nós participantes no 
+compartilhamento de arquivos e ligações lógicas entre os nós
+Existe um link lógico do nó A ao nó B se houver uma conexão TCP semipermanente entre A e B.
+Uma rede de sobreposição não inclui roteadores.
+cada par só conhece sucessor e predecessor imediato
+
+Os nós em uma rede de sobreposição são conectados por links virtuais/lógicos, por meio de muitos links físicos na rede subjacente
+
+
+
+4. Considere um DHT com uma topologia de rede de sobreposição 
+(ou seja, cada par rastreia todos os pares do sistema). 
+Quais são as vantagens e desvantagens de um DHT circular (sem atalhos).
+desvantagens: desempenho inferior pois precisar rastrear todos os nós se o nó não estiver proximo
+vantagens: para uma rota de uma mensagem para o par (com ID) mais próxima da chave, apenas um salto é necessário;
+
+
+5. Relacione quatro diferentes aplicações que são apropriadas naturalmente para arquiteturas P2P.
+Mensagens instantâneas, 
+Compartilhamento de arquivos, 
+Busca distribuída, 
+Processamento distribuído, 
+Trabalho colaborativo (groupware), 
+Jogos, 
+Compartilhamento de capacidade de armazenamento, 
+Novas formas de distribuição de conteúdo (Web- Semântica )
+
+
+------------------------
+
+
+1. Por que ao anexar um documento em um email vazio, o email
+tem quase o dobro do tamanho em bytes do arquivo original?
+
+porque email suporta ASCII de 7 bits então precisa ocorrer uma conversão
+pra base64 pra poder ser transmitido
+
+
+2. Que vantagens o serviço de DNS traz por ser distribuído?
+melhor desempenho pois os servidores raiz não precisam ser consultados a todo o momento
+
+
+3. Quais são e que tipos de nomes resolvem os três níveis de servidores DNS?
+servidor raiz: estão no topo da hierarquia de dns global, tem todos os TLD
+servidor tld: responde por todos os .com, .br etc...
+servidor autoritativo: que conhece o IP
+
+
+4. Identifique os quatro tipos de RRs possíveis num sistema de DNS?
+registro A: registro ADRESS aponta um IP para um host
+registro NS: aponta para o servidor autoritativo que conhece o dominio
+registro CNAME: cria um apelido para um dominio
+registro MX: registro para correio eletronico
+
+
+5. É possível que o servidor web e o servidor de correio tenham
+exatamente o mesmo apelido para um nome de hospedeiro?
+Qual seria o tipo de RR que contém o nome de hospedeiro do
+servidor de correio?
+sim é possível o RR seria do tipo MX
+
+
+6. Você deseja registrar um nome DNS para a empresa do seu
+cliente. O que você precisa fazer?
+adquirir o dominio e registra-lo em um servidor TLD,
+nesse servidor criar um registro NS que aponta pro servidor DNS autoritativo que conhece o IP
+no servidor de autoridade criar registro A que vincula o IP ao um host
+
+
+

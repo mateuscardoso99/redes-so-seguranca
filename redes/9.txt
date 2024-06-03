@@ -1,0 +1,50 @@
+-TCP é sempre ponto a ponto, não pode fazer multicast
+-paralelismo: vários pacotes não reconhecidos ao mesmo tempo, vários pacotes esperando por ACK
+e ele vai recebendo ACK deles
+-buffer no envio: pois TCP é envio confiável, entao precisa armazenar em buffer os pacotes
+-pacotes de dados e pacotes de ACK não existem diferença
+-pacotes ACK estão no cabeçalho
+-ACK: pacote sem dados, apenas com cabeçalho
+
+-go-back-n: quando recebe ACK do pacote 2 e não do 1, entende que o pacote 1 chegou ao
+destino tambem assim como o pacote 2, pois o ACK é comulativo
+-repetição seletiva: quando recebe ACK do pacote 2 e não do 1, entende que o pacote 1 não chegou ao
+destino e reenvia ele, pois o ACK não é comulativo
+
+-controle de fluxo: emissor não sobrecarrega receptor, diminui a frequencia de envio dos pacotes se
+necessário, cada conexão TCP tem um buffer no receptor, o receptor avisa quanto tem de espaço livre 
+no buffer para o remetente, então o remetente envia dados de modo a não sobrecarregar7
+
+-número de sequencia: numero do primeiro byte do pacote. se um pacote tem 100 bytes
+vai de 0 a 99, o próximo pacote terá o número de sequencia 100
+
+estabelecimento de conexão:
+-remetente e destinatario TCP estabelecem "conexão" antes de trocarem segmentos de dados
+-apresentação de 3 vias: cliente envia segmento SYN do TCP ao servidor, servidor envia SYN & ACK
+cliente envia ACK e apartir desse momento assume que conexão foi feita
+
+-fechar conexão: cliente envia pacote com bytes "FIN", servidor responde com "ACK", servidor
+envia "FIN" e cliente envia "ACK"
+
+-congestionamento: muitas fontes enviando muitos dados muito rápido para a rede tratar
+consequencias: pacotes perdidos(estouro de buffer nos roteadores), longos atrasos(enfileiramento nos 
+buffers do roteador)
+
+-técnicas de controle de congestionamento de fim a fim:
+2 técnicas: 
+controle de congestionamento assistido pela rede: roteadores colocam bits no pacote sinalizando que estão sobrecarregados
+nenhum feedback: controle é feito deduzindo largura de banda (TCP usa essa), começa em uma taxa X 
+e ele tenta aumentar até ocorrer uma perda, depois diminui a taxa, depois tenta aumentar denovo até 
+receber uma perda então baixa a taxa denovo
+
+-o que influencia a taxa de transmissão é o tamanho da janela de pacotes a enviar do remetente, quanto maior a janela 
+maior a taxa e vice-versa
+
+-CWND: Janela de congestionamento (cwnd) é uma variável de estado TCP que limita a quantidade de dados que o TCP pode enviar para a rede antes de receber um ACK.
+
+-aplicações multimidia usam UDP, pois TCP podem prejudicar taxa de transimissão devido ao controle de congestionamento
+-equidade TCP: cada conexão tem uma largura de banda igual, por isso o nome equidade
+-aplicativos de download rápido: abrem multiplas conexões paralelas usando maior parte da largura de banda, quebrando a equidade TCP
+
+
+

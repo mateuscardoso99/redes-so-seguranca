@@ -1,0 +1,89 @@
+intranet: rede interna, não publica, pertence a uma organização
+extranet: rede com maior abrangencia que intranet
+protocolo: conjunto de regras de como de ser feito algo
+nucleo da rede: roteadores que enviam e recebem pacotes, interconectam redes
+
+comutação de circuitos: reserva de recursos necessários durante o período da sessão de comunicação entre os sistemas finais (linha telefonica etc.)
+-se algum recurso está indisponivel a comunicação não ocorre
+-antes de estabeler a conexão a rota deve ser estabelecida
+-alto custo
+
+multiplexação: forma que um enlace é divido (2 formas: por tempo ou frequencia)
+-frequencia: divide o enlace por frequencia, cada 5mhz é um canal por exemplo, dentro do espectro de frequencia, cada canal é dividido em pequenas frequencias
+-por tempo: divide o enlace por tempo, transmite dois ou mais sinais de baixa velocidade em um único canal de transmissão de alta velocidade. Para isso, quebra os sinais de baixa velocidade em diferentes segmentos e combina-os para a transmissão.
+
+
+*quanto tempo leva para enviar um arquivo de 640000 bits do hospedeiro A para o hospedeiro B
+em uma rede de comutação de circuitos?
+-todos os enlaces são de de 1536 Mbps
+-cada enlace usa TDM com 24 slots por segundo
+-500 ms para estabelecer circuito fim a fim
+
+enlace = 1536 Mbps
+cada circuito = 1536 / 24 = 64Mbps (64.000.000)
+tempo = 640.000 / 64.000.000 = 0.01s + 500ms = 0.51s
+
+--------------------------------
+
+comutação de pacotes: mensagens longas são fragmentadas em porções de dados menores denominados pacotes
+-não possui estabelecimento de caminho dedicado
+-não possui reserva de recursos
+
+2 tipos de comutadores de pacotes: roteadores e comutadores de camada de enlace
+
+Além de atrasos na armazenagem e reenvio, os pacotes sofrem atrasos de fila de saída. – Depende do congestionamento da rede
+pacote inteiro deve chegar ao próximo roteador antes que possa ser transmitido no próximo enlace
+leva L/R segundos para transmitir pacote de L bits para enlace de R bits por segundo
+atraso = 3*L/R (supondo zero atraso de propagação)
+
+Vantagens
+-Compartilhamento da largura de banda
+– Implementação simples
+– Não há desperdício de recursos
+– Maior eficiência
+– Baixo custo
+
+Desvantagens
+– Não há garantia de largura de banda
+– Atrasos
+– Ruim para serviços de tempo real (voz/vídeo)
+– Overhead no processamento do cabeçalho
+
+Comutação de pacotes permite que mais usuários usem a rede!
+
+A comutação de pacotes é melhor sempre?
+– Ótima para dados esporádicos
+– Melhor compartilhamento de recursos
+– Não há estabelecimento de chamada
+
+Congestionamento excessivo: atraso e perda de pacotes
+– Protocolos são necessários para transferência confiável, controle de congestionamento
+
+*ARQUIVOS .PCAP são abertos no wireshark
+
+ARP: resolve o ip pra um MAC, envia uma chamada pra cada host por broadcast e o host que tem o ip responde com o seu MAC
+
+------------------------------------------
+
+1. Quais seriam os procedimentos necessários para iniciar uma transmissão de dados por comutação de circuitos?
+- Estabelecer uma conexão entre o remetente e o destinatário. (Alocação e determinação de uma rota entre os sistemas finais)
+- Transmissão de dados.
+- Alocação e determinação de uma rota entre os sistemas finais.
+
+2. O que é TDM e FDM? Qual é a mais eficiente?
+FDM: O espectro de frequências é dividido em diversas faixas, uma para cada transmissão ou comunicação
+TDM: O tempo de transmissão de um canal é dividido em pequenas frações de tempo
+eficiencia depende
+
+3. Qual a vantagem de uma rede de comutação de circuitos em relação a comutação de pacotes?
+– Disputa pelo acesso somente na fase de conexão, depois a conexão é garantida
+
+4. Como funciona a técnica armazena e reenvia? Onde ela é usada?
+é usada em roteadores(comutadores de pacote), armazenam o pacote recebido em uma fila e envia para o próximo enlace
+
+5. Por que a Internet é uma rede de comutação de pacotes?
+optimizar o uso da largura de banda da rede, minimizar a latência
+
+6. É possível implementar comutação de circuitos na internet?
+não, o custo seria muito caro
+

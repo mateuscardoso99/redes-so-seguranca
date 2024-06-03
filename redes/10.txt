@@ -1,0 +1,28 @@
+camada de rede: 
+-repasse: mover pacotes da entrada do roteador para saída apropriada do roteador
+-roteamento: determinar rota seguida pelos pacotes da origem ao destino, algoritmos de roteamento                                                                                                                                
+
+algoritmo de dijkstra: todos os nós tem a mesmo algoritmo que calcula a melhor rota
+algoritmo de vetor de distância: nó só conhece as melhores rotas quando os outros nós informam,
+ de tempos em tempos cada nó envia sua própria estimativa de vetor
+de distância aos vizinhos. quando um nó recebe uma estimativa de vetor de distâcia do vizinho ele
+recalcula denovo o seu próprio vetor de distância
+
+ipv6: ipv4 usa 32 bits o que não é suficiente pra internet toda, ipv6 usa 128 bits
+-cabeçalho de 40bytes
+-não tem soma de verificação
+-icmp v6 com novas mensagens icmp
+-túnel: quando um roteador é só ipv4 o pacote é embrulhado como ipv4, depois esse roteador que é 
+ipv4 embrulha o pacote com o ipv6 dentro e manda adiante
+
+endereços ipv6
+- 2 na 128 = 340 undecilhões de endereços possíveis
+- 8 blocos de 16bits separados por ":"
+- vai de 0000 a FFFF em hexadecimal
+- zeros à esquerda são abreviados: ex 000A -> A
+- sequencias de zeros em vários blocos seguidos são substituidos por "::"
+- bloco composto só por zeros pode ser abreviado por um só zero "0"
+- "::" só pode ser usado uma vez na abreviação
+
+ex: 2001:0DB8:00AD:000F:0000:0000:0000:0001
+abreviado: 2001:DB8:AD:F::1
