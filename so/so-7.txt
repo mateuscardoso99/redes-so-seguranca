@@ -1,0 +1,10 @@
+SEMAFOROS: implementação simples de esclusão mútua e sincronização condicional sem espera ocupada
+-é uma valor inteiro sem sinal (sempre positivo)
+-UP operação indivisivel de incremento no valor do semáforo
+-DOWN operação inidivisivel de decremento no valor do semáforo
+-semaforo não pode ficar negativo, se ficar em zero e tentar fazer DOWN o semaforo será parado até ser feito UP por outro processo
+-UP e DOWN quando executados as interrupções são desativadas o que garante que não terá interrupções
+
+MUTEX: semaforo só com valor 0 e 1
+-sempre começa em 1
+-se valer 2 então significa que 2 threads podem acessar a região critica ao mesmo o que causará erros
