@@ -1,0 +1,86 @@
+internet é uma rede de redes de computadores fracamente hierárquica
+
+
+DSL: (Linha digital de assinante) DSL é um termo para o serviço ou tecnologia que fornece informações em banda larga por fio de telefone de cobre
+
+meios de comunicação: cabos que conduzem as tensões elétricas entre o pc origem e destino
+
+roteador: faz roteamento e comunicação entre redes (roteamento)
+switch: não é capaz de fazer roteamento, apenas encaminha pacotes pra uma de suas portas que estão conectadas
+hub: diferente do switch repassa os pacotes pra todas as portas
+
+bordas da rede: aplicações e hospedeiros
+nucleo da rede: roteadores interconectados, rede de redes
+redes de acesso, meios fisicos: enlaces de comunicação com e sem fio
+modem: transforma o sinal entre diferentes dispositivos de enlace (ethernet para fibra por exemplo)
+
+PAN: rede pessoal (ex: bluetoth)
+LAN: rede local (ex: rede de casa)
+MAN: rede metropolitana (cidade)
+WAN: rede mundial (global)
+
+TOPOLOGIAS:
+-full mesh: todos os nós se ligam diretamente com os demais (melhor topologia pois todos se conectam diretamente mas é dificil de implementar e caro)
+-anel: primeiro conecta no segundo nó, segundo conecta no terceiro e assim por diante até o ultimo se conectar no primeiro, formando um círculo
+-estrela: vários pcs conectados a um ponto central (cria um gargalo no nó central)
+-barra: não tem nó central, todos os nós são interligados em um mesmo barramento
+
+MAC: endereço da placa de rede, (endereçamento em nivel de enlace)
+
+endereço físico: numero da porta de rede(não é o MAC)
+endereço de enlace: endereço MAC (endereço da placa de rede, não das portas especificas, por isso ao enviar um pacote pra um MAC todas as portas desse MAC receberão o pacote)
+endereço de rede: ip
+
+
+-------------------------------------------------
+
+
+1. Qual a função do software de comunicação nos sistemas finais? Onde ele é implementado?
+ele é implementado em um host afim de prover serviços aos usuarios
+
+2. Diferencie os elementos da borda e do núcleo da rede.
+bordas da rede: aplicações, hospedeiros, sistemas finais
+nucleo da rede: roteadores interconectados, rede de redes, swiches
+
+3. Quais são os dois principais modelos de comunicação entre sistemas finais? Diferencie-os.
+modelo cliente servidor onde existe um servidor que serve serviços e recursos e um cliente que os consome
+medelo peer to peer onde não existe uma maquina que é só servidor mas todos podem ser clientes e/ou servidores
+
+4. O que são redes de acesso?
+enlaces de comunicação com e sem fio
+
+5. Diferencie PAN, LAN, MAN e WAN.
+PAN: rede pessoal (ex: bluetoth)
+LAN: rede local (ex: rede de casa)
+MAN: rede metropolitana (cidade)
+WAN: rede mundial (global)
+
+
+1. O que são topologias de rede?
+Topologia de rede é a maneira como são distribuídos espacialmente os nós de uma rede, e principalmente, a maneira como estão interligados esses nós
+
+2. Diferencie conexão lógica de conexão física.
+topologia lógica refere-se ao modo como uma rede transfere quadros de um nó para o seguinte
+topologia física descreve a verdadeira aparência ou layout da rede
+
+3. Caracterize e cite vantagens e desvantagens das redes em anel.
+A topologia em Anel consiste em computadores conectados em loop fechado, onde o primeiro conecta o segundo, 
+o segundo conecta o terceiro, e assim sucessivamente, até o último conectar o primeiro.
+vantagem: Protocolo de acesso simples
+desvantagem: confiabilidade
+
+4. Cite vantagens e desvantagens da topologia em estrela.
+Vantagens: O nó central é responsável por encaminhar a mensagem aos demais
+Desvantagens: Nó central vira gargalo
+
+5. Quais as diferenças entre hubs e switches?
+switch: não é capaz de fazer roteamento, apenas encaminha pacotes pra uma de suas portas que estão conectadas
+hub: diferente do switch repassa os pacotes pra todas as portas
+
+6. O que é e para que serve o endereço MAC? Ele é usado na internet?
+MAC: endereço da placa de rede, (endereçamento em nivel de enlace)
+na internet é usado o IP, o mac é usado pra se localizar um destino para o pacote na rede
+
+7. O que é colisão? Existe forma de evitar?
+quando os nós tentam enviar pacotes ao mesmo tempo, usando um switch pode-se diminuir a chance de colisões
+porque os switches envian o pacote para a placa de rede de destino através do endereço MAC
