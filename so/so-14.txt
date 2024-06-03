@@ -1,0 +1,39 @@
+VIRTUALIZAÇÃO:
+
+VM: 
+1- Aplicação 
+2- SO 
+3- rodando em um hardware virtual
+4- gerencia de máquinas virtuais
+5- Hardware real
+
+vantagens:
+-portabilidade de código escrito para VM ao invés de HW específico (JVM)
+
+Hipervisor: emula todo o hardware para as VMs
+-SO executa como se estivesse em um hardware físico
+-hypervisor é o próprio SO, pois é o unico SO rodando no modo kernel
+
+Hipervisor hospedado: existe um SO que controla o hipervisor
+-hipervisor é um processo como outros dentro do SO hospedeiro
+-hipervisor tem acesso a HW virtualizado pelo SO host através de dispositivos especiais
+
+
+Virtualização por containers: existem containers isolados entre si
+-containers possuem bibliotecas próprias mas não são um SO
+-todos os containers fazem chamadas ao mesmo kernel, que é o do SO host
+-não existe HW virtual
+
+Container: nome dado para segregação de processos dentro do kernel, um container é anologo a uma máquina virtual na virtualização tradicional
+-container é criado a partir de uma imagem e depois disso possui seu próprio sistema de arquivos
+
+Imagem: materialização de um sistema de arquivos contendo bibliotecas, softwares etc.
+-pode ser produzida através de um processo de build
+-AUFS: union filesystem (sistema de arquivos do docker)
+	-tem a capacidade de unir multiplos diretorios e apresenta-los como um só
+
+
+Comunicação dos containers:
+-um container normalmente roda com o máximo de isolamento possivel do host, este isolamento é garantido por funcionalidades do kernel
+
+

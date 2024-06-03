@@ -1,0 +1,710 @@
+Introdução
+
+O que é o contexto de hardware e como é a implementação da troca de contexto?
+contexto de Hardware: é o conteúdo dos registradores da CPU, é uma area de memória em que os dados do registradores são salvos pra que o SO possa controlar os processos
+troca de contexto SO salva o conteúdo dos registradores em uma area de memória e carrega os dados de um outro contexto salvo em memória nesses registradores pra que esse contexto passe e executar
+
+
+1-Como seria utilizar um computador sem um sistema operacional? Quais são suas duas principais funções? 
+Sem o sistema operacional, um usuário para interagir com o computador deveria conhecer profundamente diversos
+detalhes sobre hardware do equipamento, o que tornaria seu trabalho lento e com grandes possibilidades de erros. As
+duas principais funções são “facilidade de acesso aos recursos do sistema” e “compartilhamento de recursos de forma
+organizada e protegida”. 
+
+
+2. A programação sem sistema operacional seria em linguagem de maquina, que traria dificuldades, onde o programador teria que programar todos os componentes do hardware, um a um
+
+
+3-Explique o conceito de máquina virtual. Qual a grande vantagem em utilizar este conceito?
+O computador pode ser visualizado como uma máquina de camadas, onde inicialmente existem duas camadas:
+hardware (nível 0) e sistema operacional (nível 1). Desta forma, o usuário pode enxergar a máquina como sendo apenas
+o sistema operacional, ou seja, como se o hardware não existisse. Esta visão modular e abstrata é chamada máquina
+virtual. A vantagem desse conceito é tornar a interação entre usuário e computador mais simples, confiável e eficiente.
+
+
+4-Defina o conceito de uma máquina de níveis ou camadas.
+O computador pode ser visualizado como uma máquina de níveis ou máquina de camadas, possuindo tantos níveis
+quanto forem necessários para adequar o usuário às suas diversas aplicações. Quando o usuário está trabalhando em um
+desses níveis, não necessita saber da existência das outras camadas. Com isso a interação entre usuário e computador
+apresenta-se mais simples, confiável e eficiente
+
+
+5-Quais os tipos de sistemas operacionais existentes?
+Sistemas monoprogramáveis ou monotarefa, sistemas multiprogramáveis ou multitarefa e sistemas com múltiplos
+processadores.
+
+
+6-Por que dizemos que existe uma subutilização de recursos em sistemas monoprogamáveis?
+Porque em sistemas monoprogramáveis somente é possível a execução de um programa por vez. Como um programa
+não utiliza todos os recursos do sistema totalmente ao longo da sua execução, existe ociosidade e, consequentemente,
+subutilização de alguns recursos.
+
+
+7-Qual a grande diferença entre sistemas monoprogramáveis e sistemas multiprogramáveis?
+Os sistemas monoprogramáveis se caracterizam por permitir que o processador, a memória e os periféricos
+permaneçam exclusivamente dedicados à execução de um único programa. Nos sistemas multiprogramáveis ou
+multitarefa, os recursos computacionais são compartilhados entre os diversos usuários e aplicações. Enquanto em
+sistemas monoprogramáveis existe apenas um programa utilizando os recursos disponíveis, nos multiprogramáveis
+várias aplicações compartilham esses mesmos recursos.
+
+
+8-Quais as vantagens dos sistemas multiprogramáveis?
+As vantagens do uso de sistemas multiprogramáveis são a redução do tempo de resposta das aplicações processadas
+no ambiente e de custos, a partir do compartilhamento dos diversos recursos do sistema entre as diferentes aplicações.
+
+
+9-Um sistema monousuário pode ser um sistema multiprogramável? Dê um exemplo.
+Sim, somente um usuário interage com o sistema podento possuir diversas aplicações executando concorrentemente.
+O sistema Windows NT é um exemplo.
+
+
+10. Quais são os tipos de sistemas multiprogramáveis?
+Sistemas batch, sistemas de tempo compartilhado e sistemas de tempo real.
+
+
+11. O que caracteriza o processamento batch? Quais aplicações podem ser processadas neste tipo de ambiente?
+O processamento batch tem a característica de não exigir a interação do usuário com a aplicação. Todas as entradas
+e saídas de dados da aplicação são implemetadas por algum tipo de memória secundária, geralmente arquivos em disco.
+Alguns exemplos de aplicações originalmente processadas em batch são programas envolvendo cálculos numéricos,
+compilações, ordenações, backups e todos aqueles onde não é necessária a interação com o usuário.
+
+
+12. Como funcionam os sistemas de tempo compartilhado? Quais as vantagens em utilizá-los?
+Os sistemas de tempo compartilhado (time-sharing) permitem que diversos programas sejam executados a partir da
+divisão do tempo do processador em pequenos intervalos, denomidados fatia de tempo (time-slice). A vantagem na sua
+utilização é possibilitar para cada usuário um ambiente de trabalho próprio, dando a impressão de que todo o sistema
+está dedicado, exclusivamente, a ele.
+
+
+13. Qual a grande diferença entre sistemas de tempo compartilhado e tempo real? Quais aplicações são indicadas para sistemas de tempo real?
+O fator tempo de resposta. Nos sistemas de tempo real, os tempos de resposta devem estar dentro de limites rígidos.
+Aplicações de controle de processos, como no monitoramento de refinarias de petróleo, controle de tráfego aéreo, de
+usinas termoelétricas e nucleares são executadas em sistemas de tempo real.
+
+
+14. O que são sistemas com múltiplos processadores e quais as vantagens em utilizá-los?
+Os sistemas com múltiplos processadores caracterizam-se por possuir duas ou mais UCPs interligadas e trabalhando
+em conjunto. A vantagem deste tipo de sistema é permitir que vários programas sejam executados ao mesmo tempo ou
+que um mesmo programa seja subdividido em partes para serem executadas simultaneamente em mais de um
+processador
+
+
+15. Qual a grande diferença entre sistemas fortemente acoplados e fracamente acoplados?
+fortemente acoplados: Possuem dois ou mais processadores (multiprocessadores) compartilhando uma única memória e gerenciados por apenas um único sistema operacional. Este tipo de sistema é utilizado no processamento de aplicações que fazem uso intensivo da CPU
+fracamente acoplados: Os sistemas fracamente acoplados possuem o seu próprio sistema operacional, gerenciando os seus recursos. A utilização deste tipo de sistema é caracterizada pelo processamento distribuído entre os seus diversos processadores
+
+
+16. O que é um sistema SMP? Qual a diferença para um sistema NUMA?
+Nos sistemas SMP (multiprocessamento simétrico), o tempo de acesso à memória principal pelos diversos processadores é uniforme. Nos sistemas NUMA, existem diversos conjuntos de processadores e memória principal interconectados, onde o tempo de acesso à memória principal varia em função da sua localização física.
+
+
+17. O que é um sistema fracamente acoplado? Qual a diferença entre sistemas operacionais de rede e sistemas operacionais distribuídos?
+fracamente acoplados: Os sistemas fracamente acoplados possuem o seu próprio sistema operacional, gerenciando os seus recursos. A utilização deste tipo de sistema é caracterizada pelo processamento distribuído entre os seus diversos processadores
+A principal diferença entre esses dois sistemas operacionais (Sistema Operacional de Rede e Sistema Operacional Distribuído) é que no sistema operacional de rede cada nó ou sistema pode ter seu próprio sistema operacional, por outro lado, no sistema operacional distribuído, cada nó ou sistema tem o mesmo sistema operacional que é o oposto do sistema operacional de rede.
+
+
+
+18. Quais os beneficios de um SO com multiplos processadores em um computador pessoal?
+permitir que vários programas sejam executados ao mesmo tempo ou que um mesmo programa seja subdividido em partes para serem executados simultaneamente
+
+
+19. Qual seria o tipo de SO recomendavel para uso como servidor de aplicações em um ambiente corporativo?
+sistema operacional com múltiplos processadores fracamente acoplados
+
+
+20. Qual seria o tipo de SO recomendavel para executar uma aplicação que manipula grande volume de dados e necessita de um baixo tempo de processamento?
+Sistemas multitarefas/multiprogramáveis
+
+
+
+--------------------------------
+
+
+
+CONCORRÊNCIA:
+1-O que é concorrência e como este conceito está presente nos sistemas operacionais multiprogramáveis? 
+principio basico para implementação de SOs multiprogramaveis onde a CPU executa instruções em paralelo com 
+operacoes de E/S, isso possibilita varios processos concorrem pela CPU ao mesmo tempo.
+quando um programa perde o uso da CPU e depois retorna, seu estado deve ser o mesmo ao do momento que foi interrompido
+
+
+2-Por que o mecanismo de interrupção é fundamental para a implementação da multiprogramação?
+porque é por meio da interrupção que o SO é executado podendo então sincronizar o acesso aos recursos
+
+
+3-Explique o mecanismo de funcionamento das interrupções.
+uma interrupção é sempre gerada por um evento externo ao programa em execução, quando ocorre uma interrupção o programa é interrompido
+e o SO trata a interrupção por meio de uma de suas rotinas.
+quando o programa é interrompido seus dados de execução são salvos na MP pra depois serem novamente carregados para os registradores
+para que o programa volte a executar de onde parou
+
+
+4-O que são eventos síncronos e assíncronos? Como estes eventos estão relacionados ao mecanismo de interrupção e exceção?
+eventos síncronos (como as exceções) são resultado direto da execução do programa corrente. só podem ocorrer um único de cada vez
+eventos assíncronos (como as interrupções) não são relacionados a instrução do programa corrente, são eventos imprevisiveis e podem acontecer várias vezes
+como no caso de dispositivos de E/S informarem ao processador que estão prontos para enviar/receber dados
+
+
+5. Dê exemplos de eventos associados ao mecanismo de exceção
+Uma instrução que gere a situação de overflow ou uma divisão por zero
+
+
+6. Qual a vantagem da E/S controlada por interrupção comparada com a técnica de polling?
+Na E/S controlada por interrupção, as operações de E/S podem ser realizadas de uma forma mais eficiente. Em vez de
+o sistema periodicamente verificar o estado de uma operação pendente como na técnica de polling, o próprio
+controlador interrompe o processador para avisar do término da operação. Com esse mecanismo, o processador, após a
+execução de um comando de leitura ou gravação, permanece livre para o processamento de outras tarefas.
+
+
+7. O que é DMA e qual a vantagem desta técnica? 
+A técnica de DMA permite que um bloco de dados seja transferido entre a memória principal e dispositivos de E/S,
+sem a intervenção do processador, exceto no início e no final da transferência. Quando o sistema deseja ler ou gravar
+um bloco de dados, o processador informa ao controlador sua localização, o dispositivo de E/S, a posição inicial da
+memória de onde os dados serão lidos ou gravados e o tamanho do bloco. Com estas informações, o controlador realiza
+a transferência entre o periférico e a memória principal, e o processador é somente interrompido no final da operação. 
+
+
+8. Como a técnica de buffering permite aumentar a concorrência em um sistema computacional?
+Como o buffering permite minimizar o problema da disparidade da velocidade de processamento existente entre o
+processador e os dispositivos de E/S, esta técnica permite manter, na maior parte do tempo, processador e dispositivos
+de E/S ocupados.
+
+
+9. Explique o mecanismo de spooling de impressão
+No momento em que um comando de impressão é executado, as informações que serão impressas são gravadas antes
+em um arquivo em disco, conhecido como arquivo de spool, liberando imediatamente o programa para outras
+atividades. Posteriormente, o sistema operacional encarrega-se em direcionar o conteúdo do arquivo de spool para a
+impressora. 
+
+
+10.  Em um sistema multiprogramável, seus usuários utilizam o mesmo editor de textos (200 Kb), compilador (300 Kb), software de correio eletrônico (200 Kb) e uma aplicação corporativa (500 Kb). Caso o sistema não implemente reentrância, qual o espaço de memória principal ocupado pelos programas quando 10 usuários estiverem utilizando todas as aplicações simultaneamente? Qual o espaço liberado quando o sistema implementa reentrância em todas as aplicações? 
+
+A reentrância é a capacidade de um código reentrante, ou seja, executável, ser compartilhado entre usuários com apenas uma cópia do programa na memória. Em outras palavras: Na computação, um programa ou subrotina é chamada de reentrante se puder ser invocada múltiplas vezes de forma segura e concorrente.
+Sem reentrância, cada usuário teria sua cópia do código na memória totalizando 10 x (200 Kb + 300 Kb + 200 Kb +
+500 Kb) = 12.000 Kb. Caso a reentrância seja implementada, apenas uma cópia do código seria necessária na memória
+principal (200 Kb + 300 Kb + 200 Kb + 500 Kb) totalizando 1.200 Kb. Um total de 10.800 Kb seriam liberados da
+memória principal.
+
+
+
+
+--------------------------------------------------
+
+ESTRUTURA DO SO
+
+1. O que é o núcleo do sistema e quais são suas principais funções?
+É o conjunto de rotinas que oferece serviços aos usuários, suas aplicações, além do próprio sistema operacional. As principais funções do núcleo encontradas na maioria dos sistemas comerciais são: tratamento de interrupções e exceções; criação e eliminação de processos e threads; sincronização e comunicação entre processos e threads; escalonamento e controle dos processos e threads;  gerência de memória; gerência do sistema de arquivos; gerência de dispositivos de E/S; suporte à redes locais e distribuídas; contabilização do uso do sistema; auditoria e segurança do sistema.
+
+
+2. O que são instruções privilegiadas e não privilegiadas? Qual a relação dessas instruções com os modos de acesso?
+Instruções privilegiadas são instruções que só devem ser executadas pelo sistema operacional ou sob sua supervisão, impedindo, assim, a ocorrência de problemas de segurança e integridade do sistema. As instruções não-privilegiadas não oferecem risco ao sistema. Quando o processador trabalha no modo usuário, uma aplicação só pode executar instruções não-privilegiadas, tendo acesso a um número reduzido de instruções, enquanto no modo kernel ou supervisor a aplicação pode ter acesso ao conjunto total de instruções do processador. 
+
+
+3. Explique como funciona a mudança de modos de acesso e dê um exemplo de como um programa faz uso desse mecanismo.
+Sempre que um programa necessita executar uma instrução privilegiada, a solicitação deve ser realizada através de uma chamada a uma system call, que altera o modo de acesso do processador do modo usuário para o modo kernel. Ao término da execução da rotina do sistema, o modo de acesso retorna para o modo usuário
+
+
+4. Como o kernel do sistema operacional pode ser protegido pelo mecanismo de modos de acesso? 
+Através do modo de acesso de uma aplicação determinado por um conjunto de bits localizado no registrador de status do processador ou PSW. Através desse registrador, 
+o hardware verifica se a instrução pode ou não ser executada pela aplicação, possibilitando proteger o kernel do sistema operacional de um acesso indevido.
+
+
+5. Por que as rotinas do sistema operacional possuem instruções privilegiadas?
+porque existem instruções de aplicações que se forem usadas indevidamente ocasionaria sérios problemas á integridade do sistema
+
+
+6. O que é uma system call e qual sua importância para a segurança do sistema? Como as system calls são utilizadas por um programa? 
+As system calls podem ser entendidas como uma porta de entrada para o acesso ao núcleo do sistema operacional e a seus serviços. Sempre que um usuário ou aplicação desejar algum serviço do sistema, é realizada uma chamada a uma de suas rotinas através de uma system call. Através dos parâmetros fornecidos na system call, a solicitação é processada e uma resposta é retornada a aplicação juntamente com um estado de conclusão indicando se houve algum erro. O mecanismo de ativação e comunicação entre o programa e o sistema operacional é semelhante ao mecanismo implementado quando um programa chama uma subrotina.
+
+
+7. Quais das instruções a seguir devem ser executas apenas em modo kernel? 
+1-Desabilitar todas as interrupções, 
+2-consultar a data e hora do sistema, 
+3-alterar a data e hora do sistema, 
+4-alterar informações residentes no núcleo do sistema, 
+5-somar duas variáveis declaradas dentro do programa, 
+6-realizar um desvio para uma instrução dentro do próprio programa
+7-acessar diretamente posições no disco. 
+
+1, 3, 4, 7
+
+
+
+10. Compare as arquiteturas monolítica e de camadas. Quais as vantagens e desvantagens de cada arquitetura?
+A arquitetura monolítica pode ser comparada com uma aplicação formada por vários módulos que são compilados separadamente e depois linkados, formando um grande e único programa executável, onde os módulos podem interagir livremente. Na arquitetura de camadas, o sistema é dividido em níveis sobrepostos. Cada camada oferece um conjunto de funções que podem ser utilizadas apenas pelas camadas superiores. A vantagem da estruturação em camadas é isolar as funções do sistema operacional, facilitando sua manutenção e depuração, além de criar uma hierarquia de níveis de modos de acesso, protegendo as camadas mais internas. Uma desvantagem para o modelo de camadas é o desempenho. Cada nova camada implica em uma mudança no modo de acesso.
+
+
+11. Quais as vantagens do modelo de máquina virtual? 
+Além de permitir a convivência de sistemas operacionais diferentes no mesmo computador, a vantagem desse modelo é criar um isolamento total entre cada VM, oferecendo grande segurança para cada máquina virtual.
+
+
+12. Como funciona o modelo cliente-servidor na arquitetura microkernel? Quais suas vantagens e desvantagens dessa arquitetura?
+Sempre que uma aplicação deseja algum serviço, é realizada uma solicitação ao processo responsável. 
+Neste caso, a aplicação que solicita o serviço é chamada de cliente, enquanto o processo que responde à 
+solicitação é chamado de servidor. Um cliente, que pode ser uma aplicação de um usuário ou um outro componente do sistema operacional, 
+solicita um serviço enviando uma mensagem para o servidor. O servidor responde ao cliente através de uma outra mensagem. 
+A utilização deste modelo permite que os servidores executem em modo usuário, ou seja, não tenham acesso direto a certos 
+componentes do sistema. Apenas o núcleo do sistema, responsável pela comunicação entre clientes e servidores, executa no modo kernel. 
+Como conseqüência, se ocorrer um erro em um servidor, este poderá parar, mas o sistema não ficará inteiramente comprometido, 
+aumentando assim a sua disponibilidade. Outra vantagem é que a arquitetura microkernel permite isolar as funções do sistema operacional por 
+diversos processos servidores pequenos e dedicados a serviços específicos, tornado o núcleo menor, mais fácil de depurar e, 
+conseqüentemente, aumentando sua confiabilidade. Na arquitetura microkernel, o sistema operacional passa a ser de mais fácil manutenção, 
+flexível e de maior portabilidade. Apesar de todas as vantagens deste modelo, sua implementação, na prática, é muito difícil. 
+Primeiro existe o problema de desempenho, devido a necessidade de mudança de modo de acesso a cada comunicação entre clientes e servidores. 
+Outro problema é que certas funções do sistema operacional exigem acesso direto ao hardware, como operações de E/S.
+
+
+
+13. Por que a utilização da programação orientada a objetos é um caminho natural para o projeto de sistemas operacionais?
+Existe uma série de vantagens na utilização de programação por objetos no projeto e na implementação de sistemas operacionais. 
+Os principais benefícios são: melhoria na organização das funções e recursos do sistema; 
+redução no tempo de desenvolvimento; 
+maior facilidade na manutenção e extensão do sistema; 
+facilidade de implementação do modelo de computação distribuída. 
+
+
+
+--------------------------------------------------
+
+PROCESSOS
+
+1. Defina o conceito de processo. 
+Um processo pode ser definido como o ambiente onde um programa é executado. Este ambiente, além das informações sobre a execução, possui também o quanto de recursos do sistema cada programa pode utilizar, como o espaço de endereçamento, tempo de processador e área em disco. 
+
+
+2. Por que o conceito de processo é tão importante no projeto de sistemas multiprogramáveis? 
+Através de processos, um programa pode alocar recursos, compartilhar dados, trocar informações e sincronizar sua execução. 
+Nos sistemas multiprogramáveis os processos são executados concorrentemente, compartilhando o uso do processador, memória principal, dispositivos de E/S dentre outros recursos.
+
+
+3. É possível que um programa execute no contexto de um processo e não execute no contexto de um outro? Por que?
+Sim, pois a execução de um programa pode necessitar de recursos do sistema que um processo pode possuir enquanto outro não. 
+
+
+4. Quais partes compõem um processo?
+Um processo é formado por três partes, conhecidas como contexto de hardware, contexto de software e espaço de endereçamento, que juntos mantêm todas as informações necessárias à execução de um programa.
+
+
+5. O que é o contexto de hardware de um processo e como é a implementação da troca de contexto? 
+O contexto de hardware armazena o conteúdo dos registradores gerais da UCP, além dos registradores de uso específico como program counter (PC), stack pointer (SP) e registrador de status. 
+Quando um processo está em execução, o seu contexto de hardware está armazenado nos registradores do processador. 
+No momento em que o processo perde a utilização da UCP, o sistema salva as informações no contexto de hardware do processo
+
+
+6. Qual a função do contexto de software? Exemplifique cada grupo de informação. 
+No contexto de software são especificadas características e limites dos recursos que podem ser alocados pelo processo, 
+como o número máximo de arquivos abertos simultaneamente, prioridade de execução e tamanho do buffer para operações de E/S. 
+O contexto de software é composto por três grupos de informações sobre o processo: identificação, quotas e privilégios.
+
+
+7. O que é o espaço de endereçamento de um processo? 
+O espaço de endereçamento é a área de memória pertencente ao processo onde as instruções e dados do programa são armazenados para execução. 
+Cada processo possui seu próprio espaço de endereçamento, que deve ser devidamente protegido do acesso dos demais processos.
+
+
+8. Como o sistema operacional implementa o conceito de processo? Qual a estrutura de dados indicada para organizar os diversos processos na memória principal?
+O processo é implementado pelo sistema operacional através de uma estrutura de dados chamada bloco de controle do processo (Process Control Block — PCB). 
+A partir do PCB, o sistema operacional mantém todas as informações sobre o contexto de hardware, contexto de software e espaço de endereçamento de cada processo.
+
+
+9. Defina os cinco estados possíveis de um processo? 
+Estado de Execução: processo que está sendo processado pela UCP no momento. 
+Estado de Pronto: processo que aguarda para ser executado. 
+Estado de Espera: processo que aguarda por algum evento ou recurso para prosseguir processamento. 
+Estado de Criação: processo cujo PCB já foi criado porém ainda não teve seu processamento iniciado. 
+Estado de Terminado: processo que não pode ter mais nenhum programa executado no seu contexto, porém o sistema operacional mantém suas informações de controle presentes na memória..
+
+
+11. Diferencie processos multithreads, subprocessos e processos independentes
+Processos independentes não têm vínculo com os processos criadores. A criação de um processo independente exige a alocação de um PCB, 
+possuindo contextos de hardware, contexto de software e espaço de endereçamento próprios. 
+
+Subprocessos são processos criados dentro de uma estrutura hierárquica. Caso um processo pai deixe de existir, os subprocessos subordinados são automaticamente eliminados. 
+Semelhante aos processos independentes, subprocessos possuem seu próprio PCB. Além da dependência hierárquica entre processos e subprocessos, uma outra característica 
+neste tipo de implementação é que subprocessos podem compartilhar quotas com o processo pai. Neste caso, quando um subprocesso é criado, o processo pai cede parte de suas quotas ao processo filho.  
+
+Processos multithreads suportam múltiplos threads, cada qual associado a uma parte do código da aplicação. 
+Neste caso não é necessário haver diversos processos para a implementação da concorrência. Threads compartilham o processador da mesma maneira que um processo, 
+ou seja, enquanto um thread espera por uma operação de E/S, outro thread pode ser executado.
+
+
+
+12. Explique a diferença entre processos foreground e background. 
+Um processo foreground é aquele que permite a comunicação direta do usuário com o processo durante o seu processamento. 
+Neste caso, tanto o canal de entrada quanto o de saída estão associados a um terminal com teclado, mouse e monitor, permitindo, assim, a interação com o usuário. 
+Um processo background é aquele onde não existe a comunicação com o usuário durante o seu processamento. 
+Neste caso, os canais de E/S não estão associados a nenhum dispositivo de E/S interativo, mas em geral a arquivos de E/S. 
+
+
+13. Qual a relação entre processo e a arquitetura microkernel? 
+A arquitetura microkernel baseia-se na utilização de processos em modo usuário para executar diversas funções relativas ao sistema operacional, como gerência de memória e escalonamento. 
+
+
+15. Justifique com um exemplo a frase “o sinal está para o processo assim como as interrupções e exceções estão para o sistema operacional”
+Quando ocorre uma divisão por zero, por exemplo, o sistema operacional é notificado do problema através de uma exceção. 
+Por sua vez, o sistema deve notificar ao processo que gerou o problema através de um sinal.
+
+
+16. Explique como a eliminação de um processo utiliza o mecanismo de sinais.
+Quando um processo é eliminado, o sistema ativa o sinal associado a este evento. O processo somente será excluído do sistema quando for selecionado para execução. 
+Neste caso, é possível que o processo demore algum período de tempo até ser eliminado de fato. 
+
+
+
+
+--------------------------------------------------
+
+THREADS
+
+1. Como uma aplicação pode implementar concorrência em um ambiente monothread?
+Através de processos independentes e subprocessos.
+
+
+2. Quais os problemas de aplicações concorrentes desenvolvidas em ambientes monothread?
+Um problema é que o uso de processos no desenvolvimento de aplicações concorrentes demanda consumo de diversos recursos do sistema. 
+Sempre que um novo processo é criado, o sistema deve alocar recursos para cada processo, consumindo tempo de processador neste trabalho. 
+No caso do término do processo, o sistema dispensa tempo para desalocar recursos previamente alocados. 
+Outro problema a ser considerado é quanto ao compartilhamento do espaço de endereçamento. 
+Como cada processo possui seu próprio espaço de endereçamento, a comunicação entre processos torna-se difícil e lenta, pois utiliza mecanismos como pipes, 
+sinais, semáforos, memória compartilhada ou troca de mensagem.
+
+
+3. O que é um ambiente multithread e quais as vantagens em sua utilização?
+Em um ambiente de múltiplos threads (multithread), não é necessário haver vários processos para se implementar aplicações concorrentes. 
+No ambiente multithread, cada processo pode responder a várias solicitações concorrentemente ou mesmo simultaneamente, se houver mais de um processador.
+
+
+4. Explique a diferença entre unidade de alocação de recursos e unidade de escalonamento? 
+Em ambientes monothread, o processo é ao mesmo tempo a unidade de alocação de recursos e a unidade de escalonamento. 
+A independência entre os conceitos de processo e thread permite separar a unidade de alocação de recursos da unidade de escalonamento, que em ambientes monothread estão fortemente relacionadas. 
+Em um ambiente multithread, a unidade de alocação de recursos é o processo, onde todos os seus threads compartilham o espaço de endereçamento, 
+descritores de arquivos e dispositivos de E/S. Por outro lado, cada thread representa uma unidade de escalonamento independente e, 
+neste caso, o sistema não seleciona um processo para a execução, mas sim um de seus threads. 
+
+
+5. Quais as vantagens e desvantagens do compartilhamento do espaço de endereçamento entre threads de um mesmo processo? 
+Como threads de um mesmo processo compartilham o mesmo espaço de endereçamento, não existe qualquer proteção no acesso à memória, 
+permitindo que um thread possa alterar facilmente dados de outros. Para que threads trabalhem de forma cooperativa, é 
+fundamental que a aplicação implemente mecanismos de comunicação e sincronização entre threads, a fim de garantir o acesso seguro aos 
+dados compartilhados na memória. Por outro lado, o compartilhamento do espaço de endereámento é extremamente simples e rápido
+
+
+6. Compare os pacotes de threads em modo usuário e modo kernel? 
+Threads em modo usuário (TMU) são implementados pela aplicação e não pelo sistema operacional. 
+Para isso, deve existir uma biblioteca de rotinas que possibilita à aplicação realizar tarefas como criação/eliminação de threads, 
+troca de mensagens entre threads e uma política de escalonamento. 
+Neste modo, o sistema operacional não sabe da existência de múltiplos threads, sendo responsabilidade exclusiva da aplicação gerenciar e sincronizar os diversos threads existentes. 
+
+Threads em modo kernel (TMK) são implementadas diretamente pelo núcleo do sistema operacional, 
+através de chamadas a rotinas do sistema que oferecem todas as funções de gerenciamento e sincronização. 
+O sistema operacional sabe da existência de cada thread e pode escaloná-los individualmente. 
+No caso de múltiplos processadores, os threads de um mesmo processo podem ser executados simultaneamente.  
+
+
+
+7. Qual a vantagem do scheduler activations comparado ao pacote híbrido? 
+A principal vantagem é melhorar o desempenho no seu uso evitando as mudanças de modos de acesso desnecessárias (usuário-kernel-usuário). 
+Caso um thread utilize uma chamada ao sistema que o coloque no estado de espera, não é necessário que o kernel seja ativado, 
+bastando que a própria biblioteca em modo usuário escalone outro thread. Isto é possível porque a biblioteca em modo usuário e o 
+kernel se comunicam e trabalham de forma cooperativa. Cada camada implementa seu escalonamento de forma independente, porém trocando informações quando necessário.
+
+
+
+9. Como o uso de threads pode melhorar o desempenho de aplicações paralelas em ambientes com múltiplos processadores? 
+Para obter os benefícios do uso de threads, uma aplicação deve permitir que partes diferentes do seu código sejam executadas em paralelo de forma independente. 
+O uso de uma arquitetura com múltiplos processasdores beneficia a concorrência entre os threads com a possibilidade do paralelismo de execução entre processadores
+
+
+10. Quais os benefícios do uso de threads em ambientes cliente-servidor? 
+O principal benefício do uso de threads em ambientes cliente-servidor é a melhoria no desempenho da aplicação servidora. 
+Além disso, a comunicação entre os threads no servidor pode ser feita através de mecanismos mais simples e eficientes
+
+
+11. Como o uso de threads pode ser útil em arquiteturas microkernel? 
+A arquitetura microkernel utiliza processos para implementar funções relativas ao kernel do sistema operacional, 
+sendo que esses processos são utilizados como servidores quando algum cliente necessita de algum serviço do sistema. 
+Arquiteturas que implementam threads, possibilitam um melhor desempenho dos processos servidores. 
+
+
+
+-------------------------------------
+
+Sincronização e Comunicação entre Processos 
+
+1. Defina o que é uma aplicação concorrente e dê um exemplo de sua utilização. 
+É uma aplicação estruturada de maneira que partes diferentes do código do programa possam executar concorrentemente. 
+Este tipo de aplicação tem como base a execução cooperativa de múltiplos processos ou threads, que trabalham em uma mesma tarefa na busca de um resultado comum.
+
+
+2. Considere uma aplicação que utilize uma matriz na memória principal para a comunicação entre vários processos concorrentes. 
+Que tipo de problema pode ocorrer quando dois ou mais processos acessam uma mesma posição da matriz? 
+Caso não haja uma gerência no uso concorrente dos recursos compartilhados, inconsistências nos dados podem ocorrer
+
+
+3. O que é exclusão mútua e como é implementada? 
+É impedir que dois ou mais processos acessem um mesmo recurso simultaneamente. 
+Para isso, enquanto um processo estiver acessando determinado recurso, todos os demais processos que queiram acessá-lo deverão esperar pelo término da utilização do recurso 
+
+
+4. Como seria possível resolver os problemas decorrentes do compartilhamento da matriz, apresentado anteriormente, utilizando o conceito de exclusão mútua? 
+Garantindo na aplicação que somente um único processo pode estar acessando a matriz por vez
+
+
+5. O que é starvation e como podemos solucionar esse problema? 
+Starvation é a situação onde um processo nunca consegue executar sua região crítica e, conseqüentemente, acessar o recurso compartilhado. 
+A solução para o problema depende de estabelecimentos de mecanismos de acesso pelo sistema operacional que garantam o acesso ao recurso por todos os processos que solicitarem uso
+
+
+6. Qual o problema com a solução que desabilita as interrupções para implementar a exclusão mútua? 
+Essa solução apesar de simples, apresenta algumas limitações. Primeiramente, a multiprogramação pode ficar seriamente comprometida, 
+já que a concorrência entre processos tem como base o uso de interrupções. Um caso mais grave poderia ocorrer caso um processo desabilitasse as interrupções e não tornasse a habilitá-las. 
+Nesse caso, o sistema, provavelmente, teria seu funcionamento seriamente comprometido. 
+Em sistemas com múltiplos processadores, esta solução torna-se ineficiente devido ao tempo de propagação quando um processador 
+sinaliza aos demais que as interrupções devem ser habilitadas ou desabilitadas. 
+Outra consideração é que o mecanismo de clock do sistema é implementado através de interrupções, devendo esta solução ser utilizada com bastante critério.
+
+
+7. O que é espera ocupada e qual o seu problema?
+na espera ocupada, toda vez que um processo não consegue entrar em sua região crítica, por já existir outro processo acessando o recurso,
+o processo permanece em looping, testando uma condição, até que lhe seja permitido o acesso.
+dessa forma o processo em looping consome tempo do processador desnecessariamente, podendo ocasionar problemas ao desempenho do sistema
+
+
+8. Explique o que é sincronização condicional e dê um exemplo de sua utilização.
+é uma situação onde o acesso ao recurso compartilhado exige a sincronização de processos vinculada a uma condição de acesso.
+um recurso pode não se encontrar pronto para uso devido a uma condição específica. nesse caso, o processo que deseja acessá-lo deverá permanecer bloqueado até que
+o recurso fique disponível. um exemplo clássico desse tipo de sincronização é a comunicação entre dois processos através de operações de gravação e leitura em um buffer
+
+
+9. Explique o que são semáforos e dê dois exemplos de sua utilização: um para a solução da exclusão mútua e outro para a sincronização condicional.
+um semáforo é uma variável inteira, não negativa, que só pode ser manipulada por 2 instruções: UP e DOWN
+
+
+11. Explique o que são monitores e dê dois exemplos de sua utilização: um para a solução da exclusão mútua e outro para a sincronização condicional.
+monitores são mecanismos de sincronização de alto nível que torna mais simples o desenvolvimento de aplicações concorrentes
+Na exclusão mútua a implementação usando monitores não é realizada diretamente pelo programador; as regiões críticas são definidas como procedimentos no monitor
+e o compilador garante a exclusão mutua; a comunicação do procedimento e monitor é executada através de chamada a procedimentos e dos parametros passados.
+Na sincronização condicional, pode ser implementada utilizando-se de monitores através de variáveis especiais de condição; é possível associar a execução de um
+procedimento que faz parte do monitor a uma determinada condição
+
+
+12. Qual a vantagem da forma assíncrona de comunicação entre processos e como esta pode ser implementada?
+A vantagem deste mecanismo é aumentar a eficiência de aplicações concorrentes.
+Para implementar essa solução, além da necessidade de buffers para armazenar as mensagens, 
+devem haver outros mecanismos de sincronização que permitam ao processo identificar se uma mensagem já foi enviada ou recebida.
+
+
+13. O que é deadlock, quais as condições para obtê-lo e quais as soluções possíveis? 
+Deadlock é a situação em que um processo aguarda por um recurso que nunca estará disponível ou um evento que não ocorrerá. 
+Para que ocorra a situação de deadlock, quatro condições são necessárias simultaneamente: 
+
+exclusão mútua: cada recurso só pode estar alocado a um único processo em um determinado instante; 
+espera por recurso: um processo, além dos recursos já alocados, pode estar esperando por outros recursos;
+não-preempção: um recurso não pode ser liberado de um processo só porque outros processos desejam o mesmo recurso;
+espera circular: um processo pode ter de esperar por um recurso alocado a outro processo e vice-versa. 
+
+Para prevenir a ocorrência de deadlocks, é preciso garantir que uma das quatro condições apresentadas, necessárias para sua existência, nunca se satisfaça.
+A prevenção de deadlocks evitando-se a ocorrência de qualquer uma das quatro condições é bastante limitada e, por isso, na prática não é utilizada. 
+Uma solução conhecida como Algoritmo do Banqueiro (implementada com a presença das quatro condições) também possui várias limitações. 
+A maior delas é a necessidade de um número fixo de processos ativos e de recursos disponíveis no sistema. 
+Essa limitação impede que a solução seja implementada na prática, pois é muito difícil prever o número de usuários no sistema e o número de recursos disponíveis.
+
+
+
+14. Em uma aplicação concorrente que controla saldo bancário em contas correntes, 
+dois processos compartilham uma região de memória onde estão armazenados os saldos dos clientes A e B. 
+Os processos executam, concorrentemente os seguintes passos
+
+Supondo que os valores dos saldos de A e B sejam, respectivamente, 500 e 900, antes de os processos executarem, pede-se:
+a) Quais os valores corretos esperados para os saldos dos clientes A e B após o término da execução dos processos?
+Cliente A = 200 e Cliente B = 1.200
+
+b) Quais os valores finais dos saldos dos clientes se a sequência temporal de execução das operações  for: 1a, 2a, 1b, 2b, 1c, 2c, 1d, 2d, 1e, 2e, 1f, 2f? 
+saldo cliente A=400
+saldo cliente B=1100
+
+c) Utilizando semáforos, proponha uma solução que garanta a integridade dos saldos e permita o maior compartilhamento possível dos recursos entre os processos, 
+não esquecendo a especificação da inicialização dos semáforos.
+
+Processo 1 (Cliente A)		Processo 2 (Cliente B)    
+/* saque em A */		/*saque em A */
+Down (S1)			Down (S1)
+x := saldo_do_cliente_A;	y := saldo_do_cliente_A;
+x := x - 200;			y := y - 100;
+saldo_do_cliente_A := x;	saldo_do_cliente_A := y;
+Up (S1)				Up (S1)
+
+/* deposito em B */		/* deposito em B */
+Down (S2)			Down (S2)
+x := saldo_do_cliente_B;	y := saldo_do_cliente_B;
+x := x + 100;			y := y + 200;
+saldo_do_cliente_B := x;	saldo_do_cliente_B := y;
+Up (S2)				Up (S2)
+
+
+
+15. O problema dos leitores/escritores, apresentado a seguir, consiste em sincronizar processos que consultam/atualizam dados em uma base comum. 
+Pode haver mais de um leitor lendo ao mesmo tempo; no entanto, enquanto um escritor está atualizando a base, nenhum outro processo pode ter acesso a ela (nem mesmo leitores).
+
+VAR 	Acesso: Semaforo := 1;
+	Exclusao: Semaforo := 1;
+	Nleitores: integer := 0;
+
+PROCEDURE Escritor;
+BEGIN
+	ProduzDado;
+	DOWN (Acesso);
+	Escreve;
+	UP (Acesso);
+END;
+
+PROCEDURE Leitor;
+BEGIN
+	DOWN (Exclusao);
+	Nleitores := Nleitores + 1;
+	IF ( Nleitores = 1 ) THEN DOWN (Acesso);
+	UP (Exclusao);
+	Leitura;
+	DOWN (Exclusao);
+	Nleitores := Nleitores - 1;
+	IF ( Nleitores = 0 ) THEN UP (Acesso);
+	UP (Exclusao);
+	ProcessaDado;
+END;
+
+a) Suponha que exista apenas um leitor fazendo acesso à base. Enquanto este processo realiza a leitura, quais os valores das três variáveis?
+acesso=0, exclusao=1, nLeitores=1
+
+b) Chega um escritor enquanto o leitor ainda está lendo. Quais os valores das três variáveis após o bloqueio do escritor ? Sobre qual(is) semáforo(s) se dá o bloqueio?
+acesso=0, exclusao=1, nLeitores=1
+
+c) Chega mais um leitor enquanto o primeiro ainda não acabou de ler e o escritor está bloqueado. Descreva os valores das três variáveis quando o segundo leitor inicia a leitura.
+acesso=0, exclusao=1, nLeitores=2
+
+d) Os dois leitores terminam simultaneamente a leitura. É possível haver problemas quanto à integridade do valor da variável nleitores? Justifique
+Não, pois a exclusão mútua a esta variável é implementada pelo semáforo Exclusao.
+
+e) Descreva o que acontece com o escritor quando os dois leitores terminam suas leituras. Descreva os valores das três variáveis quando o escritor inicia a escrita. 
+o processo Escritor inicia a escrita
+acesso=0, exclusao=1, nLeitores=0
+
+f) Enquanto o escritor está atualizando a base, chagam mais um escritor e mais um leitor. Sobre qual(is) semáforo(s) eles ficam bloqueados? 
+Descreva os valores das três variáveis após o bloqueio dos recém-chegados
+o escritor fica bloqueado no semaforo "acesso" pois ele vale zero ou seja está sem vagas disponiveis
+o leitor tambem é bloqueado no semaforo "acesso" pelo mesmo motivo ao tentar fazer DOWN acesso
+acesso=0, exclusao=0, nLeitores=1
+
+g) Quando o escritor houver terminado a atualização, é possível prever qual dos processos bloqueados (leitor ou escritor) terá acesso primeiro à base?
+Não, em geral os sistemas operacionais utilizam a escolha aleatória dentre os processos em estado de espera.
+
+h)Descreva uma situação onde os escritores sofram starvation (adiamento indefinido).
+Caso um processo Escritor esteja aguardando, bloqueado pelo semáforo Acesso, e sempre surgirem novos processos Leitor, o processo Escritor pode nunca ganhar acesso ao recurso.
+
+
+
+
+---------------------------
+
+Gerência do Processador
+
+
+1. O que é política de escalonamento de um sistema operacional?
+Uma política de escalonamento é composta por critérios estabelecidos para determinar qual processo em estado de pronto será escolhido para fazer uso do processador. 
+
+
+2. Quais as funções do escalonador e do dispatcher? 
+O escalonador é uma rotina do sistema operacional que tem como principal função implementar os critérios da política de escalonamento. O dispatcher é responsável pela troca de contexto dos processos após o escalonador determinar qual processo deve fazer uso do processador. 
+
+
+3. Quais os principais critérios utilizados em uma política de escalonamento? 
+Utilização do processador, throughput, tempo de Processador (tempo de UCP),  tempo de espera, tempo de turnaround e tempo de resposta
+
+
+4. Diferencie os tempos de processador, espera, turnaround e resposta. 
+Tempo de processador ou tempo de UCP é o tempo que um processo leva no estado de execução durante seu processamento. 
+Tempo de espera é o tempo total que um processo permanece na fila de pronto durante seu processamento, aguardando para ser executado. 
+Tempo de turnaround é o tempo que um processo leva desde a sua criação até ao seu término, levando em consideração todo o tempo gasto na espera para alocação de memória, espera na fila de pronto (tempo de espera), processamento na UCP (tempo de processador) e na fila de espera, como nas operações de E/S. 
+Tempo de resposta é o tempo decorrido entre uma requisição ao sistema ou à aplicção e o instante em que a resposta é exibida..
+
+
+5. Diferencie os escalonamentos preemptivos e não-preemptivos. 
+No escalonamento preemptivo, o sistema operacional pode interromper um processo em execução e passá-lo para o estado de pronto, com o objetivo de alocar outro processo na UCP. No escalonamento não-preemptivo,  quando um processo está em execução, nenhum evento externo pode ocasionar a perda do uso do processador. O processo somente sai do estado de execução, caso termine seu processamento ou execute instruções do próprio código que ocasionem uma mudança para o estado de espera. 
+
+
+6. Qual a diferença entre os escalonamentos FIFO e circular? 
+O FIFO é um escalonamento não-preemptivo onde o processo que chegar primeiro ao estado de pronto é o selecionado para execução. Este algoritmo é bastante simples, sendo necessária apenas uma fila, onde os processos que passam para o estado de pronto entram no seu final e são escalonados quando chegam ao seu início. Quando um processo vai para o estado de espera, o primeiro processo da fila de pronto é escalonado. Todos os processos quando saem do estado de espera entram no final da fila de pronto. O Circular é um escalonamento preemptivo, projetado especialmente para sistemas de tempo compartilhado. Esse algoritmo é bastante semelhante ao FIFO, porém, quando um processo passa para o estado de execução, existe um tempo limite para o uso contínuo do processador denominado fatia de tempo (time-slice) ou quantum.
+
+
+7. Descreva o escalonamento SJF e o escalonamento por prioridades. 
+No escalonamento SJF, o algoritmo de escalonamento seleciona o processo que tiver o menor tempo de processador ainda por executar. Dessa forma, o processo em estado de pronto que necessitar de menos tempo de UCP para terminar seu processamento é selecionado para execução. O escalonamento por prioridades é um escalonamento do tipo preemptivo realizado com base em um valor associado a cada processo denomidado prioridade de execução. O processo com maior prioridade no estado de pronto é sempre o escolhido para execução e processos com valores iguais são escalonados seguindo o critério de FIFO. Neste escalonamento, o conceito de fatia de tempo não existe, conseqüentemente, um processo em execução não pode sofrer preempção por tempo.
+
+
+8. Qual a diferença entre preempção por tempo e preempção por prioridade? 
+Preempção por tempo ocorre quando o sistema operacional interrompe o processo em execução em função da expiração da sua fatia de tempo, substituindo-o por outro processo. Preempção por prioridade, ocorre quando o sistema operacional interrompe o processo em execução em função de um processo entrar em estado de pronto com prioridade superior ao do processo em execução
+
+
+9. O que é um mecanismo de escalonamento adaptativo? 
+É um mecanismo onde o sistema operacional identifica o comportamento dos processos durante sua execução adaptando as políticas de escalonamento dinamicamente.
+
+
+10. Que tipo de escalonamento aplicações de tempo real exigem? 
+Escalonamento por prioridades onde é possível atribuir prioridades aos processos em função da sua importância. Além disso, o mecanismo de preempção por prioridades garante o escalonamento imediato de processos críticos quando esses passam para o estado de pronto.
+
+
+11. O escalonamento por múltiplas filas com realimentação favorece processos CPU-bound ou I/O-bound? Justifique. 
+Processos I/O-bound são favorecidos neste tipo de escalonamento. Como a probabilidade desse tipo de processo sofrer preempção por tempo é baixa, a tendência é que os processos I/O-bound permaneçam nas filas de alta prioridade enquanto os processos CPU-bound tendem a posicionar-se nas filas de prioridade mais baixa.
+
+
+14. Como o valor do quantum pode afetar o grau de multiprogramação em um sistema operacional? Qual a principal desvantagem de um quantum com um valor muito pequeno? 
+Um valor de quantum grande pode prejudicar a multiprogramação, na medida em que a ocorrência de preempções por tempo é reduzida, favorecendo os processos CPU-bound e prejudicando os processos I/O-bound. Um valor de quantum pequeno ocasionaria um grande overhead ao sistema devido a alta frequência de mudanças de contexto geradas pelas frequentes preempções por tempo.
+
+
+15. Considere um sistema operacional que implemente escalonamento circular com fatia de tempo igual a 10 u.t.. Em um determinado instante de tempo, existem apenas três processos (P1, P2 e P3) na fila de pronto, e o tempo de UCP de cada processo é 18, 4 e 13 u.t, respectivamente. Qual o estado de cada processo no instante de tempo T, considerando a execução dos processos P1, P2 e P3, nesta ordem, e que nenhuma operação de E/S é realizada?
+
+P1: ----------           --------
+P2:           ----
+P3:               ------         -------
+
+           8ut  14ut    24ut     32ut   35ut
+
+a) T = 8 u.t. 
+P1: Execução, P2:Pronto, P3:Pronto 
+
+b) T = 11 u.t. 
+P1: Pronto, P2:Execução, P3:Pronto 
+
+c) T = 33 u.t. 
+P1: Terminado, P2:Terminado, P3:Execução
+
+
+
+16. Considere um sistema operacional que implemente escalonamento circular com fatia de tempo igual a 10 u.t. Em um determinado instante de tempo, existem apenas três processos (P1, P2 e P3) na fila de pronto, e o tempo de UCP de cada processo é 14, 4 e 12 u.t, respectivamente. Qual o estado de cada processo no instante de tempo T, considerando a execução dos processos P1, P2 e P3, nesta ordem, e que apenas o processo P1 realiza operações de E/S? Cada operação de E/S é executada após 5 u.t. e consome 10 u.t.  
+
+
+P1: -----              -----          ----
+P2:      ----
+P3:          ----------     --
+
+           8ut       18ut      28ut
+
+a) T = 8 u.t. 
+P1: Espera, P2:Execução, P3:Pronto 
+
+b) T = 18 u.t. 
+P1: Pronto, P2:Terminado, P3:Execução 
+
+c) T = 28 u.t. 
+P1: Espera, P2:Terminado, P3:Terminado
+
+
+
+17. Existem quatro processos (P1, P2, P3 e P4) na fila de pronto, com tempos de UCP estimados em 9, 6, 3 e 5, respectivamente. Em que ordem os processos devem ser executados para minimizar o tempo de turnaround dos processos? 
+A melhor política para minimizar o tempo de turnaround seria utilizar o escalonamento SJF na sequência de execução P3, P4, P2 e P1.
+
+
+
+
+
+
+
+

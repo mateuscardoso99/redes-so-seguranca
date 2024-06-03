@@ -1,0 +1,22 @@
+-ESCALONAMENTO COM MÚLTIPLAS FILAS: várias filas de processos no estado de pronto
+-cada fila possui prioridade e não o processo
+-o SO só pode escalonar processos de uma fila se as filas de maior prioridade tiver vazias
+-processos são classificados em função do tipo e colocadaos nas respectivas de filas
+
+problemas:
+-processos não podem mudar de fila durante a execução
+
+-ESCALONAMENTO COM MÚLTIPLAS FILAS COM REALIMENTAÇÃO: igual ao anterior porem os processos podem trocar de fila durante a execução
+-SO muda a fila do processo dinamicamente
+-processos entram na fila de maior prioridade e vão sendo direcionados para filas de menor prioridade quando usam toda sua fatia de tempo, se fizer durante sua fatia de tempo ele volta pro fim da fila de maior prioridade e não vai sendo rebaixado pra filas de menor prioridade
+
+problemas:
+-processos que são cpu bound e se tornam io bound não podem subir na fila de processos
+-muito complexo
+
+
+-------------------------
+
+ESCALONAMENTO DE SOs DE TEMPO REAL:
+-algumas aplicações precisam de respostas imediatas
+-o escalonamento por prioridades precisa ser utilizado mas com fatias de tempo menores

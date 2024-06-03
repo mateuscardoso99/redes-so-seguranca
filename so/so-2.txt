@@ -1,0 +1,33 @@
+tradutor: traduz programa fonte para codigo de máquina ou módulo objeto(linguagem código de máquina)
+-2 tipos de tradutores:
+-compilador: traduz linguagem de alto nivel
+-montador: traduz linguagem de máquina
+
+interpretador: interpreta codigos e executa imediatamente sem gerar módulo objeto
+linker (ligador): junta modulos objeto gerados por um compilador e combina-os em um único arquivo executável, arquivo de biblioteca ou outro arquivo objeto
+carregador: carrega na memória o programa executável
+depurador: trava a execução do programa em um breakpoint escolhido
+
+Concorrencia: diferentes aplicações concorrem pelos mesmos recursos do SO como memória, cpu, disco, impressora etc..
+
+Troca de contexto: troca o programa que está executando no momento, os dados do 1o programa que estavam em registradores
+são salvos na MP, pra que esses registradores possam ser usados pela CPU na execução do novo programa,
+quando esse 2o programa para pra o 1o executar novamente os dados que estavam no registrador que tinham ido pra memória
+são carregados denovo no registrador fazendo com que o 1o programa volte a executar aonde tinha parado antes
+na troca de contexto o SO informa a CPU qual area de memória ele pode acessar pra que não acesse areas de memoria de outro programa
+se ele tentar acessar será lançada uma exceção
+
+Interrupção: eventos inesperados ou externos que causam a interrupção da execução do aplicativo, são geradas por dispositivos de E/S
+quando uma interrupção acontece é feita uma troca de contexto
+o SO só executa quando ocorre interrupções, por isso o clock fica disparando interrupções a todo momento pra que o SO execute
+interrupção é o mecanismo usado pra implementar a multiprogramação (mais de 1 programa rodando ao mesmo tempo)
+exceção tambem é um tipo de interrupção (NullPointerException por exemplo)
+
+CPU no modo kernel pode fazer o que quiser, já no modo usuario há restrições
+toda interrupção faz com que a CPU entre no modo kernel
+programas não podem usar CPU no modo kernel, só o SO usa o modo kernel
+
+operações de E/S
+-espera ocupada: CPU requisita E/S do controlador e fica a cada ciclo verificando se a operação terminou
+-E/S controlada por interrupção: controlador do disp. de E/S interrompe a CPU quando o dispositivo está pronto
+-acesso direto a memoria: controlador de DMA escreve na MP os dados lidos do disp. E/S e interrompe a CPU quando terminar 

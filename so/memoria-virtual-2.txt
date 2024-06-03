@@ -1,0 +1,52 @@
+1. Um sistema operacional implementa gerência de memória virtual por
+paginação. Considere endereços virtuais com 16 bits, referenciados por
+um mesmo processo durante sua execução e sua tabela de páginas
+com no máximo 256 entradas. Estão representadas apenas as páginas
+presentes na memória real. Indique para cada endereço virtual a seguir
+a página virtual em que o endereço se encontra, o respectivo
+deslocamento e se a página se encontra na MP neste momento.
+a) 0133
+b) 0801 
+c) 0900
+
+256 = 2 na 8
+
+        16
+|-----------------|
+|NPV |Deslocamento|
+  8  |     8
+
+
+a) 0133: 01 = página, 33 = deslocamento
+b) page fault
+c) 0900
+
+
+
+
+
+
+2. Por que existe a necessidade de uma política de substituição
+de páginas? Compare as políticas de substituição local e global.
+
+
+3. Por que programas não estruturados estão sujeitos a uma alta
+taxa de paginação.
+
+Porque o princípio da localidade não se faz presente em códigos desestrurados.
+
+
+
+4. Considere um sistema com memória virtual que implemente
+paginação no qual o limite de frames por processo é 3.
+Descreva para os itens a seguir, para os quais é apresentada
+uma sequencia de referências a páginas pelo processo, o
+número total de page faults para as estratégias de relocação
+FIFO e LRU. Indique qual a mais eficaz para cada item.
+a. 1 / 2 / 3 / 1 / 4 / 2 / 5 / 3 / 4 / 3
+FIFO = Total PF = 5 (melhor política) 
+LRU = Total PF = 8 
+
+b. 1 / 2 / 3 / 1 / 4 / 1 / 3 / 2 / 3 / 3
+FIFO = Total PF = 7 
+LRU = Total PF = 5 (melhor política) 

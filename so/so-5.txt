@@ -1,0 +1,43 @@
+1. Por que o conceito de processo é tão importante no projeto de sistemas multiprogramáveis?
+são os próprios programas executando, senão houvesse processos os programas não poderiam ser executados
+pois cada aplicação rodando é um processo no SO
+
+2. O que é o contexto de hardware e como é a implementação da troca de contexto?
+contexto de Hardware: é o conteúdo dos registradores da CPU, é uma area de memória em que os dados do registradores são salvos pra que o SO possa controlar os processos
+troca de contexto SO salva o conteúdo dos registradores em uma area de memória e carrega os dados de um outro contexto salvo em memória nesses registradores pra que esse contexto passe e executar
+
+3. Dê um exemplo que apresente todas as mudanças de estado de um processo, juntamente com o evento gerador.
+evento gerador é quando o processo é iniciado, depois ele vai pro estado de pronto, depois será colocado em estado de execução, se precisar fazer I/O ele entrará em estado de espera, quando a I/O terminar ele volta pro estado de pronto e depois será executado com base no escalonamento do SO
+
+4. Dê exemplos de aplicações CPU-Bound e I/OBound
+-IO-bound(ligado a E/S) apps comerciais, de rede
+-CPU-bound(ligado a CPU) Computações matemáticas intensas, Algoritmos de busca e ordenação em memória, Processamento e reconhecimento de imagem.
+
+-------------------
+
+Criação de processos:
+-logon interativo: processo criado para atender a comandos do usuario após o logon no SO
+-via system calls
+-via linguagens de comando
+
+Processos independentes, subprocessos e threads:
+-formas de implementar concorrência e paralelismo dentro dos programas
+-para programa poder fazer E/S e manter a interface atualizada, precisará de paralelismo
+
+Subprocesso: processo que possui um processo pai associado, quando o pai é terminado os filhos são automaticamente terminados.
+-subprocessos compartilham quotas com o processo pai
+-cada um possui sua própria PCB
+
+Thread: semelhante aos processos, threads necessariamente pertencem a um processo, criado especificamente para implementação de apps concorrentes
+-diferentes dos subprocessos que cada um tem sua PCB e não compartilham memória, enderaçamento. Em threads tudo é compartilhado (memória, espaço de endereçamento, contexto de software) com exceção do contexto de hardware que não é compartilhado
+-thread é um tipo de processo leve, é mais rápido de ser criado e excluido pois compartilha memória e contexto de software
+-Threads armazenam apenas o contexto de hardware, já o contexto de software é compartilhado por todo o processo
+-Um processo pode ter várias threads que compartilham o mesmo espaço de endereçamento
+-Threads compartilham o processador da mesma forma que processos e passam pelas mesmas mudanças de estado (execução, espera e pronto)
+
+Sinais: mecanismo de comunicação entre processos bem como do SO para com os processos, semelhante as interrupções entre SO e HW
+-exceções em tempo de execução geram sinais para os processos
+-Interrupções de hardware também geram sinais para os processos
+
+Ambiente monothread: não há threads pois só pode ter uma thread, concorrencia é feita com subprocessos
+Multithread: programas dentro de um mesmo aplicativo são associados ás threads e não a subprocessos

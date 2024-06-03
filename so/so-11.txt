@@ -1,0 +1,126 @@
+GERENCIA DE MEMÓRIA:
+-MP sempre foi vista como um recurso escasso e caro
+-SOs tinham o objetivo de serem simples para não ocuparem muito espaço na MP
+-objetivo do gerenciamento de memória maximizar o número de usuários e aplicativos executando concorrentemente
+-gerenciador de memória pode salvar processos na memoria secundaria pra abrir espaço pra novos processos na MP
+-CPU só executa programas que estão na MP
+-processos que estão na memória secundária não podem executar, ou seja, dormem, pra executar precisa voltar pra MP e depois ir pra estado de PRONTO
+-permite que programas que são maiores que a MP possam executar
+-protege de um programa acessar uma area de memoria que não é dele
+
+
+REALOCAÇÃO: programa é varrido em busca de instruções que usam endereços de memória afim de somar o endereço definido no programa mais o endereço em que o programa começa a executar
+-isso ocorre quando o código gerado pelo compilador é absoluto e não realocavel
+
+
+ALOCAÇÃO CONTIGUA SIMPLES:
+-usada em SOs monoprogramaveis
+-memoria fica toda pro programa que está executando
+-MP fica ociosa pois o processo normalmente não usa toda a memoria
+
+--OVERLAY: 
+-tamanho da MP limita o tamanho do programa, se o programa for maior que a MP, então o programa é divido em modulos pra executarem simultaneamente
+-implementado pelo programa e não pelo SO
+-os programas são divididos em módulos de execução independente
+-Módulos se revezam no uso da MP, de forma que somente os que estão sendo uƟlizados precisam estar carregados
+
+
+-----------------------------------
+
+
+ALOCAÇÃO PARTICIONADA:
+-MP é dividida em partições
+-usada em SOs multiprogramaveis
+
+ALOCAÇÃO PARTICIONADA ESTÁTICA: MP é dividida em partições na inicialização do SO, tamanho fixo
+-se precisar mudar tamanho da particão o SO precisa ser reinicializado
+
+ALOCAÇÃO PARTICIONADA ESTÁTICA REALOCÁVEL:
+-evolução dos compiladores/montadores transformou o codigo absoluto em realocavel
+-o compilador altera os endereços no código gerado por ele de acordo com a partição que o programa será executado
+
+
+PROTEÇÃO DE MEMÓRIA: endereço inicial e final em que um programa pode acessar são salvos em registradores
+se o programa tentar acessar um endereço fora desse limite é lançada uma exceção
+
+
+-como as partições são de tamanho fixo ocorre um desperdicio de memoria pois nem sempre o programa ocupa todo o tamanho da partição
+
+
+
+1) Quais as funções básicas da gerência de memória?
+-permite que programas que são maiores que a MP possam executar
+-protege de um programa acessar uma area de memoria que não é dele
+-salvar processos na memoria secundaria pra abrir espaço pra novos processos na MP
+-objetivo do gerenciamento de memória maximizar o número de usuários e aplicaƟvos executando concorrentemente
+
+
+2) Considere um sistema computacional com 40Kb de MP que use um SO de 10Kb que
+implementa a alocação contigua de memória. Qual a taxa de subutilização da MP para um
+programa que ocupe 20Kb de memória?
+
+SO = 10kb
+programa = 20kb
+total: 30kb/40kb
+taxa de ocupação: 75%
+taxa de subutilização: 25%
+
+
+3) Suponha um sistema computacional de 64Kb de MP que utilize um SO que ocupa 14Kb e que
+implementa alocação contigua de memória. Considere também um programa de 90Kb formado
+por:
+– Módulo principal: 20Kb;
+– Outros 3 módulos independentes: (1)10Kb, (2)20Kb, (3)30Kb;
+Como o programa poderia ser executado utilizando-se a técnica de overlay?
+
+memoria = 64kb
+SO = 14kb
+modulo principal = 20kb
+
+total = 34/60
+sobra: 30kb
+
+poderia ser executado com o módulo principal junto com o modulo 1 e 2, o modulo 3 fica esperando
+ou o modulo principal mais o modulo 3 e os modulos 1 e 2 não executam
+
+
+
+4) Considerando o exercício anterior, se o módulo de 30 Kb tivesse seu tamanho aumentado para
+40 Kb, seria possível executar o programa? Caso não, como poderia ser contornado o problema?
+-comprar mais memória
+-este módulo precisaria ser divido em sub-modulos menores
+
+
+
+5) Suponha um sistema computacional com 128Kb de MP e que utilize um SO de 64Kb com
+alocação particionada estática relocável. Considere também que o sistema foi inicializado com 3
+partições: P1 (8Kb), P2 (24Kb), P3 (32Kb). Calcule a fragmentação interna da MP após a carga de
+3 programas PA, PB e PC:
+a) P1: PA (6Kb); P2: PB (20Kb); P3: PC (28Kb)
+b) P1: PA (4Kb); P2: PB (16Kb); P3: PC (26Kb)
+c) P1: PA (8Kb); P2: PB (24Kb); P3: PC (32Kb)
+
+SO = 64kb
+restante = 64kb
+p1: 8kb
+p2: 24kb
+p3: 32kb
+
+a) taxa de fragmentação interna de 10kb/64kb
+p1: fragmentação interna de 2kb
+p2: fragmentação interna de 4kb
+p3: fragmentação interna de 4kb
+
+b) taxa de fragmentação interna de 18kb/64kb
+p1: fragmentação interna de 4kb
+p2: fragmentação interna de 8kb
+p3: fragmentação interna de 6kb
+
+c) taxa de fragmentação interna de 0kb/64kb (sem fragmentação interna)
+p1: fragmentação interna de 0kb
+p2: fragmentação interna de 0kb
+p3: fragmentação interna de 0kb
+
+
+
+

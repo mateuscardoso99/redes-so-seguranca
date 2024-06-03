@@ -1,0 +1,61 @@
+Buffering:
+-usa a MP como armazenamento temporário de dados principalmente de E/S
+-minima a diferença de velocidade entre CPU e E/S
+-buffer deve armazenar dados não processados, de modo que a CPU nunca precise esperar pela E/S
+
+Spooling:
+-semelhante ao buffering
+-usa o disco como armazenamento temporário de dados de E/S
+-minima a diferença de velocidade entre CPU e E/S
+-dispositivos de E/S mais lentos: impressoras, leitores de cartão
+
+Reentrância:
+-permite que um mesmo programa em memória seja executado por usuários ou aplicativos diferentes
+-ex: vários programas usam a função printf() do C
+
+Estrutura do SO:
+-núcleo ou kernel
+-aplicativos e utilitários
+-o SO é chamado a execução de modo assíncrono através de interrupções que são originadas no HW
+
+funções Kernel:
+-tratar interrupções
+-gerencia de processos, threads, memória, cpu, E/S, rede, sistema de arquivos
+-sincronismo e comunicação entre processos/threads
+
+modos de acesso:
+ -modo kernel: permite o uso de todas as instruções, incluindo trocar modo de acesso, desligamento de interrupções, instruções para E/S, ou seja, acesso total ao HW
+ -modo usuário: acesso somente ao espaço de endereçamento do aplicativo, impõe às demais aplicações um ambiente protegido
+
+chamadas de sistema:
+-forma que os aplicativos se comunicarem com o SO solicitando um de seus serviços
+-administrador do SO dá permissões aos aplicativos/usuários para executarem algumas chamadas de sistema
+
+-ex: aplicação faz chamada de sistema pra alguma rotina do SO, SO salva contexto dos registradores, SO troca pra modo kernel, SO executa a rotina (criar arquivo, alocar memória etc...), SO muda pra modo usuário denovo e carrega contexto dos registradores
+-toda chamada de sistema é feita em modo kernel
+
+POSIX: padronização das chamadas de sistema para facilitar a portabilidade de aplicações entre os diferentes SOs
+
+BOOT: pequena parte da MP é de memória ROM e contém um programa de inicialização
+-ROM possui rotina de teste do HW e carga do SO para a MP no setor 0 do disco
+
+SHUTDOWN: desliga o pc, desaloca recursos, esvazia buffers de escrita
+
+ARQUITETURA KERNEL
+-OS/360 1 milhão de instruções Assembly
+-multics 20 milhões de instruções Assembly
+-linguagens de alto nível c, c++ etc.. facilitam o desenvolvimento e a portabilidade para diferentes estruturas, mas pioram o desempenho
+partes críticas são escritas em assembly para melhorar o desempenho
+
+ARQUITETURA MONOLÍTICA
+-relação entre objetos é livre
+-mudança em um objeto pode causar mudanças em toda uma cadeia de dependências
+
+ARQUITETURA DE CAMADAS
+-separação das funções por camadas onde uma camada somente pode chamar uma rotina da camada imediatamente abaixo
+
+
+
+
+
+

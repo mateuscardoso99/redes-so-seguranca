@@ -1,0 +1,116 @@
+a) Práticas de simulação 
+ Execute o simulador SOsim e configure-o para trabalhar com Escalonamento 
+Circular: janela Console SOsim / Opções / Parâmetros do Sistema na guia
+Processador.
+
+b) Análise Prática 
+ Crie dois processos com a mesma prioridade (um CPU-bound e outro I/O-bound): 
+janela Gerência de Processos / Criar – janela Criação de Processos / Criar.
+ Na janela Gerência de Processos, observe o tempo de processador de cada processo 
+durante dois minutos e as mudanças de estado. Após esse período anote o tempo de 
+processador de cada processo. Analise o balanceamento no uso do processador pelos 
+dois processos. 
+ Na janela Gerência de Processos finalize os dois processos. 
+ Na janela Gerência de Processador, aumente a fatia de tempo movimentando a barra 
+de Fatia de Tempo. 
+ Na janela Gerência de Processos, observe mais uma vez o tempo de processador de 
+cada processo durante dois minutos e as mudanças de estado. Após esse período anote 
+o tempo de processador de cada processo. Compare os tempos anotados nas duas e 
+analise o resultado do balanceamento no uso do processador pelos dois processos. 
+Identifique as causas da variação. 
+
+c) Questão teórica para responder com a ajuda do simulador 
+Considere a concorrência, nesse tipo de escalonamento, com dois processo CPU-bound 
+que não realizam operações de E/S. Qual o efeito da variação da fatia de tempo sobre o 
+balanceamento no uso do processador? 
+
+-processos IO-bound tem tempo de CPU muito mais baixo que os CPU-bound, se a fatia de tempo aumentar o CPU-bound tem mais vantagem ainda
+-com fatia de tempo e com 2 processos CPU-bound o tempo de CPU é semelhante entre os dois
+
+
+
+
+
+Atividade 2: Escalonamento Circular com Prioridades Estáticas I 
+a) Práticas de simulação 
+ Execute o simulador SOsim e configure-o para trabalhar com Escalonamento Circular 
+com Prioridades Estáticas: janela Console SOsim / Opções / Parâmetros do Sistema 
+na guia Processador.
+b) Análise Prática 
+ Crie um processo CPU-bound com prioridade 3 e um outro I/O-bound com prioridade 
+4: janela Gerência de Processos / Criar – janela Criação de Processos / Criar. 
+ Na janela Gerência de Processos, observe o tempo de processador de cada processo 
+durante dois minutos e as mudanças de estado. Após esse período anote o tempo de 
+processador de cada processo.
+ Verifique a preempção por prioridade que ocorre toda vez que o processo I/O-bound 
+de maior prioridade passa para o estado de Pronto. 
+ Analise o balanceamento no uso do processador pelos dois processos 
+comparativamente a Atividade 1. 
+
+c) Questões teóricas para responder com a ajuda do simulador 
+Quais devem ser os critérios para determinar as prioridades dos processos? 
+é o tempo que o processo fica em estado de espera, os que ficam mais tempo em estado de espera não devem ser penalizados
+
+
+Caso, nesse escalonamento, todos os processos sejam criados com a mesma prioridade, 
+qual o benefício dessa política sobre o Escalonamento Circular? 
+nenhum se todos tiverem a mesma prioridade
+
+
+
+
+
+Atividade 3: Escalonamento Circular com Prioridades Estática II 
+a) Práticas de simulação 
+ Execute o simulador SOsim e configure-o para trabalhar com Escalonamento Circular 
+com Prioridades Estáticas: janela Console SOsim / Opções / Parâmetros do Sistema 
+na guia Processador.
+b) Análise Prática 
+ Crie um processo CPU-bound com prioridade 4 e um outro I/O-bound com prioridade 3: 
+janela Gerência de Processos / Criar – janela Criação de Processos / Criar. 
+ Na janela Gerência de Processos, observe o escalonamento dos dois processos. 
+Analise o problema do starvation. 
+
+c) Questões teóricas para responder com a ajuda do simulador 
+Por que o problema do starvation pode ocorrer? 
+porque o processo IO-bound tem prioridade inferior ao processo CPU-bound o que pode fazer com que nunca execute
+
+Cite duas ações que o administrador do sistema pode realizar quando é identificada a 
+situação de starvation em um processo? 
+-aumentar a prioridade do processo IO-bound e diminuir a do CPU-bound
+-diminuir a fatia de tempo
+
+
+
+Atividade 4: Escalonamento Circular com Prioridades Dinâmica 
+a) Práticas de simulação 
+ Execute o simulador SOsim e configure-o para trabalhar com Escalonamento Circular 
+com Prioridades Dinâmicas: janela Console SOsim / Opções / Parâmetros do Sistema 
+na guia Processador.
+ Habilite as janelas de log e estatísticas: janela Console SOsim / Janelas. 
+ Na janela Gerência do Processador desloque a barra Frequência clock para a metade 
+da escala. 
+b) Análise Prática 
+ Crie um processo CPU-bound com prioridade base 3 e mais três processos I/O-bound 
+com prioridade base 4, porém com perfis diferentes (tipo 1, 2 e 3): janela Gerência de 
+Processos / Criar – janela Criação de Processos / Criar. 
+ Observe as prioridades base e dinâmica dos quatro processos na janela Gerência de 
+Processos. 
+ Identifique os motivos das prioridades dinâmicas dso processos variarem ao longo do 
+tempo.
+ Observe na janela de log o valor do incremento recebido na prioridade de cada 
+processo, Identifique o porquê das diferenças nos valores do incremento.
+ Observe na janela de estatísticas o percentual de utilização da UCP. 
+ Suspenda o processo CPU-bound: janela Gerência de Processos / Suspender. 
+ Observe na janela de estatísticas as mudanças no percentual de utilização da UCP e 
+identifique o porquê.
+ Libere o processo CPU-bound do estado de suspenso: janela Gerência de Processos / 
+Prosseguir. 
+
+c) Questão teórica para responder com a ajuda do simulador 
+Qual o critério utilizado pelo sistema operacional para determinar diferentes valores de 
+incremento à prioridade base de um processo quando há uma mudança do estado de espera para 
+pronto?
+
+tempo de espera, quanto maior o tempo de espera maior o incremento na prioridade
+

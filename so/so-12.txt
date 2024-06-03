@@ -1,0 +1,149 @@
+FRAGMENTAÇÃO EXTERNA: quando programas são encerrados partes dele ficam na memória
+
+solução 1: supondo que um programa C termine, as partições adjacentes podem se tornar uma só partição
+
+solução 2: compactar a MP, eliminando o espaço livre entre as partições
+
+ESTRATÉGIAS DE ALOCAÇÃO DE PARTIÇÃO: SO tem estratégias pra determinar qual area livre será utilizada por um processo visando reduzir a fragmentação externa
+
+ALGORITMOs DE ALOCAÇÃO DE MEMÓRIA:
+-first-fit: pega sempre a primeira partição livre em que o programa couber.
+-best-fit: busca em toda a lista o espaço cujo o tamanho seja o mais próximo possível do tamanho do processo.
+-worst-fit: é escolhida a maior partição.
+
+SWAPPING: mesmo com gerenciamento de memoria, as vezes um programa não pode executar por falta de partição livre, com o swapping os programas são colocado na memoria secundaria pra abrir espaço pra outro na MP
+
+-swapin: programa é carregado da memória secundaria pra MP
+-swapout: programa sai da MP e é colocado na memoria secundaria
+
+-algoritmo de escolha do processo pra ser retirado da MP deve priorizar aquele que possui menor chance de ser escalonado num tempo curto, geralmente são escolhidos processos em estado de espera, mas se a MP estiver muito sobrecarregada pode ser escolhido processos em estado de pronto também
+
+-SO precisa de um loader pra implementar o swap
+-registrador de realocação: usado pra facilitar a realocação
+
+THRASHING:
+-o sistema pode ficar mais dedicado a execução de operações de swap do que à execução de processos residentes, o que aumenta muito o overhead e pode causar
+travamentos
+
+
+---------------------------
+
+
+1) Considere que os processos da tabela a seguir estão aguardando para serem
+executados e que cada um permanecerá na memória pelo tempo especificado. O SO
+ocupa uma área de 20Kb no início da memória e gerencia a memória utilizando um
+algoritmo de particionamento dinâmico modificado. A memória total disponível no
+sistema é de 64Kb e é alocada em blocos múltiplos de 4 Kb. Os processos são
+alocados de acordo com a sua identificação (em ordem crescente), e irão aguardar
+até obter a memória de que necessitam. Calcule a perda de memória por
+fragmentação interna e externa sempre que um processo é retirado ou colocado na
+memória. O SO compacta a memória apenas quando existem duas ou mais
+partições livres adjacentes.
+
+processos memoria tempo
+1         30Kb    5
+2         6Kb     10
+3         36Kb    5
+
+SO = 20kb, resto = 44kb
+SO ocupa 5 blocos: 20kb/4 = 5
+
+-p1 executando 30kb, bloco de 32kb é alocado pois o tamanho do programa não é multiplo de 4, fragmentação interna de 2kb, sem fragmentação externa por enquanto
+-p2 6kb, bloco de 8kb é alocado, fragmentação interna de 2kb
+
+-memória usada 60/64kb com fragmentação interna de 4kb ao todo
+
+-p3 não pode entrar, pois não tem espaço
+-p1 termina e p3 começa a executar
+-p3 ocupa 8 blocos de p1 que terminou (32kb) + o bloco restante (4kb)
+
+memória usada 64/64 com 2kb de fragmentação interna
+
+
+2) Considerando as estratégias para escolha da partição dinamicamente, conceitue as
+estratégias best-fit e worst-fit especificando prós e contras de cada uma.
+
+-first-fit: pega sempre a primeira partição livre em que o programa couber.
+Como a lista de partições livres é ordenada por endereços (dos endereços mais baixos para os mais altos), existe uma chance boa de haver grandes partições livres nos endereços mais altos. É a que apresenta melhores resultados, principalmente por ser simples e rápida.
+
+-best-fit: É escolhida a partição em que o programa deixará o menor espaço possível sobrando, ou seja, escolhe a partição que é igual ou de tamanho imediatamente
+maior ao do programa. contras: pequenas áreas livres geradas tem
+pouca possibilidade de serem utilizadas.
+
+-worst-fit: é escolhida a maior partição.
+vantagens: Deixa espaços livres maiores, que podem ser reutilizados, o
+que diminui a fragmentação externa.
+
+
+3) Considere um sistema que possua as seguintes áreas livres na memória principal,
+ordenadas crescentemente: 
+1 - 10Kb, 
+2 - 4Kb, 
+3 - 20Kb, 
+4 - 18Kb, 
+5 - 7Kb, 
+6 - 9Kb, 
+7 - 12Kb, 
+8 - 15Kb. 
+
+Para cada programa a seguir, qual seria a partição alocada utilizando-se as estratégias first-fit, best-fit e worst-fit.
+a) 12Kb
+first-fit: partição 3
+best-fit: partição 7
+worst-fit: partição 3
+
+b) 10Kb
+first-fit: partição 1
+best-fit: partição 1
+worst-fit: partição 3
+
+c) 9Kb
+first-fit: partição 1
+best-fit: partição 6
+worst-fit: partição 3
+
+
+
+4) Um sistema utiliza alocação particionada dinâmica como mecanismo de gerência de
+memória. O SO aloca uma área de memória de 50Kb e possui inicialmente os programas
+da tabela:
+
+5Kb Programa A
+3Kb Programa B
+10Kb Livre
+6Kb Programa C
+26Kb Livre
+
+Realize as operações a seguir sequencialmente e, mostrando o estado da memória após cada uma delas. Resolva a questão utilizando as estratégias best-fit, worst-fit e first-fit.
+a) alocar uma área para o programa D (6Kb);
+first-fit: primeiro espaço livre (10kb)
+best-fit: primeiro espaço livre (10kb)
+worst-fit: segundo espaço livre (26kb)
+
+b) liberar a área do programa A;
+5Kb Livre
+3Kb Programa B
+10Kb Livre
+6Kb Programa C
+26Kb Livre
+
+c) alocar uma área para o programa E (4Kb);
+first-fit: primeiro espaço livre (5kb)
+best-fit: primeiro espaço livre (5kb)
+worst-fit: segundo espaço livre (26kb)
+
+
+
+5) O que é swapping e para que é utilizada esta técnica?
+técnica de tirar da MP e colocar na memória secundária um processo pra abrir espaço pra outro processo, usado quando a MP está sobrecarregada e com pouco espaço livre
+
+
+6) Por que é importante o uso de um loader com relocação dinâmica para que a técnica de swapping possa ser implementada?
+Ao invés de relocar somente na carga do programa, precisará haver relocação a cada swapin já que o programa poderá ser alocado para uma partição diferente da inicial.
+Registrador de relocação: utilizado para facilitar a relocação.
+– Recebe o endereço inicial da partição.
+– A cada acesso a MP que o programa faz, o endereço de memória relativo é somado ao
+endereço de relocação pela própria UCP
+
+
+

@@ -1,0 +1,18 @@
+SINCRONIZAÇÃO CONDICIONAL USANDO SEMÁFOROS:
+-produtor adiciona no buffer
+-consumidor lê os dados do buffer
+-se buffer tiver cheio produtor espera até haver espaço pra ele adicionar
+-se buffer tiver vazio consumidor espera até haver dados nele pra voltar a consumir
+
+MONITORES:
+-semelhante ao semáforo
+-organiza uma fila de entrada aos procedimentos em região crítica
+-região critica é implementada dentro do monitor
+-exclusão mutua é garantida pelo monitor, não precisa ser implementada pelo programador
+
+SINCRONIZAÇÃO CONDICIONAL COM MONITORES:
+-pode ser feito através de variaveis especiais de condição
+-as variaveis de condição são manipuladas por 2 funções wait() e signal()
+-wait() coloca o processo em espera até que algum processo sinalize a alteração na variavel de condição
+-signal() processo sinaliza alteração na variável de estado
+

@@ -1,0 +1,54 @@
+1. Quais os beneİcios oferecidos pela técnica de memória virtual? Como este
+conceito permite que um programa e seus dados ultrapassem os limites da MP?
+
+Seus principais benefícios são possibilitar que programas e dados sejam armazenados independente do tamanho da memória principal devido à sua junção com a memória secundária, permitir um número maior de processos compartilhando na memória principal e com isso o uso do processador fica mais eficiente e minimiza o problema da fragmentação.
+
+
+
+
+2. Explique como um endereço virtual de um processo é traduzido para um
+endereço real na MP?
+
+No momento da execução de uma instrução, o endereço virtual referenciado é traduzido para um endereço físico, pois o processador manipula apenas posições da memória principal. O mecanismo de tradução do endereço virtual para endereço físico é denominado mapeamento
+
+
+
+3. Por que o mapeamento deve ser feito em blocos e não sobre células individuais?
+Apresente um exemplo numérico.
+
+Porque caso o mapeamento fosse realizado para cada célula na memória principal, o espaço ocupado pelas tabelas de mapeamento seria maior que o de endereçamento virtual de cada processo, o que inviabilizaria a implementação do mecanismo de memória virtual.
+
+
+
+4. Qual a principal diferença entre os sistemas que implementam paginação e os
+que implementam segmentação?
+
+a paginação utiliza blocos de tamanho fixo, e a segmentação utiliza blocos de tamanho variável alinhados com a divisão lógica do espaço de endereçamento.
+
+
+
+
+5. Para que serve o bit de validade nas tabelas de páginas?
+Para indicar se a página ou o segmento em questão encontra-se na memória principal
+
+
+
+6. Nos sistemas com paginação a rotina para tratamento de page faults está
+residente na MP. Esta rotina pode ser removida da memória em algum
+momento? O que aconteceria se ela fosse removida da MP?
+essa rotina deve permanecer sempre na MP, caso contrário não será possível realizar o page in quando necessário
+(no caso, até mesmo da prórpria rotina)
+
+
+7. Descreva como ocorre a fragmentação interna em um sistema que implementa paginação.
+ela só é encontrada na ultima página, quando o código não ocupa o frame por completo
+
+
+
+8. Quais as vantagens e desvantagens da política de alocação de páginas variável comparada à alocação fixa.
+a alocação fixa é simples de ser implementada pelo SO mas não é sempre uma boa opção pois os processos possuem
+necessidades diferentes na alocação de memória. a alocação variável é mais flexivel mas exige que o SO monitore
+contantemente o comportamento dos processos gerando maior overhead
+
+
+

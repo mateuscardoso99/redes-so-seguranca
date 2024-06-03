@@ -1,0 +1,45 @@
+SO controla aplicativos de usuário que concorrem pelo uso comparƟlhado de recursos limitados:
+-Impressoras;
+-Unidades de disco;
+-Rede;
+-Processador e memória
+
+funções SO
+-controlar compartilharmento de recursos entre aplicações
+-abstrair o hardware pra que ele fique mais simples para o usuário, pois o hardware é extremamente complexo pro usuário
+
+maquina de camadas:
+-aplicacoes
+-utilitarios
+-SO
+-linguagem de máquina
+-microprogramação
+-circuitos eletronicos
+
+se o HW for muito simples e tiver poucos recursos não se faz necessario um SO
+
+SO monoprogramaveis
+- só 1 programa executando por vez
+
+SO multiprogramaveis
+- mais de 1 programa rodando ao mesmo tempo
+	- Sistemas de Tempo Compartilhado:
+	- Permite a execução de programas ao mesmo tempo através da divisão do tempo de processador;
+	- programas executam e param em pequenos espaços de tempo, dando a impressão que rodam ao mesmo tempo 
+
+	- Sistemas de tempo real:
+	- os programas executam por ordem de prioridade, a próxima só executa depois que essa acabar independente do tempo
+	- ex: sistemas que lidam com coisas críticas semáforo, hospital, controle tráfego aéreo
+
+SO multiprocessadores
+- vários processadores
+- realmente permite a multitarefa
+
+sistemas fortemente acoplados: Possuem dois ou mais processadores (multiprocessadores) compartilhando uma única memória e gerenciados por apenas um único sistema operacional. Este tipo de sistema é utilizado no processamento de aplicações que fazem uso intensivo da CPU
+sistemas fracamente acoplados: Os sistemas fracamente acoplados possuem o seu próprio sistema operacional, gerenciando os seus recursos. A utilização deste tipo de sistema é caracterizada pelo processamento distribuído entre os seus diversos processadores
+
+
+
+
+
+                                                                                                       

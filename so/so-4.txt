@@ -1,0 +1,128 @@
+KERNEL ARQUITETURA MONOLÍTICA:
+-módulos ou objetos são compilados e ligados posteriormente
+-relação entre objetos é livre
+
+Arquitetura de Camadas:
+-separação das funções por camadas onde uma camada somente pode chamar uma rotina da camada imediatamente abaixo
+–a maioria dos SOs atuais usam apenas as camadas Usuário e Kernel
+
+Máquina virtual:
+-cria um nível intermediário entre o SO e o HW chamado Máquina Virtual
+-permite vários SOs rodarem no mesmo HW
+-cada SO tem uma cópia do HW idêntico ao original porém simulado
+-o supervisor da máquina virtual, ou Hypervisor, roda em modo kernel e os SOs usam um modo Kernel simulado
+-o Hypervisor controla todas as interrupções repassando-as aos SOs
+-VMs podem migrar de um HW para outro facilmente
+
+JVM:
+-portabilidade de código escrito para VM ao invés de HW específico (Java Virtual Machine)
+-apps (código objeto) java acessam "SO virtual do java", este acessa a JVM, a JVM converte o código java para o SO real que acessa o HW real por isso java é multiplataforma
+
+WSL:
+-chamadas de sistema dos apps do linux são traduzidas para que sejam entendidas pelo windows
+
+
+PROCESSOS:
+-programa ou aplicativo em execução
+-abstração do SO para um software rodando
+-gerencia dos processos é uma das principais funções do SO
+
+Gerencia de processos:
+-alocação e compartilhamento de recursos de E/S e dados
+-sincronismo para controle de concorrência
+-é o gerenciador de processos que implementa a multiprogramação
+-processo é uma abstração de software, CPU não sabe o que é isso, a CPU apenas aponta pra próxima instrução a ser executada
+-SO que controla a alternância entre os processos através da mudança de contexto
+-troca de contexto SO salva o conteúdo dos registradores em uma area de memória e carrega os dados do outro contexto nesses registradores pra que esse contexto passe e executar
+
+-----------------------------
+
+Contexto de um processo:
+-código do programa (instruções)
+
+-contexto de Hardware: é o conteúdo dos registradores da CPU, é uma area de memória em que os dados do registradores são salvos pra que o SO possa controlar os processos
+-são salvos o endereço da próxima instrução, endereço do topo da pilha, PSW registrador do status do processador
+– Consiste no conteúdo dos registradores da UCP
+– Program Counter: endereço da próxima instrução a ser executada
+- SP – Stack Pointer: endereço do topo da pilha
+- PSW – Program Status Word: registrador de status do processador
+- RI Registrador de Instrução: não é necessário, pois a instrução atual vai ser concluída antes da troca de contexto.
+- Registradores gerais: dados em uso pelo processo
+
+
+-contexto de software: conteúdo não relacionado ao HW e sim ao SO
+ex: prioridade de execução, privilégios, ID do processo, recursos de E/S alocados, ID do usuario dono do processo, arquivos abertos, cotas do processo(limites do processo memória, cpu etc.)
+-Prioridade de execução
+-Arquivos abertos
+-Recursos de E/S alocados
+-Identificação: PID: process ID, UID: user ID, Quotas, Privilégios
+
+
+-espaço de endereçamento: area de MP reservada ao processo
+
+-----------------------
+
+PCB: bloco de controle do processo
+-estrutura que guarda informações do processo, contem os contextos acima
+-usado pelo SO para gerenciar o processo
+
+---------------------------
+
+Estados de um processo:
+-num sistema multiprogramavel nenhum processo ocupa exclusivamente a CPU de modo que todos se alternam em diferentes estados ao longo de sua vida no SO
+-possíveis estados:
+  -execução(running): execução na CPU
+  -pronto(ready): pronto pra executar mas não esta executando
+  -espera(wait): processo não tá executando e nem tá pronto, tá esperando por algum recurso como E/S ou data/hora programada para executar
+  -criação(new): SO criou o PCB porem ainda não botou no estado de pronto
+  -terminado(exit): processo já encerrou e não tá mais ativo. o PCB ainda existe pro SO desalocar os recursos que este processo usou
+
+-mudanças de estado:
+  -pronto -> execução: processo pode ganhar a CPU conforme o escalonamento da CPU
+  -execução -> espera: processo executa operação de E/S ou tenta alocar algum recurso não disponível
+  -espera -> pronto: operação que havia o colocado em estado de espera é atendida (interrupção)
+  -execução -> pronto: término da fatia de tempo da CPU daquele processo ou entrada de outro processo com maior prioridade de execução
+
+-classificação de processos:
+  -CPU-bound(ligado a CPU): não realizam operações de E/S, alternando quase o tempo todo entre estados de Pronto e Execução
+  -IO-bound(ligado a E/S): realizam muitas operações de E/S, permanecendo pouco tempo no estado de execução ex: apps comerciais, de rede etc..
+  
+  -processos em foreground: aguardam comando do usuario realizam alguma operação e retorna uma resposta ao usuário
+  -processos em background: entrada e saída de dados podem ser por meio de arquivo, conexão de rede. Não realizam operações diretamente com o usuário
+
+-----------------------------
+
+Escalonamento: SO escolhe processo a ser executado
+
+----------------------------
+
+1. Como seria utilizar um computador sem sistema operacional? Quais são suas duas principais funções?
+controlar compartilharmento de recursos entre aplicações
+abstrair o hardware pra que ele fique mais simples para o usuário, pois o hardware é extremamente complexo pro usuário
+usar computador sem SO deixaria muito complexo das aplicações acessarem os recursos do HW
+o usuário teria que possuir um grande conhecimento e habilidade sobre o hardware do equipamento que ele está utilizando, com isso poderia acarretar muitos erros e causaria uma grande lentidão na realização das tarefas
+
+2. Explique o conceito de máquina virtual. Qual a grande vantagem em utilizar este conceito?
+Cria um nível intermediário entre o SO e o HW chamado Máquina Virtual; 
+Permitem que vários SOs diferentes rodem sobre o mesmo HW
+Portabilidade de código escrito para VM ao invés de HW específico (JVM);
+Consolidação de vários servidores subutilizados em um apenas;
+Facilidade de escalabilidade e balanceamento de carga: VMs podem migrar de um HW para outro facilmente;
+
+3. Defina o conceito de uma máquina de camadas.
+Separação das funções por camadas onde uma camada somente pode chamar uma rotina da camada imediatamente abaixo
+
+4. Quais as vantagens dos sistemas multiprogramáveis?
+suportam mais de um programa rodando ao mesmo tempo
+
+5. Qual a grande diferença entre sistemas de tempo compartilhado e sistemas de tempo real? Quais as aplicações são indicadas para tempo real?
+tempo compartilhado: Permite a execução de programas ao mesmo tempo através da divisão do tempo de processador
+
+tempo real: Semelhantes aos de tempo compartilhado porém sem conceito de fatiaa de tempo;
+-Tempo de processamento dentro de limites rígidos estabelecidos pelas aplicações;
+–Aplicativo usa o processador pelo tempo necessário ou até que apareça outro com maior prioridade
+-Aplicação em sistemas de missão críƟca como: refinarias de petróleo, controle de trafego aéreo, geração de energia elétrica
+
+6. Qual a grande diferença entre sistemas fracamente acoplados e fortemente acoplados?
+fortemente acoplados: Possuem dois ou mais processadores (multiprocessadores) compartilhando uma única memória e gerenciados por apenas um único sistema operacional. Este tipo de sistema é utilizado no processamento de aplicações que fazem uso intensivo da CPU
+fracamente acoplados: Os sistemas fracamente acoplados possuem o seu próprio sistema operacional, gerenciando os seus recursos. A utilização deste tipo de sistema é caracterizada pelo processamento distribuído entre os seus diversos processadores

@@ -1,0 +1,61 @@
+GERENCIA DO PROCESSADOR:
+-processador sofre concorrência de todos os processos
+
+-ESCALONADOR: escolhe os processos que serão executados (escolhe na fila de processos prontos para execução)
+-balancear o uso da CPU entre processos
+-privilegiar execução de aplicações críticas
+-maximizar a taxa de processos executados pelo sistema
+
+POLITICAS DE GERENCIAMENTO DA CPU:
+- dispatcher (rotina que a troca de contexto)
+
+STARVATION: quando um processo nunca consegue acessar a area critica
+
+TEMPO DE CPU: tempo de execução do processo, não depende do SO
+TEMPO DE ESPERA: é o tempo que um processo fica aguardando em estado de pronto durante sua vida
+TEMPO DE TURNAROUND: tempo do processo desde que foi criado até seu término inclui tempo de CPU, tempo de espera, tempo de E/S e tempo de bloqueio
+TEMPO DE RESPOSTA: tempo entre uma requisição ao sistema ou à aplicação e o instante em que a resposta é exibida
+
+PREENPÇÃO: possibilidade do SO interromper um processo em execução e substituí-lo por outro
+-única forma de garantir um bom desempenho do escalonador
+
+-Escalonador não preemptivo: ex: sistemas batch
+
+-ESCALONADOR FIFO(first in first out): primeiro que entra no estado de pronto é o primeiro a ser executado
+-não se preocupa com tempo médio de espera
+-é não preemptivo
+
+-ESCALONADOR SHORTEST JOB FIRST: escolhe o processo que tiver o menor tempo de CPU restante para executar primeiro
+-saber o tempo de CPU é muito difícil, é feita uma estimativa apenas
+-é não preemptivo
+
+-ESCALONADOR COOPERATIVO: busca aumentar o nível de multiprogramação em sistemas de escalonamentos não preemptivo como o FIFO e SJF
+-liberação do processo é feita apenas pelo prórprio processo.
+-o processo em execução pode verificar a fila de pronto para saber se existem outros processos aguardando e ele libera a CPU voluntariamente
+
+-ESCALONADOR CIRCULAR: é preemptivo, quando a fatia de tempo do processo acabar ele é interrompido e volta pro fim da fila
+-garante que um processo não monopolize a CPU
+-processos CPUBound levam vantagem sobre os IOBound pois sempre usam toda a sua fatia de tempo
+
+-ESCALONAMENTO CIRCULAR VIRTUAL: processos que saem do estado de espera vão para uma fila de pronto auxiliar
+-processos da fila auxiliar que não utilizaram toda a sua fatia de tempo na execução anterior tem prioridade em relação a fila de pronto normal
+
+-ESCALONAMENTO POR PRIORIDADES: é preemptivo realizado com base em um valor associado a cada processo chamado de prioridade de execução
+-o processo com maior prioridade de execução no estado de pronto é sempre escolhido para execução
+-entre processos com mesma prioridade o escalonamento é FIFO
+-não existe fatia de tempo nem preempção por tempo
+-um processo pode sofrer preempção se outro com maior prioridade chegar ao estado de pronto
+-o SO interrompe os processos de tempos em tempos pra verificar a fila de pronto
+
+
+PRIORIDADE DE PROCESSO:
+-prioridade estática: definida na criação do processo.
+-prioridade dinâmica: processos com baixa prioridade e mais antigos ganham aumento de prioridade pra que não ocorra starvation, depois de executar volta pra prioridade estática. É usado em SOs de tempo real onde preempção por tempo não é usado
+
+-ESCALONAMENTO CIRCULAR COM PRIORIDADES:
+-implementa recurso de fatia de tempo e de prioridade de execução ao mesmo tempo
+-processos sofrem preempção por tempo, mesmo que não exista outro processo com prioridade maior para ser escalonado
+
+
+
+

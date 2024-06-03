@@ -1,0 +1,9 @@
+MEMÓRIA VIRTUAL:
+técnica que combina a MP á memoria secundaria de forma que os programas veem apenas uma memória contígua, muito maior do que a memoria real
+
+PAGINAÇÂO: espaço de endereçamento real e virtual são divididos em blocos iguais
+-blocos = páginas
+-páginas no espaço de endereçamento real = página real ou frame
+-página no espaço de endereçamento virtual = página virtual
+
+

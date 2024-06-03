@@ -1,0 +1,43 @@
+THREADS:
+-por usarem o mesmo espaço de endereçamento compartilham as mesmas variaveis e podem causar inconsistencias nos valores delas, com procesos isso não acontece pois não compartilham o mesmo espaço de endereçamento
+
+TMU – Thread em Modo Usuário:
+-são implementadas pela aplicação e não pelo SO
+-existe uma biblioteca dentro da aplicação que implementa as threads e o escalonamento
+-SO não sabe da existência de múltiplas threads
+-não há troca de contexto ao criar as threads, tudo é gerenciado pela biblioteca da aplicação
+-se uma thread faz uma chamada de sistema todo o processo fica em estado de espera mesmo que existam threads em estado de pronto, pois pro SO todas essas threads são como um só processo
+
+Thread em Modo Kernel:
+-SO tem conhecimento das threads
+-os problemas da implementação TMU não existem
+-desvantagem: o grande problema é o baixo desempenho. acontece mudança de contexto o que causa pior desempenho, Mudanças frequentes no modo de acesso (usuário-kernel-usuário) causam a deterioração no desempenho
+
+TMH – Threads em Modo Híbrido
+-misto dos dois mundos
+-programador desenvolve em termos de TMU e especifica quantas TMKs serão associadas ao processo
+
+-----------------
+
+Aplicação concorrente:
+-necessidade de comunicação entre processos/threads através de variáveis compartilhadas na MP ou troca de mensagens
+-SO precisa dispor de mecanismos de controle
+-é preciso sincronizar os processos/threads pra não ocorrer erros
+-ex: um processo precisa ler mas só vai ler se tiver dados para ler
+
+REGIÃO CRÍTICA: quando uma mesma região de memória é acessada ao mesmo tempo por diferentes processo/threads
+
+Exclusão mutua: impede acesso simultaneo à região critica (que não pode haver concorrência para não gerar erros)
+-SO escolhe quais processos terão que esperar pra acessar a zona crítica
+
+Sincronização e comunicação entre processos:
+-soluções de HW:
+  -desabilitar interrupções pra acessar a região crítica pra evitar problemas de concorrência e depois de habilita denovo, isso prejudica a multiprogramação
+  -outra solução: instrução test-and-set: O processador que executa a essa instrução bloqueia o barramento de memória, impedindo que outras CPUs acessem a MP até que a instrução tenha terminado.
+
+-soluções de software:
+  -algoritmos que por meio de variaveis que controlam qual processo tem a vez de acessar a area critica
+
+
+
+
