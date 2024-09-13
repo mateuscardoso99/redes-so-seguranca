@@ -1,0 +1,222 @@
+INFORMAÇÃO = DADOS + ALGO QUE TEM SIGNIFICADO
+Pode se apresentar de várias formas:
+– Papel
+– Pessoas que detém informações
+– Meio digital
+
+depois que uma informação está na internet é muito dificil tirá-la de lá
+pois é muito fácil replicá-la e tirar é praticamente é impossível
+
+ISO 27000 => normais de segurança da informação
+
+ativo:
+ISO 27002: Qualquer elemento que tenha valor para a organização
+Livros, arquivos, bancos de dados, códigos-fonte, Hardware, Software, Organização, pessoas
+
+Propriedades Básicas da Segurança da Informação: 
+- Proteção dos ativos de informação evitando ameaças que possam afetar a informação: Corrompendo-a, Tendo acesso de forma indevida, Eliminando-a ou furtando-a;
+
+------------------------
+
+
+3 pilares
+Confidencialidade, Integridade e Disponibilidade (CID)
+
+Confidencialidade: 
+	Certeza de que o que foi dito, escrito ou falado será acessado somente por pessoas autorizadas; 
+	Perda de Confidencialidade = Perda de um Segredo. Por Ex.: senha do banco.
+	Implementação muito difícil: 
+		Segurança em todos os elementos da comunicação: emissor, meio e receptor; 
+		Classificação da informação: confidencial, restrita, sigilosa, púbica;
+		Estratégias de segurança de acordo com a classificação;
+
+
+Integridade:
+	Informação não alterada de forma não autorizada;
+	Quebra de integridade:
+		Informação corrompida; 
+		Falsificada; 
+		Alterada indevidamente; 
+	Garantir a integridade: 
+		Controlar alterações; 
+		Controlar acessos; 
+		Controlar defeitos tecnológicos;
+
+
+Disponibilidade:
+	A disponibilidade permite que a informação: 
+		Seja utilizada quando necessária; 
+		Esteja ao alcance dos destinatários; 
+		Possa ser acessada quando necessário;
+	Complementa as outras duas: 
+		De nada adianta haver confidencialidade e integridade se a informação não estiver disponível onde e quando requerida; 
+	Em meios digitais a informação pode se desfazer muito rapidamente:
+		Disponibilidade também inclui a necessidade bem como as formas de restaurar a informação em caso de perda; 
+	Difícil de garantir: 
+		Ataques do tipo DoS (negação de serviço) não são de difícil implementação; 
+	Estratégias para contingência: Preparar-se para o pior, minimizando os efeitos
+		Rotas alternativas para comunicação; 
+		Infra-estrutura “suplente”; 
+		Backup;
+
+
+-------------------------------------
+
+
+Aspectos de Segurança adicionais:
+
+Não-repúdio: autenticidade verificada do documento e autoria. Não é possível negar a veracidade de tal informação; 
+Legalidade: informações com valor legal. Por ex. assinaturas com certificados que possuem validade jurídica; 
+Autenticação: identificação e reconhecimento das partes.
+Garantia de que uma informação foi gerada por determinado emissor; 
+Autenticidade: garantia de que os emissores/receptores da informação são quem afirmam ser; 
+Autorização: concessão de permissões a usuários a determinadas informações.
+
+
+
+Ameaças: são coisas externas que fogem do controle
+Ameaças naturais: intempéries naturais como terremotos, inundações, incêndios; 
+Intencionais: fraudes, vandalismo, sabotagem, espionagem, furto, ...
+Involuntárias: ações inconscientes de usuários como vírus, imperícia, etc.
+
+– Cada tipo de ativo está sujeito a ameaças: 
+	Hardware -> perda de informação; 
+	Software -> indisponibilidade, retrabalho; 
+	Pessoas -> fraudes;
+
+
+
+Vulnerabilidades: 
+Fragilidade de um ativo ou grupo de ativos que pode ser explorada por uma ou mais ameaças [ISO 27002]
+vulnerabilidades podem ser tratadas, ameaças não
+
+Físicas -> condições inadequadas de armazenamento, precariedade de instalações elétricas, etc.; 
+Naturais -> relacionadas às ameaças naturais como inundações, terremotos, descargas elétricas... 
+Hardware -> erros ou defeitos de fabricação, conservação inadequada, entre outros que podem ameaçar a CID. 
+Software -> bugs que possam ameaçar a CID. Por ex. permitir acessos indevidos, indisponibilidade da informação.
+
+
+
+Taxa de falha hardware: todos os hardware tem uma taxa de falha, hardware que estão relacionados a sistemas criticos
+possuem uma taxa de falhas muito pequena e seu preço é altissímo, já hardware convencional como para um usuario comum
+tem uma taxa de falha mais alta e isso é normal
+
+
+
+Tipos de Vulnerabilidades (cont.): 
+– Meio de armazenamento: CDs, fitas magnéticas, discos magnéticos. Ex. prazo de validade, defeito de fabricação, armazenamento inadequado. 
+- Comunicação: meio de transporte da informação. Ex. falta de criptografia, acesso físico irrestrito, uso de meios pouco confiáveis; 
+- Humanas: falta de capacitação, conhecimento das normas de segurança, normas de segurança inadequadas, etc.
+
+
+Evento de Segurança: quando uma ameaça consegue explorar uma vulnerabilidade
+– Uma ocorrência identificada por um estado do sistema, serviço ou rede, indicando uma possível 
+violação da política de segurança da informação ou falha de controles que possa ser relevante para a 
+segurança da informação [ISO 27002]. 
+
+
+Incidente de Segurança: 
+– Um simples ou uma série de eventos de segurança da
+informação indesejados ou inesperados, que tenham uma
+grande probabilidade de comprometer as operações de
+negócios e ameaçar a segurança da informação [ISO27002].
+
+
+
+Probabilidade: 
+– A probabilidade é a chance de um incidente de segurança ocorrer levando-se em conta o grau das 
+vulnerabilidades presentes nos ativos e o grau das ameaças que possam explorar estas
+vulnerabilidades.
+
+
+Impacto: 
+– O impacto de um incidente são as potenciais
+consequências que este incidente possa causar ao
+negócio da organização.
+
+
+Riscos: RISCOS = PROBABILIDADE * IMPACTO
+– Probabilidade de que ameaças explorem vulnerabilidades causando perdas ou danos aos ativos e impactos à organização.  
+
+
+
+
+-----------------------------------------------
+
+
+
+Medidas de Segurança: 
+– São ações orientadas para a eliminação ou redução de vulnerabilidades, 
+com o objetivo de evitar que uma ameaça se concretize; 
+– Primeiro passo para o aumento da segurança;
+
+Tipos de Medidas de Segurança: 
+– Preventivas; (antes de acontecer) 
+– Perceptivas; (durante)
+– Corretivas; (depois de acontecer o pepino)
+
+
+Análise de Riscos: 
+– Maneira de rastrear vulnerabilidades que possam ser exploradas por ameaças. 
+– Grupo de Recomendações para proteção dos ativos;
+
+Identificar os riscos facilita as decisões por medidas prioritárias de segurança: 
+– Evitar; 
+– Controlar; 
+– Transferir; 
+– Aceitar; (tem riscos que se tem que aceitar e não se pode fazer nada)
+
+
+Diretiva de Segurança: 
+– Medidas que buscam estabelecer padrões de segurança que devem ser seguidos na organização, quando do gerenciamento dos ativos de informação; 
+Conjunto de normas e regras que conduzem guiam as pessoas a hábitos menos vulneráveis. 
+Ex.: alterar a senha a cada 15 dias, etc.
+
+
+Especificações de Segurança: Medidas para instruir a correta implementação de um novo ambiente tecnológico; 
+Por exemplo: 
+	Especificações de edificações para abrigar ativos de informação que resistam a incêndios, alagamentos, etc.
+ 	Especificações de sistemas de informação que utilizem criptografia para garantir a confidencialidade.
+
+
+
+Sistemas de Gestão da Segurança da Informação: 
+– Sistemas para administração da segurança; 
+– Gestor de Segurança da Informação: responsável na organização; 
+– Conselho de Segurança: órgão “legislativo” da segurança; 
+– Plano Diretor de Segurança da Informação: Alinhamento das ações de segurança ao planejamento estratégico da organização;
+
+
+Família de Normas ISO: 
+– ISO 27000: apenas vocabulário e definições das normas da série 27000. 
+– ISO 27001: requisitos para estabelecer, implementar, operar, monitorar, revisar, manter e melhorar o SGSI (permite certificação); 
+– ISO 27002: código de prática, ou melhores práticas para a implementação da 27001. 
+– ISO 27003: guia para implementação da 27001. 
+– ISO 27004: medição da efetividade do SGSI; 
+– ISO 27005: específica sobre a gestão de riscos; 
+– ISO 27006: descreve o processo a auditoria para certificação na norma 27001.
+
+
+
+Passos para a análise de riscos segundo a ISO 27001:
+1. Definição do escopo: Determine quais ativos e áreas serão cobertos pela análise. O escopo pode abranger toda a organização ou apenas uma parte dela. 
+2. Identificação dos ativos de informação: Liste todos os ativos que devem ser protegidos, como hardware, software, redes, documentos, pessoas, dados, entre outros. 
+3. Identificação de ameaças e vulnerabilidades: Para cada ativo, identifique as ameaças (como roubo, desastres naturais, erros humanos, ataques
+cibernéticos) e as vulnerabilidades (falhas de segurança, má configuração, falta de treinamento).
+4. Avaliação dos riscos: Avalie a probabilidade de que uma ameaça explore uma vulnerabilidade e o impacto que isso teria nos ativos de informação. 
+Isso pode ser feito de forma qualitativa (por exemplo, baixa, média ou alta) ou
+quantitativa (com base em dados e valores numéricos).
+5. Determinação de níveis de risco: Com base na avaliação de
+probabilidade e impacto, determine o nível de risco para cada
+cenário identificado (por exemplo, risco alto, moderado ou baixo).
+6. Tratamento dos riscos: Defina como os riscos serão tratados, podendo
+optar por: aceitar o risco, evitar o risco, transferir o risco (como por
+meio de seguros) ou mitigar o risco com controles (como medidas de
+segurança técnica, física ou administrativa).
+7. Documentação dos resultados: Documente todo o processo de
+análise de riscos, incluindo os critérios utilizados para avaliar os riscos
+e as decisões sobre o tratamento de cada risco.
+8. Monitoramento e revisão: A análise de riscos deve ser um processo
+contínuo, com revisões regulares e atualizações conforme necessário,
+especialmente após mudanças nos ativos, ameaças ou no ambiente de
+negócios.
