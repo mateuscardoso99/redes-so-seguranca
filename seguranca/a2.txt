@@ -1,0 +1,120 @@
+Segurança em Redes:
+- Com exceção da camada física, a segurança em redes baseia-se em criptografia
+
+Criptografia: 
+– Significa “Escrita secreta”; 
+– Técnicas criadas há mais de 2 mil anos;
+- Enigma: máquina eletromecânica de criptografar alemã teve o código quebrado pelo Colossus (computador digital de propósito específico);
+- Codificação Americana: índios Navajo comunicavam-se em sua língua. Altamente tonal, extremamente complexa e sem forma escrita. 
+- NSA
+- Cifra: transformação caractere por caractere ou bit por bit
+- Codificação: uma palavra por outra palavra ou símbolo
+
+
+Intruso pode:
+- Ouvir e gravar mensagens (passivo);
+- Alterar mensagens (ativo)
+- Utilizar mensagens gravadas posteriormente (ativo);
+
+Princípio de Kerckhoff:
+- Algoritmos de criptografia são públicos
+- Chaves são secretas
+
+
+
+
+------------------------------------
+
+
+
+
+Criptoanálise:
+- Análise das mensagens criptografadas;
+- Em criptoanálise existem 5 componentes analisados:
+	- Texto plano: texto sem estar cifrado;
+	- Chave: chave utilizada no algoritmo de criptografia; 
+	- Texto cifrado: texto plano cifrado com a chave através do algoritmo de cifra; 
+	- Algoritmo de cifra; 
+	- Algoritmo de decifra;
+
+
+- Ataque mais comum: 
+	- invasor conhece apenas o texto cifrado e algoritmos de cifra e decifra, descoberta por força bruta da chave de criptografia; 
+
+- Chaves precisam ser grandes: 
+	- 128 a 256 bits é o mais usual;
+
+- Apenas algoritmos muito fracos não suportam um ataque somente de texto cifrado;
+- Em geral algoritmos de criptografia são desenvolvidos para resistir a um ataque de texto às claras conhecido;
+
+
+- Um algoritmo pode ser dito computacionalmente seguro se:
+	- O custo para quebrar a cifra é maior que o valor das informações; 
+	- O tempo necessário para quebrar a cifra é maior do que o tempo de vida útil da informação;
+
+
+
+
+
+
+------------------------------------
+
+
+
+Tipos básicos de Criptografia:
+
+- Cifras de Substituição:
+	- Letras ou conjuntos de bits específicos são substituídos por outros;
+	- Cifra de César:
+		- A -> D, B -> E, C -> F ... Z -> C a chave disso pode ser o deslocamento de 3, pois A + 3 = D
+		
+- Cifras de Transposição:
+	- Não disfarçam letras, porém as reordenam dentro da mensagem;
+
+- Criptografia de Chave Única ou Chaves Simétricas:
+	- DKD(EKE(P)) = P
+	- KD = KE
+	- Chave para criptografar é a mesma para descriptografar;
+	- Os dois lados precisam compartilhar a mesma chave;
+	- O algoritmo para descriptografar é o mesmo para criptografar, porém executado em ordem inversa;
+
+	Cifra em blocos:
+		- Outro tipo de criptografia de chave simétrica.
+		- Cifras usadas atualmente, misto de substituição e transposição
+		- Entrada é dividida em blocos de n bits de acordo com a chave.
+		- Chave define tabelas de substituição e transposições.
+			- DES: Data Encryption Standard; 
+			- AES: Advanced Encription Standard;
+
+	Vantagens: 
+		- Método rápido para cifrar/decifrar; 
+		- Fácil produzir um hardware que execute nativamente a função; 
+		- Criptoanálise difícil; 
+		- Só é possível por força bruta; 
+		- Segurança maior = chave maior; 
+		
+	Desvantagem: 
+		- Como garantir a confidencialidade da chave?
+
+
+
+
+
+
+Criptografia de Chaves Assimétricas:
+	- Chave de criptografia é diferente da chave de descriptografia;
+	- Chave pública e privada: 
+		- Pública: usada para cifrar e é conhecida por todos;
+		- Privada: usada para decifrar só é conhecida pelo destinatário da mensagem;
+		- São um par. Cada chave pública tem sua privada e vice-versa;
+		- Não é possível adivinhar a chave privada a partir da chave pública
+		- Suponha que KB+ e KB- são as chaves pública e privada de Bob; Então: m = KB- (KB+ (m))
+		EX:
+			1) Bob divulga a Alice sua chave pública;
+			2) Alice recebe a chave e criptografa a mensagem m utilizando a chave pública de Bob;
+			3) Alice envia a mensagem criptografada;
+			4) Bob recebe a mensagem criptografada e descriptografa através de sua chave privada;
+
+
+
+
