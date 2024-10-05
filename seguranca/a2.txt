@@ -141,11 +141,13 @@ Tipos básicos de Criptografia:
 Criptografia de Chaves Assimétricas:
 	- Chave de criptografia é diferente da chave de descriptografia;
 	- Chave pública e privada: 
-		- Pública: usada para cifrar e é conhecida por todos;
+		- Pública: usada para cifrar e é conhecida por todos; (qualquer que quiser mandar uma mensagem para bob, criptografa a mensagem com a chave pública de bob)
 		- Privada: usada para decifrar só é conhecida pelo destinatário da mensagem;
 		- São um par. Cada chave pública tem sua privada e vice-versa;
 		- Não é possível adivinhar a chave privada a partir da chave pública
-		- Suponha que KB+ e KB- são as chaves pública e privada de Bob; Então: m = KB- (KB+ (m))
+		- Suponha que KB+ e KB- são as chaves pública e privada respectivamente de Bob; Então: m = KB- (KB+ (m))
+		- Não dá pra criptografar com uma chave pública e descriptografar com uma chave privada que não seja o par daquela chave pública
+		- um intruso pode cifrar uma mensagem e enviá-la a Bob, fingindo ser Alice. nesse caso para garantir autenticidade precisa da assinatura digital
 		EX:
 			1) Bob divulga a Alice sua chave pública;
 			2) Alice recebe a chave e criptografa a mensagem m utilizando a chave pública de Bob;
