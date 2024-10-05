@@ -10,11 +10,13 @@ Segurança em Redes:
 	- Camada de rede:
 		- Firewalls para descarte de pacotes
 		- Codificação/Criptografia dos pacotes do remetente ao destinatário
-	- Transporte:
-		- Codificação/Criptografia de conexões inteiras
+	- Camada de transporte:
+		- Codificação/Criptografia de conexões inteiras (TCP é orientado a conexão então é possível. Se fosse UDP não daria, teria que ser pacote por pacote)
+		- Essa camada não prevê criptografia no seu protocolo, então a criptografia deve ser implementada na camada de aplicação
 
 
 Criptografia: 
+- É uma área da matemática, pois os algoritmos usam matemática
 – Significa “Escrita secreta”; 
 – Técnicas criadas há mais de 2 mil anos;
 - Enigma: máquina eletromecânica de criptografar alemã teve o código quebrado pelo Colossus (computador digital de propósito específico);
