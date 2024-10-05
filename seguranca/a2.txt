@@ -56,6 +56,24 @@ Criptoanálise:
 	- Algoritmo de decifra;
 
 
+- Tempo médio para uma busca por força bruta de chave:
+	- para uma chave de 128 bits, o número de chaves possíveis é de 2 na 128 que é 3,4 x 10 na 38	
+	- se usar um ou um conjunto de computadores que conseguem testar 10 na 6 chaves por microsegundo:
+		- vai demorar 5,4 x 10 na 18 anos para descobrir a chave
+
+	- para uma chave de 56 bits, o número de chaves possíveis é de 2 na 56 que é 7,2 x 10 na 16	
+	- se usar um ou um conjunto de computadores que conseguem testar 10 na 6 chaves por microsegundo:
+		- vai demorar 10 horas apenas para descobrir a chave
+
+	- quanto maior a chave mais tempo demorará para descobrir a chave por força bruta
+
+
+- Algoritmos populares de criptografia simétrica:
+	- DES (em desuso pois tamanho das chaves não é muito grande)
+	- triplo DES (DES aplicado 3 vezes)
+	- AES
+
+
 - Ataque mais comum: 
 	- invasor conhece apenas o texto cifrado e algoritmos de cifra e decifra, descoberta por força bruta da chave de criptografia; 
 
