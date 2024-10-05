@@ -34,8 +34,11 @@ Intruso pode:
 Princípio de Kerckhoff:
 - Algoritmos de criptografia são públicos
 - Chaves são secretas
-
-
+- A chave dita o comportamento do algoritmo no processo de encriptar e desencriptar a mensagem
+- Ek(P) = C . função para encriptar que usa uma chave "k" e aplica essa função na mensagem "P" e como resultado terá o texto cifrado "C"
+- Dk(C) = P . função para desencriptar que usa a mesma chave "k" e aplica essa função no texto cifrado "C" e como resultado terá a mensagem original "P"
+- Dk(Ek(P)) = P . encripta uma mensagem e depois desencripta a mensagem cifrada e obtem a mensagem original denovo.
+- Nesse caso acima pode encriptar e desencriptar 1000 vezes que sempre obterá as mesmas mensagens "P" e "C" desde que use a mesma chave, porém isso não é bom pois se sempre for gerada a mesma cifra pra uma mensagem "P" isso é uma vulnerabilidade do algoritmo, o ideal é que uma mensagem "P" gere diferentes cifras e essas cifras quando desencriptadas gerem sempre a mensagem "P"
 
 
 ------------------------------------
