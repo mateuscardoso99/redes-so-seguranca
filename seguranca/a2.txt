@@ -80,7 +80,7 @@ Criptoanálise:
 - Chaves precisam ser grandes: 
 	- 128 a 256 bits é o mais usual;
 
-- Apenas algoritmos muito fracos não suportam um ataque somente de texto cifrado;
+- Apenas algoritmos muito fracos não suportam um ataque somente de texto cifrado; (saber o texto cifrado e o algoritmo não é suficiente para descobrir a chave, pois vai demorar infinitos anos)
 - Em geral algoritmos de criptografia são desenvolvidos para resistir a um ataque de texto às claras conhecido;
 
 
@@ -99,12 +99,12 @@ Criptoanálise:
 
 Tipos básicos de Criptografia:
 
-- Cifras de Substituição:
+- Cifras de Substituição: (fáceis de quebrar)
 	- Letras ou conjuntos de bits específicos são substituídos por outros;
 	- Cifra de César:
 		- A -> D, B -> E, C -> F ... Z -> C a chave disso pode ser o deslocamento de 3, pois A + 3 = D
 		
-- Cifras de Transposição:
+- Cifras de Transposição: (mais segura que a de substituição, mas não é segura)
 	- Não disfarçam letras, porém as reordenam dentro da mensagem;
 
 - Criptografia de Chave Única ou Chaves Simétricas:
@@ -115,6 +115,7 @@ Tipos básicos de Criptografia:
 	- O algoritmo para descriptografar é o mesmo para criptografar, porém executado em ordem inversa;
 
 	Cifra em blocos:
+		- cifra não é bit a bit nem caractere a caractere, mas em blocos (são feitas várias rodadas de transposição e substituição no mesmo bloco), forma de definir os blocos, quantidade de rodas, etc.. estão contidas dentro da chave.
 		- Outro tipo de criptografia de chave simétrica.
 		- Cifras usadas atualmente, misto de substituição e transposição
 		- Entrada é dividida em blocos de n bits de acordo com a chave.
