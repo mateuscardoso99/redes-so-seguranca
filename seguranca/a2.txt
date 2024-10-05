@@ -1,5 +1,18 @@
 Segurança em Redes:
 - Com exceção da camada física, a segurança em redes baseia-se em criptografia
+- Em qual camada a segurança é garantida?
+	- TODAS!
+	- Camada física: 
+		- garantir que a rede não é acessível fisicamente
+	- Camade de enlace:
+		- Codificação/Criptografia dos quadros
+		- Precisa ser decodificado a cada roteador
+	- Camada de rede:
+		- Firewalls para descarte de pacotes
+		- Codificação/Criptografia dos pacotes do remetente ao destinatário
+	- Transporte:
+		- Codificação/Criptografia de conexões inteiras
+
 
 Criptografia: 
 – Significa “Escrita secreta”; 
