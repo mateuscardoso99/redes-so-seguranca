@@ -127,7 +127,7 @@ Tipos básicos de Criptografia:
 		- Método rápido para cifrar/decifrar; 
 		- Fácil produzir um hardware que execute nativamente a função; 
 		- Criptoanálise difícil; 
-		- Só é possível por força bruta; 
+		- Só é possível por força bruta; (vai demorar muitos anos)
 		- Segurança maior = chave maior; 
 		
 	Desvantagem: 
