@@ -1,0 +1,66 @@
+- criptografia simétrica é baseada em transposição e substituição
+- md5 não deve ser mais usado pois é inseguro
+
+- a força da criptografia simétrica é que as chaves são grandes e são feitas N rodadas de transposição e 
+substituição com trocas muito aleatórias dependo da chave
+
+- criptografia e descriptografia é feita por blocos por exemplo um upload ou download em que as partes do arquivo 
+são criptografadas em partes pelo emissor e descriptografadas em blocos pelo receptor 
+e o texto puro é lido em partes, e não tudo de uma vez. NÃO é enviado tudo criptografado de uma vez só
+
+
+CRIPTOGRAFIA ASSIMÉTRICA:
+- muito mais lenta pra criptografar e ainda muito mais lenta pra gerar as chaves
+- a criptografia assimétrica não é baseada em transposição e substituição, e sim em cálculos com números primos
+- a chave privada JAMAIS trafega na internet, fica escondida
+- dá pra critografar tanto com a chave pública como com a privada
+- quantidade de dados a serem criptografados depende do tamanho da chave
+- se quiser criptografar maior quantidade vai precisar aumentar o tamanho da chave. isso acontece por questões matemáticas
+- o DES de cripto simétrica chega a ser 10000 vezes mais rápido que o RSA
+- tamanho de chave para RSA deve ser 2048 pelo menos
+- um ataque pode ser, sabendo o texto cifrado e o tempo que o computador demorou pra gerar a chave, apartir disso descobrir a chave privada. para previnir adicionar delays aleatórios no processo de criação da chave
+- o "random" na criptografia é usado pra obter numeros aleatórios na geração da chave. para garantir que os numeros primos gerados sejam aleatórios 
+- o RSA já foi muito testado e não foi encontrado vulnerabilidades, portanto é seguro a princípio
+
+
+ATAQUES QUANTICOS:
+- não se conhece um algoritmo eficiente pra fatoração de números primos, porém isto não significa que não existam
+- foram descobertos algoritmos quanticos eficientes pra fatoração de numeros primos pequenos
+- estudos existem para encontrar novos algoritmos que resistam a ataques quanticos
+- algoritmos baseados em isogenia entre curvas elípticas parecem ser boas soluções (ECC por exemplo)
+
+QuBits: bits quanticos
+- computadores quanticos ainda não são confiaveis e estáveis
+- maquinas quanticas atualmente usam poucas centenas qubits
+- pra quebrar o RSA de 2048 bits precisaria ter milhões de qubits
+- a longo prazo isso pode ser uma ameça grave
+
+
+RSA challenge: premios pra quem quebrar o RSA em diferentes tamanhos de chaves
+
+
+------------------------
+
+
+Diffie-hellman:
+- método prático para troca de chave secreta
+- usado na maioria dos produtos comerciais
+- mais rápido que o RSA mas aplicação é limitada a troca de chaves secretas
+
+
+
+trabalho diffie-hellman:
+- chaves são numeros bigInteger
+- um lado gera Q e A e a chave X (metodo geraNumeroMenorQue()) e envia o Q, A e os dados criptografados com a chave gerada apartir de K
+- cuidar ao chamar métodos pra passar o tamanho da chave certo
+
+- o outro lado recebe Q, A e os dados criptografados, calcula K a partir de Q e A recebidos e gera a chave apartir do resultado e descriptografa os dados
+
+- K é o resultado do tipoBiginteger, converte pra byte[] e depois converte pra chaveSessão
+
+
+
+
+
+
+
