@@ -1,0 +1,204 @@
+Firewalls criam uma barreira entre uma rede de confiança e uma rede não confiável
+
+um exemplo de firewall no Linux é o IPTABLES
+
+O iptables é uma ferramenta de controle de tráfego de rede em sistemas Linux. Ele permite que você configure regras de filtragem de pacotes, que podem ser usadas para permitir, negar ou redirecionar o tráfego de rede em um sistema. O iptables utiliza tabelas de regras e cadeias (chains) para organizar e aplicar as regras.
+
+Iptables é uma ferramenta de firewall para sistemas Linux que atua como uma espécie de “guarda de fronteira” entre o seu computador e a internet. Ela permite controlar o tráfego de rede, decidindo quais conexões são permitidas e quais são bloqueadas.
+
+
+INPUT: O CERTO A SE FAZER É BLOQUEAR TUDO QUE É ENTRADA (INPUT) E LIBERAR SÓ O QUE É PRECISO, POR EXEMPLO SSH, HTTP, HTTPS ETC.. QUALQUER COISA ALÉM DISSO É REJEITADO (DROP)
+OUTPUT: O CERTO É LIBERAR, POIS SÃO PACOTES QUE ESTÃO SAINDO DO PC
+
+
+No iptables, existem quatro tabelas principais, cada uma com suas cadeias (chains) e propósitos específicos
+
+Estrutura:
+
+	Tabelas: 
+		Tabela “filter”: Essa é a tabela padrão do iptables e é usada para filtrar o tráfego de pacotes com base em regras definidas. As três cadeias padrão nesta tabela são:
+			INPUT: Essa cadeia lida com pacotes destinados à própria máquina (tráfego de entrada).
+			OUTPUT: Essa cadeia lida com pacotes originados na própria máquina e enviados a outros destinos (tráfego de saída).
+			FORWARD: Essa cadeia lida com pacotes que estão apenas passando pelo sistema, atuando como um roteador.
+
+		Tabela “nat” (Network Address Translation): Essa tabela é usada para realizar a tradução de endereços de rede, geralmente usada para redirecionamento de portas (port forwarding) ou para mascaramento de endereços IP (SNAT – Source Network Address Translation). As cadeias padrão nesta tabela são:
+			PREROUTING: Essa cadeia é utilizada para modificar pacotes antes de serem roteados, permitindo o redirecionamento de portas.
+			OUTPUT: Esta cadeia é usada para modificar pacotes gerados localmente antes de saírem do sistema.
+			POSTROUTING: Esta cadeia é utilizada para modificar pacotes após o roteamento, geralmente usada para mascaramento de IP (SNAT).
+
+		Tabela “mangle”: A tabela mangle é usada para modificar os cabeçalhos dos pacotes. É usada principalmente para marcação de pacotes para posterior manipulação por outras regras ou ferramentas. As cadeias padrão nesta tabela são:
+			PREROUTING: Usada para modificar pacotes antes de serem roteados.
+			INPUT: Usada para modificar pacotes de entrada antes de serem entregues localmente.
+			FORWARD: Usada para modificar pacotes que estão apenas passando pelo sistema.
+			OUTPUT: Usada para modificar pacotes de saída antes de deixarem o sistema.
+			POSTROUTING: Usada para modificar pacotes após o roteamento.
+
+		Tabela “raw”: Essa tabela é usada principalmente para controlar o rastreamento de conexões, permitindo que os pacotes escapem do rastreamento feito pela tabela “conntrack”. As cadeias padrão nesta tabela são:
+			PREROUTING: Usada para modificar pacotes antes de serem roteados.
+			OUTPUT: Usada para modificar pacotes gerados localmente antes de saírem do sistema.
+	
+
+		**as tabelas "RAW", "MANGLE" E "NAT" são utilizadas principalmente por administradores mais avançados e precisam de regras mais complexas para seus firewalls. A tabela "FILTER" costuma ser a que mais importa para a maioria das regras básicas.
+
+
+-------------------------------------------
+
+
+As “políticas padrão (default policies)” do iptables podem ser comparadas às regras iniciais de boas-vindas que você estabelece para todos os convidados da sua festa antes de fazer ajustes específicos para atender às suas necessidades de segurança e preferências. 
+É como se você definisse previamente o comportamento padrão para o tráfego de entrada, saída e encaminhado, caso nenhuma regra específica seja aplicada a eles.
+
+A política de uma cadeia pode ser configurada com três valores possíveis:
+
+ACCEPT: O tráfego correspondente é permitido.
+DROP: O tráfego correspondente é silenciosamente descartado, sem enviar nenhuma resposta.
+REJECT: O tráfego correspondente é descartado, mas é enviado uma resposta ICMP ao remetente informando que a conexão foi rejeitada.
+
+EXEMPLO:
+iptables -P INPUT ACCEPT
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+
+Como não foi especificado a tabela dessa regra, por padrão a tabela selecionada é a filter. A flag -P configura uma política padrão na cadeia.
+Linha 1: A cadeia é INPUT e a política padrão definida é ACCEPT.
+Linha 2: A cadeia é FORWARD e a política padrão definida é DROP.
+Linha 3: A cadeia é OUTPUT e a política padrão definida é ACCEPT.
+
+
+
+
+------------------------------------
+
+
+
+
+LISTAR REGRAS: Isso listará as regras para todas as tabelas padrão (filter, nat e mangle).
+iptables -L
+
+
+
+ADICIONAR UMA REGRA:
+Para permitir tráfego na porta 80 (HTTP):
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+
+
+
+
+Adicionar uma regra para bloquear tráfego de saída:
+- sudo iptables -A OUTPUT -o eth0 -p udp --dport 53 -j DROP
+
+Neste exemplo, estamos adicionando uma regra à cadeia de saída (OUTPUT) que bloqueia tráfego UDP na porta 53 (porta padrão do DNS) na interface de rede “eth0” (interface de rede de saída) e direcionando-o para a ação “DROP”, que descarta o pacote.
+
+-A: Adiciona a regra à cadeia especificada.
+-o: Especifica a interface de rede de saída para onde o tráfego está sendo enviado.
+-p: Especifica o protocolo do pacote (neste caso, UDP).
+--dport: Especifica a porta de destino do pacote.
+-j: Indica a ação a ser tomada se a regra for correspondida (neste caso, DROP).
+
+
+
+
+Bloquear Tráfego:
+Para negar pacotes de um IP específico:
+iptables -A INPUT -s 192.168.1.10 -j DROP
+
+
+
+Remover uma regra específica:
+- sudo iptables -D INPUT 3 (Este comando remove a terceira regra da cadeia de entrada (INPUT))
+
+-D: Indica que estamos excluindo uma regra.
+INPUT: Especifica a cadeia da qual a regra será removida.
+3: É o número da regra que será excluída. Você pode ver os números das regras usando o comando iptables -L numerado.
+
+
+
+
+Excluindo Regras:
+Primeiro, você precisa ver todas as regras disponíveis inserindo o seguinte comando:
+- sudo iptables -L --line-numbers
+
+Você receberá uma lista de regras com números:
+
+Para deletar uma regra, insira a cadeia correspondente e o número da lista. Vamos supor, para este tutorial de iptables, que queremos nos livrar da regra número três da cadeia INPUT. O comando deve ser:
+- sudo iptables -D INPUT 3
+
+
+
+
+
+
+Autorizar o tráfego do seu próprio sistema (o localhost), adicione a cadeia de entrada ao introduzir o seguinte:
+- sudo iptables -A INPUT -i lo -j ACCEPT
+
+Este comando configura a firewall para aceitar o tráfego para a interface localhost (lo) (-i). Agora, tudo o que vem do seu sistema passará pela sua firewall. Deve definir esta regra para que as aplicações possam comunicar com a interface localhost.
+
+
+
+Descartando Todo o Tráfego Não-Autorizado:
+É crucial usar o alvo DROP para todo o outro tráfego após definir as regras de –dport. 
+Isso impedirá uma conexão não autorizada de acessar o servidor através de outras portas abertas. Para configurar isso, basta digitar:
+- sudo iptables -A INPUT -j DROP
+Agora, a conexão fora da porta especificada será interrompida
+
+
+
+Autorizar o tráfego Web HTTP, introduza o seguinte comando:
+- sudo iptables -A INPUT -p tcp —dport 80 -j ACCEPT
+
+
+Autorizar apenas o tráfego SSH (Secure Shell) de entrada:
+- sudo iptables -A INPUT -p tcp —dport 22 -j ACCEPT
+
+
+Autorizar o tráfego Internet HTTPS:
+- sudo iptables -A INPUT -p tcp —dport 443 -j ACCEPT
+
+
+Utilize o seguinte comando para aceitar o tráfego a partir de um endereço IP específico:
+- sudo iptables -A INPUT -s o_seu_endereço_IP_a_autorizar -j ACCEPT
+
+Também pode bloquear o tráfego a partir de um endereço IP:
+- sudo iptables -A INPUT -s o_seu_endereço_IP_ao_bloquear -j DROP
+
+Salvar regras: (ao reiniciar o sistema ou após uma falha, todas as regras definidas serão perdidas se não forem salvas adequadamente.)
+- iptables-save > /etc/iptables/rules.v4
+
+Restaurar regras:
+Após salvar as regras em um arquivo, você pode restaurá-las a qualquer momento usando o utilitário iptables-restore
+e pode-se usar o cronjob com um script pra restaurar durante a inicialização do sistema
+
+
+-----------------------
+
+
+Alguns parâmetros:
+-A —append: Adiciona uma regra a uma cadeia (no fim).
+-C —check: Procura uma regra que corresponda às exigências da cadeia.
+-D —delete: Eliminar as regras especificadas de uma cadeia.
+-F —flush: Elimina todas as regras.
+-I —insert: Adiciona uma regra a uma cadeia numa determinada posição.
+-N -new-chain: Crie uma nova cadeia.
+-v —verbose
+-X —delete-chain: Eliminar a cadeia fornecida.
+--dport: especifica a porta
+-p: especifica o protocolo
+-j jump: Efetua a ação
+-s (source) — a fonte (endereço) de onde vem o tráfego. Você pode adicionar um hostname ou endereço IP.
+-i (interface) — a interface de rede cujo tráfego você deseja filtrar, como eth0, lo, ppp0, etc.
+
+
+
+
+AS REGRAS NO IPTABLES SÃO APLICADAS NA ORDEM EM QUE FORAM ADICIONADAS. UMA VEZ QUE UM PACOTE CORRESPONDE A UMA REGRA, A AÇÃO ESPECIFICADA (ACCEPT, DROP, REJECT, ETC.) É EXECUTADA E AS REGRAS RESTANTES NÃO SÃO CONSIDERADAS. OU SEJA, SE TEM VÁRIAS REGRAS, A PRIMEIRA QUE CORRESPONDER A UM PACOTE SERÁ CONSIDERADA
+
+
+É importante sempre ter uma regra padrão (policy) definida para as cadeias (INPUT, OUTPUT, FORWARD) para tratar pacotes que não correspondem a nenhuma regra. Por exemplo:
+iptables -P INPUT DROP
+
+
+
+
+
+**Para garantir que suas regras do iptables sejam persistentes após a reinicialização, é necessário instalar o pacote iptables-persistent
+
+
