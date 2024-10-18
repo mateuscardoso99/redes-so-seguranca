@@ -1,0 +1,46 @@
+PODE-SE USAR A TANTO A CHAVE PRIVADA QUANTO A CHAVE PÚBLICA PARA CIFRAR E DESCIFRAR
+
+QUANDO SE DESEJA REALIZAR UMA ASSINATURA DIGITAL USA-SE A CHAVE PRIVADA PRA CRIPTOGRAFAR
+QUANDO SE CRIPTOGRAFA PARA GARANTIR A CONFIDENCIALIDADE USA-SE A CHAVE PÚBLICA PRA CRIPTOGRAFAR
+
+- com criptografia simétrica, assimétrica, chave de sessão etc. GARANTE-SE A CONFIDENCIALIDADE
+
+- com assintatura digital GARANTE-SE A INTEGRIDADE
+
+ASSINATURA DIGITAL:
+- deve ser verificável: reconhecer quem assinou
+- não falsificável: impossível falsificar uma assinatura
+- não repúdio: quem mandou não pode negar que assinou
+- usa um resumo (hash) dos bytes da mensagem
+- uma vez gerado o hash, não é mais possível voltar pra mensagem original apartir do hash
+- se a mensagem (um espaço adicionado por exemplo) for alterada o hash será completamente diferente
+- hashs podem ser iguais para mensagens diferentes (colisão)
+- 2 hashs podem ser parecidos mas as suas mensagens podem ser completamente diferentes
+- se Alice que enviar algo para bob, ela usa sua chave privada pra cifrar e bob usa a chave pública de Alice pra descifrar
+- se Bob que enviar algo para Alice, ele usa sua chave privada pra cifrar e Alice usa a chave pública de Bob pra descifrar
+- ou seja, cada lado teria que ter um par de chaves pública e privada e teriam que enviar um pro outro suas chaves públicas
+
+Ex: Alice envia uma mensagem para Bob, ela criptografa a mensagem, e pra impedir que alguém altere a mensagem ela adiciona uma assinatura
+mas se alguém interceptar a mensagem pode gerar um hash e enviar para Bob, e Bob ao descriptografar o hash e gerar um novo hash
+apartir da msg, ele vai encontrar o hash que o man in the middle gerou
+uma solução é usar a cripto assimétrica, de modo que alice usa sua chave privada pra cifrar o hash da mensagem e o destino usa a chave pública de alice pra descrifrar o hash
+dessa forma o destino pode verificar se foi Alice que enviou, e o man in the middle mesmo alterando a msg e gerando um novo hash dessa msg alterada, o destino ao tentar descriptograr o hash que o man in the middle enviou com a chave pública de alice
+vai verificar que a assinatura não é valida, pois a chave privada que o man in the middle usou pra cifrar o hash não é a mesma de Alice, teria que ter a chave privada de alice pra poder adulterar e gerar um hash valido que seja descifrado pela chave pública
+pois a chave pública de alice não vai conseguir decifrar o hash criptografado enviado pelo invasor, ela só descifra o que foi cifrado pelo pela chave privada de alice, pois as chaves são um par e sempre andam juntas
+
+outra solução seria usar MAC (Message Authentication Code), onde é feito um hash da msg + segredo
+o segredo não é enviado pela rede, ele é conhecido só pela origem e destino
+a assinatura é o hash da msg + segredo, man in the middle não consegue adulterar pois não conhece o segredo
+
+
+uso de cripto assimétrica: msg é cifrada com chave privada e descifrada com a chave pública
+cripto assimétrica é usada somente no hash, não na mensagem
+
+-----------------------
+
+CERTIFICADOS:
+- são instituições confiáveis que certificam um domínio por exemplo
+- certifica por exemplo para o domínio ufsm.br para usar esse certificado, se ao tentar usar outro domínio vai dar erro
+- existe uma cadeia de certificados, de modo que um certificado é certificado por outra CA e assim por diante
+- garante a autenticidade de uma chave pública
+- um certificado possui uma parte pública com sua chave pública e uma parte privada com sua chave privada
