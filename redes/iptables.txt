@@ -154,6 +154,12 @@ Autorizar o tráfego Internet HTTPS:
 - sudo iptables -A INPUT -p tcp —dport 443 -j ACCEPT
 
 
+Autorizar um IP:
+- sudo iptables -A INPUT -s 192.168.1.10/32 -j ACCEPT
+
+
+
+
 Utilize o seguinte comando para aceitar o tráfego a partir de um endereço IP específico:
 - sudo iptables -A INPUT -s o_seu_endereço_IP_a_autorizar -j ACCEPT
 
