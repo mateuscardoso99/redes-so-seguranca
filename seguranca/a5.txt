@@ -1,0 +1,111 @@
+CERTIFICAÇÃO DE CHAVES PÚBLICAS:
+- na internet é conhecido como PKI (Public key infrastrucutre) infraestrutura de chaves publicas
+- é preciso uma terceira entidade, a CA (autoridade certificadora)
+- a CA deve ser confiável, pois o processo de certificação deve ser seguro e confiável
+- a CA emite um certificado que vincula a sua chave pública à chave da identidade verificada
+- X.509 padrão mais difundido para sintaxe de certificados
+- pra poder ter uma chave pública certificada é preciso alguns requisitos, pra impedir de qualquer um gerar uma chave pública certificada por uma CA
+- somente uma CA limitaria muito a emissão de certificados
+	- hierarquia de certificados
+	- uma CA raiz pode gerar um certificado especial que permite ao portador certificar outros
+
+- existe uma lista negra de certificados, são certificados que por algum motivo foram comprometidos e não tem valor
+- a validação é recursiva até chegar no certificado raiz
+- certificados raiz são instalados no SO
+
+
+* ASSIM COMO NA VERIFICAÇÃO DE ASSINATURA DIGITAL, UM CERTIFICADO TAMBÉM DEVE SER VERIFICADO PRA VER SE ELE É VALIDO, SE NÃO TÁ EXPIRADO, REVOGADO
+
+** um certificado possui sua parte publica e privada
+** a parte privada de um certificado fica armazenada em cofres com máxima segurança, pois se alguém descobrir poderá criar certificados falsos em nome da CA, isso geraria uma catástrofe
+
+
+ATAQUE DE REPRODUÇÃO:
+- invasor conhece o que a mensagem faz e envia ela denovo para o destino criando um efeito duplicado
+ex: uma transferencia de dinheiro, o invasor descobre que a transferencia vai pra uma conta X e copia essa mensagem
+e depois envia novamente para o destino fazendo com que a transferencia aconteca denovo
+
+NONCE: número usado uma vez
+- pra solucionar o ataque de reprodução, usa-se um nonce, um numero aleatório que só pode ser usado 1 vez
+- se o invasor reenviar a mensagem o nonce será o mesmo e o destino descartará a mensagem porque o nonce já foi usado
+- o nonce é gerado baseado num segredo que só origem e destino conhecem, o invasor não tem como gerar o nonce pq não conhece o segredo
+
+
+PGP
+- padrão mais difundido para segurança de emails
+- ao invés de uma chave ter uma CA, pode ter vários certificadores
+- os certificadores são outros usuários que podem assinar chaves das quais eles tem certeza se tratar da pessoa correta
+- objetivo é gerar uma rede de confiança
+
+
+
+PROTEÇÃO DE CONEXÕES TCP
+- protege email apenas, como proteger uma conexão tcp para uma outro aplicação qualquer?
+
+SSL: secure sockets layer
+
+TLS: transport layer security
+- é um protocolo da camada de aplicação que pode ser usado com vários protocolos como http, ftp etc..
+- http + TLS = https
+- ftp + TLS = ftps
+- 3 fases
+	- handshake
+	- derivição da chave
+	- transferencia de dados
+	
+- garante autenticidade, confidencialidade, integridade
+- navegador verifica o certificado do site pra ver se é válido
+- numa comunicação pode ocorrer uma troca de certificados, um valida o outro, no navegador não é assim pois o certificado do site é validado e o usuário se autentica com senha
+- depois do ThreeWayHandshake começa o handshake do TLS
+
+
+FIREWALLS:
+- funcionam como uma portaria, barrando acessos indevidos do exterior bem como da própria organização
+- todo trafego de dentro pra fora e de fora pra dentro deverá passar pelo firewall
+- somente o tráfego autorizado pode passar, baseado nas políticas definidas
+- filtro de pacotes:
+	- analisa cada pacote de forma individual, baseando-se apenas nas informações deste pacote no nível de transporte e rede
+	- baseado no ip de origem e destino, portas de origem/destino, protocolos, tipos de msg ICMP
+
+FIREWALLS COM CONTROLE DE ESTADO
+- controlam o estado da conexão TCP
+
+
+GATEWAY DE APLICAÇÃO:
+- firewall mais avançado, não analisa só cabeçalhos de pacotes, analisa tambem conteúdo
+- tem conhecimento dos dados de aplicações e tomam decisões baseados nessas informações
+- mais sofisticados que o firewall
+
+SISTEMAS DE DETECÇÃO DE INTRUSÃO (IDS)
+- para detectar ataques é preciso inspecionar mais do que apenas cabeçalhos de pacotes
+- é preciso tbm inspecionar os dados de aplicação, como os gateways de aplicação fazem, porém estes só fazem isso em uma aplicação específica
+- reconhece um ataque com base num passo a passo, um ataque é organizado em passos e o IDS conhece vários tipos e consegue identificar
+- gera alertas quando identifica ataques mal intencionados
+- tipos de ataques: nmap, ataques de inundação, vulnerabilidades
+- zona desmilitarizada: servidores de propósito específico que ficam em uma zona mais permissiva, com menos restrições de firewall
+
+IDS baseados em assinaturas:
+- especialistas descrevem assinaturas que são caracteristicas dos diferentes tipos de ataques
+- assinaturas são caracteristicas dos diferentes tipos de ataques
+- não detecta ataques novos (algo nunca feito)
+- assinaturas novas podem ser adicionadas
+
+IDS baseados em anomalia:
+- cria um perfil de tráfego que considera normal e observa o tráfego
+
+
+SNORT:
+- IDS baseado em assinaturas de dominio publico muito usado no mundo
+
+
+
+
+
+
+
+
+
+
+
+
+
