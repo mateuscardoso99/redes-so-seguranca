@@ -172,7 +172,20 @@ sistema de chave pública usa criptografia assimétrica, em que a chave pública
 
 
 
+
+
 3. De que maneira um hash fornece um melhor controle de integridade da mensagem do que uma soma de verificação (como a soma de verificação da internet)?
+Checksum – ou soma de verificação, em português – é uma técnica utilizada para verificar a integridade de dados durante a transmissão ou armazenamento, que funciona como uma assinatura digital e, assim, ajuda a verificar se os arquivos estão intactos e não foram modificados indevidamente.
+
+Vale ressaltar que o checksum é calculado em dois momentos: no ponto de origem, antes da transmissão ou armazenamento, e no ponto de destino, após a recepção ou recuperação dos dados. Desta forma, é feita uma comparação entre os dois valores de checksum, possibilitando verificar se os dados recebidos são os mesmos que foram enviados ou armazenados originalmente.
+
+o checksum é calculado na origem e enviado pela rede até o destino, e no destino é feito um novo cálculo de checksum e compara-se os 2 checksums
+se forem diferentes então a integridade foi quebrada
+o hash sozinho não oferece um bom controle de integridade, pois um invasor poderia adulterar a mensagem e envia-la para o destino, e o destino não ia ter como verificar a integridade da mensagem
+o hash junto com a assinatura digital ou junto com MAC aí sim é melhor que o checksum
+
+A saída de uma função de hash geralmente é muito maior do que uma soma de verificação. Por exemplo, um hash SHA-256 produz um valor de 256 bits, enquanto uma soma de verificação comum pode ser de apenas 8 ou 16 bits. Quanto maior o espaço de saída, menor a chance de colisões e, portanto, maior a segurança.
+
 
 
 
