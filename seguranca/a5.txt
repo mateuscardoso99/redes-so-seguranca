@@ -38,6 +38,17 @@ PGP
 - objetivo é gerar uma rede de confiança
 
 
+PROTEÇÃO DE E-MAIL:
+	– Características essenciais: CONFIDENCIALIDADE, INTEGRIDADE e AUTENTICAÇÃO;
+	- Garantindo a confidencialidade:
+		- Alice criptografa a chave de criptografia simétrica com a chave pública de Bob, e criptografa a mensagem utilizando a chave simétrica. Ambos são concatenados e enviados no e-mail;
+	- Garantindo autenticação de remetente e integridade da mensagem:
+		- Alice aplica uma função de Hash à mensagem e criptografa o hash com a sua chave privada. (Assinatura digital)
+	- Garantindo confidencialidade, autenticação de remetente e integridade da mensagem:
+		- Alice extrai o hash da mensagem, criptografa o hash com a sua chave privada concatenando com a mensagem pura. 
+		– Alice criptografa uma chave simétrica S com a chave pública de Bob e criptografa a mensagem assinada com a chave simétrica S.
+
+
 
 PROTEÇÃO DE CONEXÕES TCP
 - protege email apenas, como proteger uma conexão tcp para uma outro aplicação qualquer?
@@ -56,7 +67,34 @@ TLS: transport layer security
 - garante autenticidade, confidencialidade, integridade
 - navegador verifica o certificado do site pra ver se é válido
 - numa comunicação pode ocorrer uma troca de certificados, um valida o outro, no navegador não é assim pois o certificado do site é validado e o usuário se autentica com senha
-- depois do ThreeWayHandshake começa o handshake do TLS
+- depois do 3-way handshake do protocolo TCP (SYN, SYNACK, ACK), começa o handshake do TLS (apresentação) da seguinte forma:
+	- Bob envia mensagem “hello” e Alice envia seu certificado;
+	- Bob cria o segredo mestre, criptografa com a chave pública de Alice e envia para ela;
+	- Alice descriptografa o segredo mestre criptografado com sua chave privada, e dessa forma tem acesso ao segredo mestre
+
+- Derivação de chaves:
+	– Ao invés de utilizarem somente a segredo mestre para criptografar toda a comunicação, é considerado mais seguro utilizar chaves diferentes para criptografia e verificação da integridade
+	– Segredo Mestre (MS) é derivado em 4 chaves: 
+		- EB: chave de criptografia para dados enviados de Bob para Alice; 
+		- MB: chave de MAC (Código de autenticação de mensagem) de dados enviados de Bob para Alice; 
+		- EA: chave de criptografia para dados enviados de Alice para Bob; 
+		- MA: chave de MAC (Código de autenticação de mensagem -hash) de dados enviados de Alice para Bob;
+
+- Transferência de dados: 
+	– Alice e Bob compartilham as mesmas 4 chaves de sessão; 
+	– SSL cifra os dados da aplicação e repassa para o TCP na camada inferior, porém: 
+		- TCP é um protocolo de fluxo de dados e o SSL não pode esperar o fim da sessão para verificar a integridade dos dados; 
+		- SSL divide os dados em registros e anexa um MAC em cada registro; 
+	– Possível ataque: 
+		- Trudy pode interceptar registros SSL e alterar a ordem de envio de Alice para Bob, já que os números de sequência TCP não são cifrados e pode ser alterados;
+		- SOLUÇÃO: usar número de sequência dentro do registro SSL e incluí-lo no MAC;
+
+- Encerramento da Sessão SSL: 
+	– Também segue um protocolo; 
+	– Apenas encerrar a sessão TCP abre uma grande brecha pois algum intruso pode se intrometer na comunicação e enviar um pacote “TCP FIN”; 
+	– Se o receptor recebe o “TCP FIN” antes de receber um registro SSL indicando o fim do fluxo ele saberá que algo está errado;
+
+
 
 
 FIREWALLS:
@@ -101,11 +139,128 @@ SNORT:
 
 
 
+------------------------------------------------------------------
+
+
+
+
+1. Quais são as diferenças entre confidencialidade de mensagem e integridade de mensagem? 
+É possível ter confidencialidade sem integridade? É possível ter integridade sem confidencialidade? Justifique. 
+
+confidencialidade é quando uma mensagem é criptografada na origem e descriptografada no destino, assim ninguém consegue descriptografar porque precisa da chave privada do destinatário da mensagem para conseguir
+
+integridade é quando se consegue verificar que uma mensagem não foi adulterada em trânsito, isso é feito com assinatura digital ou código MAC
+
+É possível ter confidencialidade sem integridade porque pode-se enviar uma mensagem criptografada garantindo a confidencialidade, 
+mas sem assinatura digital ou código MAC, dessa forma a integridade não poderia ser comprovada
+
+É possível ter integridade sem confidencialidade porque pode-se enviar uma mensagem com assinatura digital ou código MAC, mas sem criptografar a mensagem em si
+dessa forma poderia verificar se a mensagem foi adulterada no caminho (integridade) mas como a msg não foi criptografada ela foi em texto puro
 
 
 
 
 
 
+
+2. Da perspectiva de um serviço, qual é a diferença importante entre um sistema de chave simétrica e chave pública? 
+sistema de chave simétrica usa a mesma chave para criptografar e descriptografar a mensagem
+sistema de chave pública usa criptografia assimétrica, em que a chave pública é compartilhada com o mundo exterior e é usada pra criptografar a mensagem, e a chave privada é usada pra descriptografar a mensagem e não é compartilhada com ninguém
+
+
+
+
+
+3. De que maneira um hash fornece um melhor controle de integridade da mensagem do que uma soma de verificação (como a soma de verificação da internet)?
+
+
+
+
+
+
+4. Você pode descriptografar o hash de uma mensagem a fim de obter a mensagem original? Explique sua resposta? 
+não. o hash é unidirecional, não é possível chegar na mensagem original apartir do hash, só é possível chegar na mensagem original com a criptografia
+
+
+
+
+
+5. Considere a variação de um algoritmo MAC, onde o transmissor envia (m, H(m) + s). Esta variação é falha? Explique. 
+neste caso sim, porque "H(m) + s" tá fazendo hash apenas da mensagem "m" e não do segredo "s" junto com a mensagem, 
+dessa forma um invasor poderia adulterar a mensagem e gerar um hash da mensagem adulterada e enviar pro destinatário, 
+e o destinatário ia gerar o hash da mensagem adulterada e obviamente ia ser igual, 
+ou seja, não teria como provar que a mensagem não foi adulterada, precisaria ter um segredo que só origem e destino conhecem e 
+gerar o hash da mensagem apartir desse segredo, dessa forma o invasor teria que saber o segredo pra gerar um hash válido e enganar o destinatário
+deveria ser assim: "H(m+s)"
+
+
+
+
+
+6. O que significa afirmar que um documento é verificável, não falsificável e não-repudiável?
+não falsificável significa que não pode ser falsificado, pois pra falsificar teria que conhecer o segredo no caso do MAC, ou possuir a chave privada no caso da assinatura digital.
+não-repudiável significa que quem enviou não pode negar que enviou, pois ao descriptografar a mensagem com a chave pública fica provado que a mensagem só pode ter sido criptografada com a chave privada do remetente, ou se usar MAC ao verificar o hash se consegue saber que uma mensagem só pode ter sido enviada pelo remetente pois só ele e o destino conhecem o segredo
+um documento é verificável quando se pode verificar sua integridade, se não foi adulterado no caminho pode ser feito com assinatura digital ou MAC
+
+
+
+
+
+7. De que modo um resumo de mensagem criptografado por chave privada proporciona uma assinatura digital melhor do que utilizar a mensagem criptografada com chave privada?
+
+criptografar o resumo (hash) da mensagem é uma assinatura digital melhor do que utilizar apenas a mensagem criptografada como assinatura digital
+porque o hash é um cálculo matemático do conteúdo em bytes da mensagem e se for adicionado ou removido um caractere, bit etc.. apenas do conteúdo
+o hash será completamente diferente e o destinatário conseguirá saber que a mensagem foi adulterada porque os hashs não são iguais
+usar só a mensagem criptografada sem usar hash não seria possível checar a integridade
+
+
+
+
+
+
+8. Suponha que Alice tenha uma mensagem pronta para enviar para qualquer pessoa que possa perguntar e milhares de pessoas querem ter a mensagem de Alice. 
+Contudo, cada um quer ter a certeza da integridade da mensagem. 
+Neste contexto, você acha que um esquema baseado em MAC ou baseado em assinatura digital é mais apropriado? Por quê?
+
+é melhor assinatura digital pois Alice iria gerar um hash da mensagem e criptografar o hash com sua chave privada e enviar a mensagem, o hash criptografado e a sua chave pública para qualquer um que quisesse ter a mensagem e verificar a sua integridade,
+e o destinatário usando a chave pública recebida conseguiria descriptografar o hash recebido, e verificar a integridade da mensagem gerando um hash da mensagem e commparando com o hash recebido de Alice.
+com MAC daria pra fazer também mas cada uma das milhares de pessoas teria que conhecer o segredo que Alice usou pra gerar o hash da mensagem, o que poderia ser ruim no ponto de vista da segurança
+
+
+
+
+9. Qual é a finalidade de um “nonce” em um protocolo?
+o nonce previne ataques de repetição, como por exemplo um invasor descobre que uma mensagem realiza uma transferência bancária pra uma conta X
+e esse invasor então envia essa mensagem várias vezes para o destinatário fazendo com que a transferência aconteca várias vezes.
+usando o nonce a mensagem teria um número alatório vinculado a mensagem, e o invasor ao enviar denovo essa mensagem não conseguiria fazer com que a transferência fosse feita denovo, porque o destinatário identificaria que o nonce da mensagem já foi usado e descartaria a mensagem
+
+
+
+
+10.Suponha que Bob inicie uma conexão TCP com Trudy, que está fingindo ser Alice. 
+Durante a apresentação Trudy envia um certificado da Alice. 
+Trudy conseguirá fazer Bob acreditar que está se comunicando com Alice? 
+Em que etapa da apresentação Bob poderá perceber o engano?
+
+
+11.Por que um gateway de aplicação trabalha juntamente a um filtro de pacotes para ser eficaz?
+porque o gateway de aplicação trabalha na camada de aplicação analisando o conteúdo das aplicações para decidir se bloqueia ou não
+mas ainda é preciso ter um firewall para bloquear pacotes que não correspondam as regras de entrada 
+
+
+
+12.
+- Alice gera o hash da mensagem
+- Alice criptografa o hash da mensagem com sua chave privada garantindo integridade (assinatura digital), e autenticidade pois usou sua chave privada
+- Alice criptografa a mensagem com a chave simétrica e criptografa a chave simétrica com a chave pública de Bob (confidencialidade). Ambos são concatenados e enviados no e-mail;
+
+Estes são os passos realizados por Alice para enviar uma mensagem a Bob com confidencialidade, integridade e autenticação. 
+Faça os passos equivalente com as operações realizadas por Bob.
+
+- Bob descriptografa a chave simétrica com sua chave privada
+- Bob descriptografa a mensagem usando a chave simétrica
+- Bob descriptografa o hash criptografado de Alice usando a chave pública de Alice
+- Bob gera um hash da mensagem de Alice
+- Bob compara o hash gerado com o hash recebido de Alice
 
 
