@@ -153,9 +153,10 @@ integridade é quando se consegue verificar que uma mensagem não foi adulterada
 
 É possível ter confidencialidade sem integridade porque pode-se enviar uma mensagem criptografada garantindo a confidencialidade, 
 mas sem assinatura digital ou código MAC, dessa forma a integridade não poderia ser comprovada
+Um atacante poderia interceptar a mensagem, alterá-la e enviá-la, e o destinatário não teria como verificar a integridade
 
 É possível ter integridade sem confidencialidade porque pode-se enviar uma mensagem com assinatura digital ou código MAC, mas sem criptografar a mensagem em si
-dessa forma poderia verificar se a mensagem foi adulterada no caminho (integridade) mas como a msg não foi criptografada ela foi em texto puro
+dessa forma poderia verificar se a mensagem foi adulterada no caminho (integridade) mas como a mensagem não foi criptografada ela foi em texto puro
 
 
 
@@ -164,8 +165,8 @@ dessa forma poderia verificar se a mensagem foi adulterada no caminho (integrida
 
 
 2. Da perspectiva de um serviço, qual é a diferença importante entre um sistema de chave simétrica e chave pública? 
-sistema de chave simétrica usa a mesma chave para criptografar e descriptografar a mensagem
-sistema de chave pública usa criptografia assimétrica, em que a chave pública é compartilhada com o mundo exterior e é usada pra criptografar a mensagem, e a chave privada é usada pra descriptografar a mensagem e não é compartilhada com ninguém
+sistema de chave simétrica usa a mesma chave para criptografar e descriptografar a mensagem, a principal desvantagem desse sistema é o necessidade de compartilhar a chave secreta de forma segura entre as partes envolvidas. Se a chave for interceptada, a segurança do sistema é comprometida.
+sistema de chave pública usa criptografia assimétrica, em que a chave pública é compartilhada com o mundo exterior e é usada pra criptografar a mensagem, e a chave privada é usada pra descriptografar a mensagem e não é compartilhada com ninguém, principal vantagem é que não há necessidade de compartilhar uma chave secreta, pois a chave pública pode ser divulgada abertamente. Somente a entidade que possui a chave privada pode descriptografar as mensagens.
 
 
 
@@ -180,8 +181,8 @@ sistema de chave pública usa criptografia assimétrica, em que a chave pública
 
 4. Você pode descriptografar o hash de uma mensagem a fim de obter a mensagem original? Explique sua resposta? 
 não. o hash é unidirecional, não é possível chegar na mensagem original apartir do hash, só é possível chegar na mensagem original com a criptografia
-
-
+Um hash é uma função que transforma uma entrada (ou mensagem) em uma sequência fixa de caracteres, geralmente representada em formato hexadecimal. Essa operação é irreversível, o que significa que não se pode recuperar a entrada original a partir do hash.
+As funções de hash, como MD5, SHA-1, SHA-256, entre outras, são projetadas para serem unidimensionais. Isso significa que, embora seja fácil calcular o hash a partir da entrada, não existe um método prático para reverter o hash de volta à entrada original
 
 
 
@@ -190,7 +191,7 @@ neste caso sim, porque "H(m) + s" tá fazendo hash apenas da mensagem "m" e não
 dessa forma um invasor poderia adulterar a mensagem e gerar um hash da mensagem adulterada e enviar pro destinatário, 
 e o destinatário ia gerar o hash da mensagem adulterada e obviamente ia ser igual, 
 ou seja, não teria como provar que a mensagem não foi adulterada, precisaria ter um segredo que só origem e destino conhecem e 
-gerar o hash da mensagem apartir desse segredo, dessa forma o invasor teria que saber o segredo pra gerar um hash válido e enganar o destinatário
+gerar o hash da mensagem apartir desse segredo, dessa forma o invasor teria que saber o segredo pra gerar um hash válido e enganar o destinatário.
 deveria ser assim: "H(m+s)"
 
 
@@ -199,7 +200,11 @@ deveria ser assim: "H(m+s)"
 
 6. O que significa afirmar que um documento é verificável, não falsificável e não-repudiável?
 não falsificável significa que não pode ser falsificado, pois pra falsificar teria que conhecer o segredo no caso do MAC, ou possuir a chave privada no caso da assinatura digital.
-não-repudiável significa que quem enviou não pode negar que enviou, pois ao descriptografar a mensagem com a chave pública fica provado que a mensagem só pode ter sido criptografada com a chave privada do remetente, ou se usar MAC ao verificar o hash se consegue saber que uma mensagem só pode ter sido enviada pelo remetente pois só ele e o destino conhecem o segredo
+
+NÃO REPÚDIO: significa que quem enviou não pode negar que enviou, pois ao descriptografar a mensagem com a chave pública fica provado que a mensagem só pode ter sido criptografada com a chave privada do remetente, ou se usar MAC ao verificar o hash se consegue saber que uma mensagem só pode ter sido enviada pelo remetente pois só ele e o destino conhecem o segredo
+O uso de uma chave privada que é conhecida apenas pelo signatário garante que ele não pode repudiar a assinatura, ou seja, não pode negar que ele foi o autor da assinatura. Para aumentar ainda mais a robustez, recomenda-se o uso de um terceiro confiável, como uma Autoridade Certificadora (CA), que emite e gerencia os certificados digitais. Esses certificados atestam que a chave pública realmente pertence ao signatário.
+ A assinatura digital baseada em um resumo da mensagem garante que o remetente não possa negar a autoria da mensagem, uma vez que a assinatura digital vinculada ao hash é única e depende da chave privada do remetente.
+
 um documento é verificável quando se pode verificar sua integridade, se não foi adulterado no caminho pode ser feito com assinatura digital ou MAC
 
 
@@ -212,7 +217,7 @@ criptografar o resumo (hash) da mensagem é uma assinatura digital melhor do que
 porque o hash é um cálculo matemático do conteúdo em bytes da mensagem e se for adicionado ou removido um caractere, bit etc.. apenas do conteúdo
 o hash será completamente diferente e o destinatário conseguirá saber que a mensagem foi adulterada porque os hashs não são iguais
 usar só a mensagem criptografada sem usar hash não seria possível checar a integridade
-
+As mensagens podem ser muito longas, e criptografá-las diretamente com uma chave privada (ou chave secreta) requer muito processamento e é ineficiente. Em vez disso, criar um resumo (hash) da mensagem (usando um algoritmo de hash como SHA-256) gera um valor fixo e mais curto que representa a mensagem original. Esse valor hash é muito mais fácil e rápido de criptografa
 
 
 
@@ -242,10 +247,21 @@ Durante a apresentação Trudy envia um certificado da Alice.
 Trudy conseguirá fazer Bob acreditar que está se comunicando com Alice? 
 Em que etapa da apresentação Bob poderá perceber o engano?
 
+PASSOS DA APRESENTAÇÃO (HANDSHAKE) NO TLS:
+	1. Bob envia mensagem “hello” e Alice envia seu certificado;
+	2. Bob cria o segredo mestre, criptografa com a chave pública de Alice e envia para ela;
+	3. Alice descriptografa o segredo mestre criptografado com sua chave privada, e dessa forma tem acesso ao segredo mestre
+
+RESPOSTA: não. porque no passo 3 seria preciso que Trudy tivesse a chave privada de Alice para ter acesso ao segredo mestre
+então sem o segredo mestre, Trudy não conseguirá criar as chaves de sessão e não vai conseguir estabelecer a conexão TLS
+
+
+
 
 11.Por que um gateway de aplicação trabalha juntamente a um filtro de pacotes para ser eficaz?
 porque o gateway de aplicação trabalha na camada de aplicação analisando o conteúdo das aplicações para decidir se bloqueia ou não
-mas ainda é preciso ter um firewall para bloquear pacotes que não correspondam as regras de entrada 
+mas ainda é preciso ter um filtro de pacotes opera na camada de rede para bloquear pacotes que não correspondam as regras de entrada 
+Muitos ataques modernos, como os que exploram vulnerabilidades em aplicações web, podem passar pelo filtro de pacotes sem serem detectados porque se baseiam em conexões legítimas. O gateway de aplicação pode identificar e bloquear esses ataques ao inspecionar o tráfego em um nível mais profundo.
 
 
 
